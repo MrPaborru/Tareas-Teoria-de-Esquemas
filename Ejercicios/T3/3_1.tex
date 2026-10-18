@@ -1,0 +1,29 @@
+% Pizarra de T3, páginas 17--18.
+\begin{ejer}[\texorpdfstring{Inyectivo en tallos $\Longleftrightarrow$ inyectivo en abiertos}{Inyectivo en tallos si y solo si inyectivo en abiertos}]\label{ejer:t3-inyectividad-tallos}
+Sea $\varphi\colon\mathcal F\to\mathcal G$ un morfismo de gavillas. Prueba (no solo uses) que $\varphi$ es inyectivo en cada tallo si y solo si $\varphi(U)$ es inyectivo para todo abierto $U$. (Sugerencia: usa que una sección de una gavilla está determinada por sus gérmenes.) \hfill [Vakil 2.4.A y 2.6.A]
+\end{ejer}
+\begin{sol}
+\noindent\emph{Lema}: Si $s,t\en\mathcal F(U)$ cumplen $s_x=t_x$ para todo $x\en U$, entonces $s=t$.
+
+\noindent\emph{Prueba}: Dado $x\en U$, $s_x=t_x$ implica que existe un abierto $V_x\subseteq U$, entorno de $x$, con $\restr{s}{V_x}=\restr{t}{V_x}$. Se sigue que $\set{V_x}_{x\en U}$ es una cubierta de $U$ en la que las restricciones de $s$ y $t$ coinciden, por lo que el axioma de identidad garantiza $s=t$.
+
+\medskip
+\noindent\emph{Necesidad}: Supongamos $\varphi_x\colon\mathcal F_x\to\mathcal G_x$ inyectivo para todo $x\en X$, y sean $U\subseteq X$ abierto y $s,t\en\mathcal F(U)$ con $\varphi_U(s)=\varphi_U(t)$.
+
+Para todo $x\en U$ se tiene
+\[
+\varphi_x(s_x)=\varphi_U(s)_x=\varphi_U(t)_x=\varphi_x(t_x),
+\]
+por lo que $s_x=t_x$. Como $\mathcal F$ es gavilla, el lema del inicio implica que $s=t$. Hemos probado que $\varphi_U$ es inyectiva para cualquier abierto.
+
+\medskip
+\noindent\emph{Suficiencia}: Supongamos $\varphi_U\colon\mathcal F(U)\to\mathcal G(U)$ inyectiva para cada abierto y fijemos $x\en X$ arbitrario. Si $s_x,t_x\en\mathcal F_x$ con representantes $s\en\mathcal F(U)$ y $t\en\mathcal F(V)$ cumplen $\varphi_x(s_x)=\varphi_x(t_x)$, por definición $\varphi_U(s)_x=\varphi_V(t)_x$. Se sigue que existe $W\subseteq U\cap V$, entorno de $x$, con
+\[
+\restr{\varphi_U(s)}{W}=\restr{\varphi_V(t)}{W}.
+\]
+La naturalidad de $\varphi$ convierte esto último en
+\[
+\varphi_W(\restr{s}{W})=\varphi_W(\restr{t}{W}),
+\]
+así que la inyectividad de $\varphi_W$ implica $\restr{s}{W}=\restr{t}{W}$. Como $x\en W$, se sigue que $s_x=t_x$. Hemos probado que $\varphi_x$ es inyectiva.
+\end{sol}

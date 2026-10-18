@@ -1,0 +1,61 @@
+% Pizarra de T3, páginas 24--27.
+\begin{ejer}[La pregavilla constante]\label{ejer:t3-pregavilla-constante}
+Sea $X$ un espacio topológico y $A$ un grupo abeliano no trivial. Sea $\mathcal A_X(U)\coloneq A$ para todo $U\ne\varnothing$, con mapas de restricción la identidad. Muestra que $\mathcal A_X$ es una gavilla si y solo si todo abierto no vacío de $X$ es conexo. \hfill [Liu, Ejercicio 2.1 (§2.2)]
+\end{ejer}
+\begin{sol}
+\noindent\emph{Necesidad}: Si $\mathcal A_X$ es gavilla, la condición de descenso para la cubierta vacía del abierto vacío dice que el diagrama
+\[
+\begin{tikzcd}[column sep=large]
+\mathcal A_X(\varnothing)\arrow[r]
+&\displaystyle\prod_{U\en\varnothing}\mathcal A_X(U)
+\arrow[r,shift left=.6ex]\arrow[r,shift right=.6ex]
+&\displaystyle\prod_{U,V\en\varnothing}\mathcal A_X(U\cap V)
+\end{tikzcd}
+\]
+es ecualizador. Como los productos vacíos son $0$, tenemos que $\mathcal A_X(\varnothing)\to0\rightrightarrows0$ es ecualizador, por lo que $\mathcal A_X(\varnothing)\cong0$.
+
+Ahora bien, supongamos por contradicción que existe un abierto $U$ disconexo, es decir, que admite una cubierta abierta $\set{V_1,V_2}$ con $V_1\cap V_2=\varnothing$ y $V_1,V_2$ no vacíos. Las condiciones de descenso implican que
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+\mathcal A_X(U)\arrow[r]\arrow[d,equal]
+&\mathcal A_X(V_1)\times\mathcal A_X(V_2)
+\arrow[r,shift left=.6ex]\arrow[r,shift right=.6ex]\arrow[d,equal]
+&\mathcal A_X(V_1)\times\mathcal A_X(V_2)\times\mathcal A_X(\varnothing)\arrow[d,equal]\\
+A\arrow[r]&A\times A
+\arrow[r,shift left=.6ex]\arrow[r,shift right=.6ex]&A\times A\times0
+\end{tikzcd}
+\]
+es diagrama ecualizador, donde las flechas paralelas corresponden a
+\[
+\res_{V_1}^{V_1}\times\res_{V_2}^{V_2}\times\res_{\varnothing}^{V_1},
+\qquad
+\res_{V_1}^{V_1}\times\res_{V_2}^{V_2}\times\res_{\varnothing}^{V_2},
+\]
+respectivamente; es decir, ambas son $\id_A\times\id_A\times0$. Como las flechas paralelas ya son iguales, la flecha ecualizadora
+\[
+\mathcal A_X(U)\xrightarrow{\res_{V_1}^U\times\res_{V_2}^U}
+\mathcal A_X(V_1)\times\mathcal A_X(V_2)
+\]
+debe ser isomorfismo. Como se definió $\res_{V_1}^U=\id_A=\res_{V_2}^U$, esto se traduce en que el mapa diagonal $\Delta\colon A\to A\times A$ es isomorfismo, pero esto solo puede ocurrir cuando $A=0$: si hubiera $a\en A\setminus\set{0}$, entonces $(a,0)\en A\times A\setminus\im\Delta$ y $\Delta$ no sería isomorfismo. Por hipótesis $A\ne0$. Esta es una contradicción causada por suponer que existe un abierto disconexo, así que todo abierto debe ser conexo.
+
+\medskip
+\noindent\emph{Suficiencia}: Aunque el ejercicio no lo menciona, para que la suficiencia sea verdadera necesitamos pedir que $\mathcal A_X(\varnothing)\cong0$. La necesidad de esta hipótesis ya fue probada en ``Necesidad''.
+
+\medskip
+\noindent\emph{1. (Identidad)}: Sean $U\subseteq X$ abierto, $s\en\mathcal A_X(U)$ y $\set{U_i}_{i\en I}$ una cubierta abierta de $U$, de modo que $\restr{s}{U_i}=0$ para todo $i\en I$. Si $U=\varnothing$, ya tenemos $\mathcal A_X(U)=0$, por lo que $s=0$. Si $U\ne\varnothing$, entonces forzosamente existe $i\en I$ con $U_i\ne\varnothing$; se sigue que $\res_{U_i}^U=\id_A$, de donde $s=\restr{s}{U_i}=0$. En cualquier caso se cumple $s=0$. Esto prueba el axioma de identidad.
+
+\medskip
+\noindent\emph{2. (Engarce)}: Sean $U$ abierto, $\set{U_i}_{i\en I}$ cubierta abierta de $U$ y $\set{s_i}_{i\en I}$ familia compatible sobre dicha cubierta. Si $U=\varnothing$, entonces $U_i=\varnothing$ para todo $i\en I$ (esto ya contempla también el caso $I=\varnothing$), por lo cual $s_i=0$ para todo $i\en I$, así que $0\en\mathcal A_X(U)$ es engarce de $\set{s_i}_i$. Si $U\ne\varnothing$, tenemos por hipótesis que $U$ es conexo.
+
+Luego, fijemos $k\en I$ con $U_k\ne\varnothing$ (existe ya que $U\ne\varnothing$) y definamos
+\[
+J\coloneq\set*{i\en I\given s_i=s_k}.
+\]
+Si $A\coloneq\bigcup_{i\en J}U_i$ y $B\coloneq\bigcup_{i\en I\setminus J}U_i$, entonces $A\cap B=\varnothing$, pues de otro modo existirían $i\en J$ y $j\en I\setminus J$ con $U_i\cap U_j\ne\varnothing$, por lo cual la compatibilidad implicaría
+\[
+s_i=\restr{s_i}{U_i\cap U_j}=\restr{s_j}{U_i\cap U_j}=s_j.
+\]
+Como $i\en J$, de esto se seguiría $s_j=s_i=s_k$ y luego $j\en J$, lo cual es contradictorio.
+
+Ahora bien, $A$ y $B$ son abiertos disjuntos con $A\cup B=U$ y $A\supseteq U_k\ne\varnothing$, así que la conexidad de $U$ implica $B=\varnothing$. Se sigue que $U_j=\varnothing$ y, por tanto, $s_j=0$ para todo $j\en I\setminus J$. Finalmente, notemos que $s_k\en A=\mathcal A_X(U)$ es engarce de $\set{s_i}_{i\en I}$. En efecto, si $i\en J$, entonces $\restr{s_k}{U_i}=s_i$; y si $i\en I\setminus J$, entonces $U_i=\varnothing$, por lo que $\mathcal A_X(U_i)=0$ y trivialmente $\restr{s_k}{U_i}=0=s_i$. Hemos probado que toda familia compatible admite un engarce.
+\end{sol}

@@ -1,0 +1,21 @@
+% Pizarra de T3, página 28.
+\begin{ejer}[\texorpdfstring{El caso $A=k\times k$}{El caso A = k por k}]\label{ejer:t3-constante-dos-puntos}
+Aplica el ejercicio anterior a $X=\Spec(k\times k)$ con $\mathcal F(U)=k$ constante. Identifica explícitamente la cubierta de $X$ que rompe el axioma de engarce.
+\end{ejer}
+\begin{sol}
+Sabemos que hay un homeomorfismo canónico
+\[
+\Spec k\amalg\Spec k\xlongrightarrow{\cong}\Spec(k\times k),
+\qquad\mathfrak p_1\longmapsto\mathfrak p_1\times k,
+\quad\mathfrak p_2\longmapsto k\times\mathfrak p_2.
+\]
+Como $k$ es cuerpo, $\Spec k=\set{(0)}$, así que $\Spec(k\times k)=\set{(0)\times k,\ k\times(0)}$ es discreto. Se sigue que $U\coloneq\set{(0)\times k}$ y $V\coloneq\set{k\times(0)}$ son abiertos disjuntos que cubren a $X$.
+
+Notemos que la cubierta $\set{U,V}$ rompe el axioma de engarce, pues las secciones $0\en\mathcal F(U)=k$ y $1\en\mathcal F(V)=k$ son compatibles, ya que $U\cap V=\varnothing\Rightarrow\restr{0}{\varnothing}=0=\restr{1}{\varnothing}$. Sin embargo, estas secciones no admiten engarce, ya que para todo $s\en\mathcal F(X)=k$,
+\[
+\left(\restr{s}{U}=0\ \Longrightarrow\ s=0\right),
+\qquad
+\left(\restr{s}{V}=1\ \Longrightarrow\ s=1\right),
+\]
+pero $0\ne1$ por axiomas de campo.
+\end{sol}

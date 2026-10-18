@@ -1,0 +1,41 @@
+% Pizarra de T3, páginas 32--33.
+\begin{ejer}[\texorpdfstring{El tallo de $\widetilde M$}{El tallo de M con tilde}]\label{ejer:t3-tallo-modulo}
+Sea $\mathfrak p\en\Spec A$. Describe un isomorfismo canónico entre el tallo $\widetilde M_{[\mathfrak p]}$ y la localización $M_{\mathfrak p}$. En particular, recupera que el tallo de $\mathcal O_{\Spec A}$ en $[\mathfrak p]$ es $A_{\mathfrak p}$. \hfill [Vakil 4.1.E]
+\end{ejer}
+\begin{sol}
+Fijemos $\mathfrak p\en\Spec A$. Para cada entorno distinguido $D(f)\ni\mathfrak p$ se tiene
+\[
+s\en S_f\quad\Longrightarrow\quad D(f)\subseteq D(s)
+\quad\Longrightarrow\quad\mathfrak p\en D(s)
+\quad\Longrightarrow\quad s\en A\setminus\mathfrak p,
+\]
+por lo cual $S_f\subseteq A\setminus\mathfrak p$, lo que induce un morfismo $M_f\to M_{\mathfrak p}$ tal que $m/s\mapsto m/s$. Este morfismo obviamente conmuta con las restricciones de $\widetilde M$ (pues estas también se inducen de inclusiones $S_f\subseteq S_g$), así que la propiedad universal del colímite implica que la familia
+\[
+\set*{\widetilde M(D(f))=M_f\longrightarrow M_{\mathfrak p}}_{\mathfrak p\en D(f)}
+\]
+induce
+\[
+h\colon\widetilde M_{\mathfrak p}\longrightarrow M_{\mathfrak p},
+\qquad\left[\frac{m}{f^n}\right]\longmapsto\frac{m}{f^n}.
+\]
+
+\medskip
+\noindent\emph{$h$ es sobre}: Si $m/f\en M_{\mathfrak p}$ con $m\en M$ y $f\en A\setminus\mathfrak p$, entonces $\mathfrak p\en D(f)$ y $m/f\en M_f$, así que $[m/f]\en\widetilde M_{\mathfrak p}$ cumple $h([m/f])=m/f$.
+
+\medskip
+\noindent\emph{$h$ es inyectivo}: Si $h([m/f^n])=m/f^n=0$, existe $t\en A\setminus\mathfrak p$ tal que $tm=0$. Podemos tomar $n\ge1$ aumentando el exponente del representante si hace falta. Se sigue que $ft\en A\setminus\mathfrak p$, así $\mathfrak p\en D(ft)$; pero $t^n m=0$ implica que
+\[
+\res_{ft}^f\left(\frac{m}{f^n}\right)
+=\frac{t^n m}{(ft)^n}=0\en M_{ft}.
+\]
+Por tanto,
+\[
+\left[\frac{m}{f^n}\right]
+=\left[\res_{ft}^f\left(\frac{m}{f^n}\right)\right]
+=[0]\en\widetilde M_{\mathfrak p}.
+\]
+En particular, tomando $M=A$ como $A$-módulo, se tiene $\widetilde M=\mathcal O_{\Spec A}$, de donde se sigue
+\[
+(\mathcal O_{\Spec A})_{\mathfrak p}=\widetilde M_{\mathfrak p}\cong M_{\mathfrak p}=A_{\mathfrak p}.
+\]
+\end{sol}

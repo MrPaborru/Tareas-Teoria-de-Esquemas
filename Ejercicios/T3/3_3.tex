@@ -1,0 +1,65 @@
+% Pizarra de T3, páginas 20--23.
+\begin{ejer}[La razón estructural]\label{ejer:t3-secciones-exacto-izquierda}
+Sea $U\subseteq X$ abierto y $0\to\mathcal F\to\mathcal G\to\mathcal H\to0$ una sucesión exacta de gavillas de grupos abelianos. Muestra que
+\[
+0\longrightarrow\mathcal F(U)\longrightarrow\mathcal G(U)\longrightarrow\mathcal H(U)
+\]
+es exacta (hazlo ``a mano''). Muestra, con el ejercicio anterior como contraejemplo, que el funtor de secciones $\Gamma(U,-)$ no es exacto en general: la flecha $\mathcal G(U)\to\mathcal H(U)$ no tiene por qué ser sobreyectiva. \hfill [Vakil 2.6.G]
+\end{ejer}
+\begin{sol}
+Como sabemos, la exactitud de $0\to\mathcal F\xrightarrow{\varphi}\mathcal G\xrightarrow{\psi}\mathcal H\to0$ equivale a la de toda sucesión de tallos para $x\en X$:
+\[
+0\longrightarrow\mathcal F_x\xrightarrow{\varphi_x}\mathcal G_x\xrightarrow{\psi_x}\mathcal H_x\longrightarrow0.
+\]
+
+\medskip
+\noindent\emph{Probemos la exactitud de $0\to\mathcal F(U)\xrightarrow{\varphi_U}\mathcal G(U)\xrightarrow{\psi_U}\mathcal H(U)$}:\\
+\emph{Exactitud en $\mathcal F(U)$}: La exactitud en $\mathcal F_x$ garantiza la inyectividad de $\varphi_x$ para cada $x\en X$. Luego, el \cref{ejer:t3-inyectividad-tallos} implica que $\varphi_U$ es inyectiva, es decir, $0\to\mathcal F(U)\to\mathcal G(U)$ es exacta.
+
+\medskip
+\noindent\emph{Exactitud en $\mathcal G(U)$}:\\
+Por un lado, tenemos $\psi\circ\varphi=0$ (exactitud de la sucesión de gavillas), así que $\psi_U\circ\varphi_U=0$, de donde $\im\varphi_U\subseteq\ker\psi_U$.
+
+Para la otra contención, sea $s\en\ker\psi_U$. Para todo $x\en U$, tenemos $\psi_x(s_x)=\psi_U(s)_x=0$, por lo cual $s_x\en\ker\psi_x=\im\varphi_x$ y existe $t_x\en\mathcal F_x$ con $s_x=\varphi_x(t_x)$. Si escogemos un representante $t\en\mathcal F(V)$ para $t_x$, tenemos $s_x=\varphi_V(t)_x$, por lo que existe $x\en W_x\subseteq U\cap V$ con
+\[
+\restr{s}{W_x}=\restr{\varphi_V(t)}{W_x}
+=\varphi_{W_x}(\restr{t}{W_x})\qquad\text{(naturalidad)}.
+\]
+Así que denotamos $t^{(x)}\coloneq\restr{t}{W_x}$. Entonces tenemos $\restr{s}{W_x}=\varphi_{W_x}(t^{(x)})$. Por definición, $\set{W_x}_{x\en U}$ es cubierta de $U$ y afirmamos que $\set{t^{(x)}}_{x\en U}$ es compatible en traslapes. En efecto, para todos $x,y\en U$ denotamos $W_{x,y}=W_x\cap W_y$; entonces, por naturalidad, la definición de $t^{(x)}$ y la funtorialidad,
+\[
+\begin{aligned}
+\varphi_{W_{x,y}}\bigl(\restr{t^{(x)}}{W_{x,y}}\bigr)
+&=\restr{\varphi_{W_x}(t^{(x)})}{W_{x,y}}
+=\restr{s}{W_{x,y}}\\
+&=\restr{\varphi_{W_y}(t^{(y)})}{W_{x,y}}
+=\varphi_{W_{x,y}}\bigl(\restr{t^{(y)}}{W_{x,y}}\bigr).
+\end{aligned}
+\]
+Como ya probamos que $\varphi_{W_{x,y}}$ es inyectiva, $\restr{t^{(x)}}{W_{x,y}}=\restr{t^{(y)}}{W_{x,y}}$.
+
+Ahora bien, como $\set{t^{(x)}}_{x\en U}$ es familia compatible, tiene un engarce $t\en\mathcal F(U)$ con $t^{(x)}=\restr{t}{W_x}$ para todo $x\en U$. Esto implica que
+\[
+\restr{\varphi_U(t)}{W_x}
+=\varphi_{W_x}(\restr{t}{W_x})
+=\varphi_{W_x}(t^{(x)})=\restr{s}{W_x},\qquad\forall x\en U,
+\]
+por naturalidad y las definiciones de $t$ y $t^{(x)}$. Como $\mathcal G$ es gavilla, se sigue $s=\varphi_U(t)$, de donde $s\en\im\varphi_U$. Esto prueba la otra contención, por lo que tenemos la exactitud en $\mathcal G(U)$.
+
+Estos dos puntos corresponden a la exactitud de
+\[
+0\longrightarrow\mathcal F(U)\xrightarrow{\varphi_U}\mathcal G(U)\xrightarrow{\psi_U}\mathcal H(U).
+\]
+
+\medskip
+\noindent\emph{Demos el contraejemplo solicitado}:\\
+En el \cref{ejer:t3-sobreyectividad-tallos} ya vimos que $\exp\colon\mathcal O_X\to\mathcal O_X^*$ es sobre en tallos pero no en cada abierto. Luego, en tallos tenemos una sucesión exacta corta para cada $x\en X$:
+\[
+0\longrightarrow(\ker\exp)_x\hookrightarrow\mathcal O_{X,x}
+\xrightarrow{\exp_x}\mathcal O_{X,x}^*\longrightarrow0,
+\]
+donde $\ker\exp$ es la gavilla kernel. De esta exactitud en cada tallo se sigue la exactitud de la sucesión de gavillas
+\[
+0\longrightarrow\ker\exp\longrightarrow\mathcal O_X\xrightarrow{\exp}\mathcal O_X^*\longrightarrow0.
+\]
+Sin embargo, ya probamos en el \cref{ejer:t3-exponencial-tallos} que $\mathcal O_X(U)\xrightarrow{\exp_U}\mathcal O_X^*(U)$ no es sobre para $U=\mathbb C^*$. Por tanto, $\Gamma(U,-)$ no es exacto en general.
+\end{sol}

@@ -1,0 +1,73 @@
+% Pizarra de T3, páginas 43--45.
+\begin{ejer}[Caracterización local de un morfismo de esquemas]\label{ejer:t3-morfismo-local-afines}
+Muestra que un morfismo de esquemas $\pi\colon X\to Y$ es precisamente un morfismo de espacios (localmente) anillados que localmente se ve como un morfismo de esquemas afines: si $\Spec A\subseteq X$ y $\Spec B\subseteq Y$ son abiertos afines con $\pi(\Spec A)\subseteq\Spec B$, el morfismo inducido es un morfismo de esquemas afines como en el primer ejercicio de este bloque. Muestra que basta verificarlo en una cubierta afín de $X$ y otra de $Y$.
+\end{ejer}
+\begin{sol}
+Denotemos $U\coloneq\Spec A$ y $V\coloneq\Spec B$. Notemos que $\pi$ se restringe a
+\[
+\restr{\pi}{U}\colon U\longrightarrow V,
+\qquad\restr{\pi^\#}{V}\colon\restr{\mathcal O_Y}{V}\longrightarrow\restr{(\pi_*\mathcal O_X)}{V},
+\]
+y como para todo $W\subseteq V$ se tiene $(\restr{\pi}{U})^{-1}W=U\cap\pi^{-1}W\subseteq\pi^{-1}W$, la inclusión induce
+\[
+\rho\colon\restr{(\pi_*\mathcal O_X)}{V}
+\longrightarrow(\restr{\pi}{U})_*(\restr{\mathcal O_X}{U}),
+\qquad
+\rho_W\colon\mathcal O_X(\pi^{-1}W)\longrightarrow\mathcal O_X(U\cap\pi^{-1}W).
+\]
+Pero por definición $\restr{\mathcal O_Y}{V}=\mathcal O_V$ y $\restr{\mathcal O_X}{U}=\mathcal O_U$, por lo cual definimos
+\[
+(\restr{\pi}{U})^\#\colon
+\mathcal O_V\xrightarrow{\restr{\pi^\#}{V}}\restr{(\pi_*\mathcal O_X)}{V}
+\xrightarrow{\rho}(\restr{\pi}{U})_*\mathcal O_U.
+\]
+Esto define el morfismo de espacios anillados $\restr{\pi}{U}\colon U\to V$. Este morfismo está definido justo para que el siguiente diagrama de espacios anillados conmute:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+X\arrow[r,"\pi"]&Y\\
+U\arrow[u,hook,"i_U"]\arrow[r,"\restr{\pi}{U}"']&V\arrow[u,hook,"i_V"'].
+\end{tikzcd}
+\]
+Los $i_U^\#\colon\mathcal O_X\to(i_U)_*\mathcal O_U$, inducidos por $i_U\colon U\hookrightarrow X$, fueron definidos en clase mediante las restricciones $\mathcal O_X(W)\to\mathcal O_X(W\cap U)$. Es directo de esta definición que el diagrama a nivel de gavillas estructurales conmuta.
+
+En otras palabras, para todo $W\subseteq Y$ el siguiente diagrama conmuta:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+\mathcal O_Y(W)\arrow[r,"\pi^\#_W"]\arrow[d,"(i_V^\#)_W"']
+&\mathcal O_X(\pi^{-1}W)\arrow[d,"(i_U^\#)_{\pi^{-1}W}"]\\
+\mathcal O_V(W\cap V)\arrow[r,"{(\restr{\pi}{U})^\#_{W\cap V}}"']
+&\mathcal O_U(U\cap\pi^{-1}(W\cap V)).
+\end{tikzcd}
+\]
+El último abierto es $U\cap\pi^{-1}W$, pues $\pi(U)\subseteq V$. Para todo $x\en U$, si $W\subseteq Y$ es cualquier entorno de $\pi(x)$, entonces todo entorno de $\pi(x)$ contenido en $V$ es de la forma $W\cap V$, así que tomando colímite del diagrama anterior obtenemos
+\begin{equation}\label{eq:t3-tallos-restriccion}
+\begin{tikzcd}[column sep=large,row sep=large]
+\mathcal O_{Y,\pi(x)}\arrow[r,"\pi_x^\#"]\arrow[d,"i^\#_{V,\pi(x)}"',"\cong"]
+&\mathcal O_{X,x}\arrow[d,"i^\#_{U,x}","\cong"']\\
+\mathcal O_{V,\pi(x)}\arrow[r,"{(\restr{\pi}{U})_x^\#}"']&\mathcal O_{U,x}.
+\end{tikzcd}
+\end{equation}
+El que las flechas verticales, inducidas por las inclusiones, son isomorfismos ya fue visto en clase. Ahora bien, como $\pi_x^\#$, $i^\#_{U,x}$ e $(i^\#_{V,\pi(x)})^{-1}$ son locales,
+\[
+(\restr{\pi}{U})_x^\#=i^\#_{U,x}\circ\pi_x^\#\circ(i^\#_{V,\pi(x)})^{-1}
+\]
+también es local. Hemos probado que $\restr{\pi}{U}\colon U\to V$ es morfismo de espacios localmente anillados. Como $U$ y $V$ son esquemas afines, $\restr{\pi}{U}$ es morfismo de esquemas afines; su identificación con el morfismo inducido por el mapa de anillos en secciones globales se demuestra en el \cref{ejer:t3-equivalencia-afines}.
+
+\medskip
+\noindent\emph{Probemos que basta verificar esto en una cubierta}:\\
+Supongamos que $\pi\colon X\to Y$ es morfismo de espacios anillados y sean $\set{U_i}_{i\en I}$ y $\set{V_i}_{i\en I}$ cubiertas abiertas afines de $X$ y $Y$, respectivamente, tales que para todo $i\en I$, $\pi(U_i)\subseteq V_i$ y $\restr{\pi}{U_i}$ es morfismo de esquemas afines, definido como antes. Probemos que $\pi$ es morfismo de esquemas.
+
+En efecto, sea $x\en X$ arbitrario. Entonces existe $i\en I$ con $x\en U_i$ y, por tanto, $\pi(x)\en V_i$. Como ya vimos, esto nos da el diagrama conmutativo
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+\mathcal O_{Y,\pi(x)}\arrow[r,"\pi_x^\#"]\arrow[d,"i^\#_{V_i,\pi(x)}"',"\cong"]
+&\mathcal O_{X,x}\arrow[d,"i^\#_{U_i,x}","\cong"']\\
+\mathcal O_{V_i,\pi(x)}\arrow[r,"{(\restr{\pi}{U_i})_x^\#}"']&\mathcal O_{U_i,x}.
+\end{tikzcd}
+\]
+Por hipótesis, $(\restr{\pi}{U_i})_x^\#$ es local, así que
+\[
+\pi_x^\#=(i^\#_{U_i,x})^{-1}\circ(\restr{\pi}{U_i})_x^\#\circ i^\#_{V_i,\pi(x)}
+\]
+es local. Como $x\en X$ es arbitrario, $\pi$ es morfismo de esquemas.
+\end{sol}

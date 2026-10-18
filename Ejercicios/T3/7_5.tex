@@ -1,0 +1,220 @@
+% Pizarra de T3, páginas 48--53.
+\begin{ejer}[Morfismos hacia un esquema afín]\label{ejer:t3-morfismos-hacia-afin}
+Muestra que los morfismos $X\to\Spec A$ están en biyección natural con los morfismos de anillos $A\to\Gamma(X,\mathcal O_X)$. (Sugerencia: muéstralo primero cuando $X$ es afín, y usa que los morfismos engarzan para pasar al caso general.) \hfill [Vakil 7.3.G]
+\end{ejer}
+\begin{sol}
+El funtor de secciones globales $\Gamma\colon\cat{Sch}\to\cat{Ring}^{\mathrm{op}}$ da en morfismos una función
+\begin{equation}\label{eq:t3-biyeccion-globales}
+\Hom(X,\Spec A)\xrightarrow{\Gamma}\Hom(A,\mathcal O_X(X)),
+\end{equation}
+identificando $A$ con $\mathcal O_{\Spec A}(\Spec A)$. En el \cref{ejer:t3-equivalencia-afines} ya probamos que, cuando $X$ es un esquema afín, esta función es biyectiva.
+
+Cuando $X$ es esquema en general, notemos que la \cref{eq:t3-biyeccion-globales} nos da la counidad
+\[
+\varepsilon_A\coloneq\Gamma(\id_{\Spec A}),
+\]
+que coincide con el isomorfismo $A\cong\mathcal O_{\Spec A}(\Spec A)=A_1$. Basta definir la unidad de la adjunción,
+\[
+\eta_X\colon X\longrightarrow\Spec\mathcal O_X(X).
+\]
+\begin{itemize}
+\item \emph{En espacios}: Para $x\en X$, sean $\mathfrak m_x\triangleleft\mathcal O_{X,x}$ el ideal maximal y $\varphi_x\colon\mathcal O_X(X)\to\mathcal O_{X,x}$ canónico. Definimos
+\[
+\eta_X(x)\coloneq\varphi_x^{-1}(\mathfrak m_x)\en\Spec\mathcal O_X(X).
+\]
+Dicho de otro modo, $\eta_X(x)$ es el kernel de $\mathcal O_X(X)\to\mathcal O_{X,x}\to\mathcal O_{X,x}/\mathfrak m_x$, como se definió en clase. Probemos continuidad.
+
+Para cada abierto distinguido $D(f)$ con $f\en\mathcal O_X(X)$, probemos que $\eta_X^{-1}(D(f))$ es abierto. Como
+\[
+x\en\eta_X^{-1}(D(f))
+\quad\Longleftrightarrow\quad\eta_X(x)\en D(f)
+\quad\Longleftrightarrow\quad f\notin\varphi_x^{-1}(\mathfrak m_x)
+\quad\Longleftrightarrow\quad f_x\notin\mathfrak m_x,
+\]
+fijemos tal $x$ y encontremos un entorno suyo contenido en $\eta_X^{-1}(D(f))$. Como $\mathfrak m_x$ es el único ideal maximal y $f_x\notin\mathfrak m_x$, forzosamente $f_x$ es invertible (de otro modo estaría en algún ideal maximal distinto de $\mathfrak m_x$). Se sigue que existe un $g_x\en\mathcal O_{X,x}$ con $f_x g_x=1_x$, así que hay un entorno $x\en W\subseteq X$ de modo que
+\[
+\restr{f}{W}\cdot\restr{g}{W}=1.
+\]
+Por lo tanto, para cada $y\en W$ tenemos $f_y g_y=1_y$, así que $f_y$ es invertible y $f_y\notin\mathfrak m_y$. Luego $x\en W\subseteq\eta_X^{-1}(D(f))$, así que $\eta_X^{-1}(D(f))$ es abierto.
+
+\item \emph{En gavillas}: Para $f\en\mathcal O_X(X)$, denotemos $X_f\coloneq\eta_X^{-1}(D(f))$ y definimos en abierto distinguido
+\[
+\begin{aligned}
+\eta_f^\#\colon\mathcal O_X(X)_f
+&=\mathcal O_{\Spec\mathcal O_X(X)}(D(f))
+\longrightarrow\eta_{X*}\mathcal O_X(D(f))=\mathcal O_X(X_f),\\
+\frac{a}{f^n}&\longmapsto\frac{\restr{a}{X_f}}{(\restr{f}{X_f})^n}.
+\end{aligned}
+\]
+Es decir, $\eta_f^\#$ es extensión de la restricción $\mathcal O_X(X)\to\mathcal O_X(X_f)$. Como los $\eta_f^\#$ son extensiones de restricciones, conmutan con otras restricciones, así que esto define un morfismo de gavillas
+\[
+\eta_X^\#\colon\mathcal O_{\Spec\mathcal O_X(X)}\longrightarrow\eta_{X*}\mathcal O_X.
+\]
+\end{itemize}
+Notemos que $(\eta_X,\eta_X^\#)$ es local: para cada $x\en X$,
+\[
+\mathcal O_{\Spec\mathcal O_X(X),\eta_X(x)}
+\cong\mathcal O_X(X)_{\eta_X(x)}
+=\mathcal O_X(X)_{\varphi_x^{-1}(\mathfrak m_x)}
+\]
+por el \cref{ejer:t3-tallo-modulo}, así que el morfismo
+\[
+\eta_{X,x}^\#\colon\mathcal O_X(X)_{\varphi_x^{-1}(\mathfrak m_x)}\longrightarrow\mathcal O_{X,x}
+\]
+asigna por su definición $a/s\mapsto a_x s_x^{-1}$. Ahora,
+\[
+\begin{aligned}
+a_xs_x^{-1}\en\mathfrak m_x
+&\quad\Longleftrightarrow\quad a_x\en\mathfrak m_x
+\quad\Longleftrightarrow\quad\varphi_x(a)\en\mathfrak m_x\\
+&\quad\Longleftrightarrow\quad a\en\varphi_x^{-1}(\mathfrak m_x)
+\quad\Longleftrightarrow\quad
+\frac{a}{s}\en\varphi_x^{-1}(\mathfrak m_x)\mathcal O_X(X)_{\varphi_x^{-1}(\mathfrak m_x)}.
+\end{aligned}
+\]
+Esto prueba que
+\[
+(\eta_{X,x}^\#)^{-1}(\mathfrak m_x)
+=\varphi_x^{-1}(\mathfrak m_x)\mathcal O_X(X)_{\varphi_x^{-1}(\mathfrak m_x)},
+\]
+que es el ideal maximal del anillo de la izquierda. Por tanto, $(\eta_X,\eta_X^\#)$ es morfismo localmente anillado.
+
+\medskip
+\noindent\emph{Probemos naturalidad en $X$ de $\eta_X$ y las identidades del triángulo}:\\
+Si $\pi\colon X\to Y$ es morfismo de esquemas, $\pi_X^\#\colon\mathcal O_Y(Y)\to\mathcal O_X(X)$ induce en espectros un morfismo
+\[
+\Spec(\pi_X^\#)\colon\Spec\mathcal O_X(X)\longrightarrow\Spec\mathcal O_Y(Y)
+\]
+definido en el \cref{ejer:t3-spec-funtor}. Luego,
+\[
+\Spec(\pi_X^\#)(\eta_X(x))
+=(\pi_X^\#)^{-1}\varphi_x^{-1}(\mathfrak m_x)
+\]
+y
+\[
+\eta_Y(\pi(x))=\varphi_{\pi(x)}^{-1}(\mathfrak m_{\pi(x)})
+=\varphi_{\pi(x)}^{-1}(\pi_x^\#)^{-1}(\mathfrak m_x),
+\]
+por localidad de $\pi_x^\#$. Pero, por definición de $\pi_x^\#$, el siguiente diagrama conmuta:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+\mathcal O_Y(Y)\arrow[r,"\pi_X^\#"]\arrow[d,"\varphi_{\pi(x)}"']
+&\mathcal O_X(X)\arrow[d,"\varphi_x"]\\
+\mathcal O_{Y,\pi(x)}\arrow[r,"\pi_x^\#"']&\mathcal O_{X,x}.
+\end{tikzcd}
+\]
+Así que
+\[
+\begin{aligned}
+\Spec(\pi_X^\#)(\eta_X(x))
+&=(\pi_X^\#)^{-1}\varphi_x^{-1}(\mathfrak m_x)\\
+&=\varphi_{\pi(x)}^{-1}(\pi_x^\#)^{-1}(\mathfrak m_x)
+=\eta_Y(\pi(x)).
+\end{aligned}
+\]
+Como $x\en X$ es arbitrario, esto prueba que el siguiente diagrama conmuta en espacios:
+\begin{equation}\label{eq:t3-naturalidad-unidad}
+\begin{tikzcd}[column sep=large,row sep=large]
+X\arrow[r,"\eta_X"]\arrow[d,"\pi"']
+&\Spec\mathcal O_X(X)\arrow[d,"{\Spec(\pi_X^\#)}"]\\
+Y\arrow[r,"\eta_Y"']&\Spec\mathcal O_Y(Y).
+\end{tikzcd}
+\end{equation}
+A nivel de gavillas, para todo $g\en\mathcal O_Y(Y)$ los siguientes diagramas conmutan:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+\mathcal O_Y(Y)\arrow[r,"\pi_X^\#"]\arrow[d]
+&\mathcal O_X(X)\arrow[r,"\res"]\arrow[d]
+&\mathcal O_X(X_{\pi_X^\#(g)})\\
+\mathcal O_Y(Y)_g\arrow[r,"{\Spec(\pi_X^\#)^\#_{D(g)}}"']
+&\mathcal O_X(X)_{\pi_X^\#(g)}\arrow[ur,"\eta^\#_{\pi_X^\#(g)}"']
+\end{tikzcd}
+\]
+y
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+\mathcal O_Y(Y)\arrow[r,"\res"]\arrow[d]
+&\mathcal O_Y(Y_g)\arrow[r,"\pi^\#_{Y_g}"]
+&\mathcal O_X(X_{\pi_X^\#(g)})\\
+\mathcal O_Y(Y)_g\arrow[ur,"\eta^\#_g"'].
+\end{tikzcd}
+\]
+Estos diagramas conmutan por definición de los mapas $\Spec(\pi_X^\#)^\#_{D(g)}$, $\eta^\#_{\pi_X^\#(g)}$ y $\eta_g^\#$. Como $\pi^\#$ conmuta con restricciones por ser morfismo de gavillas, esto prueba
+\[
+\eta^\#_{\pi_X^\#(g)}\circ\Spec(\pi_X^\#)^\#_{D(g)}
+=\pi^\#_{Y_g}\circ\eta_g^\#,
+\]
+por ser ambos extensiones del mismo mapa $\res\circ\pi_X^\#=\pi^\#_{Y_g}\circ\res$.
+
+Acabamos de probar la conmutatividad de
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+\mathcal O_X(X_{\pi_X^\#(g)})
+&\mathcal O_X(X)_{\pi_X^\#(g)}\arrow[l,"\eta^\#_{\pi_X^\#(g)}"']\\
+\mathcal O_Y(Y_g)\arrow[u,"\pi^\#_{Y_g}"]
+&\mathcal O_Y(Y)_g\arrow[l,"\eta_g^\#"]
+\arrow[u,"{\Spec(\pi_X^\#)^\#_{D(g)}}"'].
+\end{tikzcd}
+\]
+Esto vale en todo abierto distinguido, así que la \cref{eq:t3-naturalidad-unidad} conmuta a nivel de gavillas estructurales, lo cual prueba la naturalidad de $\eta_X$ respecto a $X$.
+
+Finalmente, probemos las identidades triangulares para $\varepsilon_A$ y $\eta_X$, esto es,
+\[
+\Gamma(\eta_X)\circ\varepsilon_{\mathcal O_X(X)}=\id_{\mathcal O_X(X)},
+\qquad
+\Spec(\varepsilon_A)\circ\eta_{\Spec A}=\id_{\Spec A}.
+\]
+\begin{itemize}
+\item Como $X_1=X$, el mapa
+\[
+\Gamma(\eta_X)=\eta_1^\#\colon\mathcal O_X(X)_1\longrightarrow\mathcal O_X(X_1)=\mathcal O_X(X)
+\]
+mapea $a/1\mapsto a$. Se sigue que es inverso de $\varepsilon_{\mathcal O_X(X)}\colon\mathcal O_X(X)\xrightarrow{\cong}\mathcal O_X(X)_1$.
+
+\item Notemos que $\eta_{\Spec A}\colon\Spec A\to\Spec\mathcal O_{\Spec A}(\Spec A)=\Spec A_1$. A nivel de espacios,
+\[
+\eta_{\Spec A}(\mathfrak p)=\varphi_{\mathfrak p}^{-1}(\mathfrak m_{\mathfrak p}),
+\]
+pero $\mathfrak m_{\mathfrak p}\triangleleft(\mathcal O_{\Spec A})_{\mathfrak p}\cong A_{\mathfrak p}$ corresponde a $\mathfrak p A_{\mathfrak p}$, cuya imagen inversa bajo $\varphi_{\mathfrak p}\colon A_1\to A_{\mathfrak p}$ coincide con
+\[
+\mathfrak p A_1=\set*{a/1\given a\en\mathfrak p}.
+\]
+Así que $\eta_{\Spec A}(\mathfrak p)=\mathfrak p A_1$, y luego
+\[
+\Spec(\varepsilon_A)(\eta_{\Spec A}(\mathfrak p))
+=\varepsilon_A^{-1}(\mathfrak p A_1)=\mathfrak p.
+\]
+Esto prueba $\Spec(\varepsilon_A)\circ\eta_{\Spec A}=\id_{\Spec A}$ en espacios.
+
+Notemos también que $\eta_{\Spec A}\colon\Spec A\to\Spec A_1$ está en correspondencia biyectiva con el morfismo de anillos $\eta_1^\#\colon A_1\to A$, definido como extensión de la identidad $A\to A$. Es decir, $\eta_1^\#$ es inverso de $\varepsilon_A$. Así,
+\[
+\begin{aligned}
+\Spec(\varepsilon_A)\circ\eta_{\Spec A}
+&=\Spec(\varepsilon_A)\circ\Spec(\eta_1^\#)\\
+&=\Spec(\eta_1^\#\circ\varepsilon_A)
+=\Spec(\id_A)=\id_{\Spec A}
+\end{aligned}
+\]
+como morfismos de esquemas.
+\end{itemize}
+Hemos probado que $\eta$ y $\varepsilon$ son las transformaciones unidad y counidad de una adjunción. Por tanto,
+\[
+\Hom_{\cat{Sch}}(X,\Spec A)\cong\Hom_{\cat{Ring}}(A,\mathcal O_X(X)),
+\]
+naturalmente, mediante
+\[
+\pi\longmapsto\pi_X^\#\circ\varepsilon_A,
+\qquad
+\varphi\longmapsto\Spec(\varphi)\circ\eta_X.
+\]
+
+\medskip
+\noindent\emph{Nota}: Notemos que en esta demostración solo usamos que $X$ es espacio localmente anillado, así que esto también sirve como prueba de la adjunción más general
+\[
+\begin{tikzcd}[column sep=huge]
+\cat{Ring}^{\mathrm{op}}\arrow[r,bend left=25,"\Spec"]\arrow[r,phantom,"\dashv" description]
+&\cat{LocAn}\arrow[l,bend left=25,"\Gamma"].
+\end{tikzcd}
+\]
+Aquí $\Gamma$ es adjunto izquierdo de $\Spec$.
+\end{sol}

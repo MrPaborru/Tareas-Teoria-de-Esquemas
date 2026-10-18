@@ -1,0 +1,13 @@
+% Pizarra de T3, página 35.
+\begin{ejer}[Otro tipo de contraejemplo]\label{ejer:t3-funciones-acotadas}
+Muestra que las funciones acotadas en $\mathbb C$ (con la topología clásica) forman una pregavilla pero no una gavilla. (¿En qué axioma falla? Nota que este ejemplo no tiene nada que ver con logaritmos ni con conexidad: es un tercer mecanismo de falla, distinto a los de los Bloques A y D.) \hfill [Vakil 2.2.B(a)]
+\end{ejer}
+\begin{sol}
+Sea $\mathcal B(U)\coloneq\set*{f\colon U\to\mathbb C\given f\text{ es acotada}}$, cuyas restricciones son las usuales (la precomposición con las inclusiones). Dados abiertos $V\subseteq U\subseteq\mathbb C$, si $f\colon U\to\mathbb C$ es acotada, entonces $\restr{f}{V}$ también lo es, así que las restricciones $\res_V^U\colon\mathcal B(U)\to\mathcal B(V)$ están bien definidas. Además, ya sabemos que la precomposición con inclusiones es funtorial, así que $\mathcal B$ define una pregavilla.
+
+No obstante, si $D_n\subseteq\mathbb C$ es la bola de radio $n\en\mathbb N$, notemos que $\set{D_n}_{n=1}^{\infty}$ es cubierta de $\mathbb C$ y la familia de inclusiones $\set{\iota_n\colon D_n\hookrightarrow\mathbb C}_{n=1}^{\infty}$ es compatible (y obviamente cada $\iota_n$ es acotada por $n$). Es sencillo verificar que no tiene engarce, pues si $\iota\en\mathcal B(\mathbb C)$ lo fuera, para todo $n\en\mathbb N$ tendríamos
+\[
+\iota(n)=\restr{\iota}{D_{n+1}}(n)=\iota_{n+1}(n)=n,
+\]
+y $\iota$ no sería acotada. Así, falla el axioma de engarce.
+\end{sol}

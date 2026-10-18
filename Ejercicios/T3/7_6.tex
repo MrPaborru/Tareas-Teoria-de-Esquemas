@@ -1,0 +1,12 @@
+% Pizarra de T3, página 54.
+\begin{ejer}[De premio: el objeto final]\label{ejer:t3-objeto-final}
+Muestra que $\Spec\mathbb Z$ es el objeto final en la categoría de esquemas: para todo esquema $X$ existe un único morfismo $X\to\Spec\mathbb Z$. \hfill [Vakil 7.3.J]
+\end{ejer}
+\begin{sol}
+Ya probamos en el \cref{ejer:t3-morfismos-hacia-afin} que hay una biyección
+\[
+\Hom_{\cat{Sch}}(X,\Spec\mathbb Z)
+\cong\Hom_{\cat{Ring}}(\mathbb Z,\mathcal O_X(X)),
+\]
+pero $\Hom_{\cat{Ring}}(\mathbb Z,\mathcal O_X(X))$ consta de exactamente un morfismo, ya que $\mathbb Z$ es inicial en $\cat{Ring}$. Se sigue que existe un único $X\to\Spec\mathbb Z$.
+\end{sol}

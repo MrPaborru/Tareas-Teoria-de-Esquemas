@@ -1,0 +1,124 @@
+% Pizarra de T3, páginas 36--40.
+\begin{ejer}[\texorpdfstring{$\Spec$ es funtor contravariante}{Spec es funtor contravariante}]\label{ejer:t3-spec-funtor}
+Sea $\pi^\#\colon B\to A$ un morfismo de anillos. Construye explícitamente, a partir de él, un morfismo de espacios anillados $\pi\colon\Spec A\to\Spec B$: define el mapa de espacios topológicos (ya lo tienes de sesiones anteriores) y, en la base de distinguidos, el mapa de gavillas $\mathcal O_{\Spec B}(D(g))\to\mathcal O_{\Spec A}(\pi^{-1}D(g))$ inducido por $B_g\to A_{\pi^\#(g)}$. Verifica que está bien definido (no depende de la elección de $g$) y que respeta restricciones. \hfill [Vakil 7.2.F]
+\end{ejer}
+\begin{sol}
+Definimos en espacios topológicos el mapa continuo del \cref{ejer:2.6} de la tarea anterior:
+\[
+\pi\coloneq\Spec\pi^\#\colon\Spec A\longrightarrow\Spec B,
+\qquad\pi(\mathfrak p)=(\pi^\#)^{-1}(\mathfrak p),\quad\forall\mathfrak p\en\Spec A.
+\]
+Para el mapa de gavillas, sea $g\en B$. La composición $B\xrightarrow{\pi^\#}A\to A_{\pi^\#(g)}$ manda $g$ al elemento $\pi^\#(g)/1$, invertible, así que por propiedad universal se extiende a un único
+\[
+\pi^\#_{D(g)}\colon B_g\longrightarrow A_{\pi^\#(g)},
+\qquad\frac{b}{g^n}\longmapsto\frac{\pi^\#(b)}{\pi^\#(g)^n}.
+\]
+Es decir,
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+B\arrow[r,"\pi^\#"]\arrow[d]&A\arrow[r]&A_{\pi^\#(g)}\\
+B_g\arrow[urr,"\pi^\#_{D(g)}"'].
+\end{tikzcd}
+\]
+Si $D(f)\subseteq D(g)$, entonces también $D(\pi^\#(f))\subseteq D(\pi^\#(g))$. Luego, los siguientes diagramas conmutan:
+\[
+\begin{tikzcd}[column sep=small,row sep=large]
+B\arrow[r,"\pi^\#"]\arrow[d]\arrow[dr]&A\arrow[r]&A_{\pi^\#(f)}\\
+B_g\arrow[r,"\res"']&B_f\arrow[ur,"\pi^\#_{D(f)}"']
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=small,row sep=large]
+B\arrow[r,"\pi^\#"]\arrow[d]&A\arrow[r]\arrow[d]&A_{\pi^\#(f)}\\
+B_g\arrow[r,"\pi^\#_{D(g)}"']&A_{\pi^\#(g)}\arrow[ur,"\res"'].
+\end{tikzcd}
+\]
+En efecto, el izquierdo conmuta ya que su triángulo izquierdo lo hace por definición de la restricción, y el derecho por definición de $\pi^\#_{D(f)}$; mientras que el diagrama derecho conmuta ya que su cuadro izquierdo lo hace por definición de $\pi^\#_{D(g)}$, y su triángulo derecho por definición de $\res$.
+
+Ahora bien, la conmutatividad de estos diagramas implica que $\pi^\#_{D(f)}\circ\res$ y $\res\circ\pi^\#_{D(g)}$ son extensiones de $B\xrightarrow{\pi^\#}A\to A_{\pi^\#(f)}$, así que por unicidad son iguales:
+\[
+\pi^\#_{D(f)}\circ\res=\res\circ\pi^\#_{D(g)}.
+\]
+Esto prueba dos cosas:
+\begin{itemize}
+\item \emph{Bien definido}: Si $D(f)=D(g)$, sabemos que $\res\colon B_g\to B_f$ y $\res\colon A_{\pi^\#(g)}\to A_{\pi^\#(f)}$ son isomorfismos (pues las gavillas $\mathcal O_{\Spec B}$ y $\mathcal O_{\Spec A}$ están bien definidas), los cuales conmutan con los $\pi^\#_{D(f)}$. Esto prueba que estos mapas dependen del abierto distinguido y no de su presentación. Si localizamos en los $S_f=\set*{s\given D(f)\subseteq D(s)}$ en lugar de las potencias de $f$, se tendría $S_f=S_g$ y las restricciones serían las identidades, lo que haría que $\pi^\#_{D(f)}$ esté estrictamente bien definido.
+
+\item \emph{Natural}: Los mapas
+\[
+\pi^\#_{D(g)}\colon\mathcal O_{\Spec B}(D(g))
+\longrightarrow\mathcal O_{\Spec A}(D(\pi^\#(g)))
+=\mathcal O_{\Spec A}(\pi^{-1}D(g))
+\]
+conmutan con restricciones, por lo que definen un morfismo de gavillas $\pi^\#\colon\mathcal O_{\Spec B}\to\pi_*\mathcal O_{\Spec A}$. Por tanto, $(\pi,\pi^\#)$ es morfismo de espacios anillados.
+\end{itemize}
+
+\medskip
+\noindent\emph{Aunque el ejercicio no lo pida, probaré que $\pi^\#$ es local y la funtorialidad de $\Spec$}:\\
+Fijemos $\mathfrak p\en\Spec A$. Definimos $\pi'_{\mathfrak p}\colon B_{\pi(\mathfrak p)}\to A_{\mathfrak p}$ como la única extensión de $B\xrightarrow{\pi^\#}A\to A_{\mathfrak p}$, es decir,
+\[
+\frac{a}{b}\longmapsto\frac{\pi^\#(a)}{\pi^\#(b)}.
+\]
+Para todo abierto distinguido $D(g)\ni\pi(\mathfrak p)$, tenemos $D(\pi^\#(g))\ni\mathfrak p$, así que, como en el \cref{ejer:t3-tallo-modulo}, hay únicos $B_g\to B_{\pi(\mathfrak p)}$ y $A_{\pi^\#(g)}\to A_{\mathfrak p}$ que extienden los mapas canónicos. El siguiente diagrama conmuta, ya que ambos caminos de $B_g$ a $A_{\mathfrak p}$ son extensión de $B\xrightarrow{\pi^\#}A\to A_{\mathfrak p}$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+B_g\arrow[r,"\pi^\#_{D(g)}"]\arrow[d]
+&A_{\pi^\#(g)}\arrow[d]\arrow[r,"\text{canónico}"]
+&(\mathcal O_{\Spec A})_{\mathfrak p}\arrow[dl,"\cong"]\\
+B_{\pi(\mathfrak p)}\arrow[r,"\pi'_{\mathfrak p}"']&A_{\mathfrak p}.
+\end{tikzcd}
+\]
+Usando la definición por colímite del mapa en tallos, obtenemos el diagrama conmutativo
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+(\mathcal O_{\Spec B})_{\pi(\mathfrak p)}\arrow[r,"\pi^\#_{\mathfrak p}"]\arrow[d,"\cong"']
+&(\mathcal O_{\Spec A})_{\mathfrak p}\arrow[d,"\cong"]\\
+B_{\pi(\mathfrak p)}\arrow[r,"\pi'_{\mathfrak p}"']&A_{\mathfrak p}.
+\end{tikzcd}
+\]
+En el \cref{ejer:t3-tallo-modulo} ya probamos que las flechas verticales son isomorfismos. Como los isomorfismos son locales y $\pi^\#_{\mathfrak p}$ se obtiene conjugando a $\pi'_{\mathfrak p}$ con isomorfismos, basta con probar que $\pi'_{\mathfrak p}$ es local. En efecto,
+\[
+\begin{aligned}
+\frac{b}{s}\en(\pi'_{\mathfrak p})^{-1}(\mathfrak p A_{\mathfrak p})
+&\quad\Longleftrightarrow\quad
+\frac{\pi^\#(b)}{\pi^\#(s)}=\pi'_{\mathfrak p}\left(\frac{b}{s}\right)\en\mathfrak p A_{\mathfrak p}\\
+&\quad\Longleftrightarrow\quad\pi^\#(b)\en\mathfrak p
+\quad\Longleftrightarrow\quad b\en\pi(\mathfrak p)\\
+&\quad\Longleftrightarrow\quad\frac{b}{s}\en\pi(\mathfrak p)B_{\pi(\mathfrak p)}.
+\end{aligned}
+\]
+Es decir, $(\pi'_{\mathfrak p})^{-1}(\mathfrak p A_{\mathfrak p})=\pi(\mathfrak p)B_{\pi(\mathfrak p)}$. Esto prueba que $\pi'_{\mathfrak p}$ es local, por tanto también $\pi^\#_{\mathfrak p}$. Como $\mathfrak p\en\Spec A$ es arbitrario, $(\pi,\pi^\#)$ es morfismo de espacios localmente anillados.
+
+Finalmente, sean $C\xrightarrow{\varphi^\#}B\xrightarrow{\pi^\#}A$ morfismos de anillos y probemos funtorialidad:
+\begin{itemize}
+\item Como $A\xrightarrow{\id}A$ cumple $\id^{-1}(\mathfrak p)=\mathfrak p$, entonces $\Spec(\id)=\id_{\Spec A}$. Además, $\id^\#_{D(g)}\colon A_g\to A_g$ extiende a $A\xrightarrow{\id}A\to A_g$, así que $\id^\#=\id_{\mathcal O_{\Spec A}}$.
+
+\item En espacios,
+\[
+(\pi^\#\circ\varphi^\#)^{-1}(\mathfrak p)
+=(\varphi^\#)^{-1}\bigl((\pi^\#)^{-1}(\mathfrak p)\bigr),
+\]
+así $\Spec(\pi^\#\circ\varphi^\#)=\Spec(\varphi^\#)\circ\Spec(\pi^\#)=\varphi\circ\pi$.
+
+En gavillas, para todo $h\en C$ tenemos que $\varphi^\#_{D(h)}\colon C_h\to B_{\varphi^\#(h)}$ y $\pi^\#_{D(\varphi^\#(h))}\colon B_{\varphi^\#(h)}\to A_{\pi^\#\varphi^\#(h)}$ son extensión de $C\to B\to B_{\varphi^\#(h)}$ y $B\to A\to A_{\pi^\#\varphi^\#(h)}$, así que el diagrama
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+C\arrow[r,"\varphi^\#"]\arrow[d]&B\arrow[r,"\pi^\#"]\arrow[d]&A\arrow[r]&A_{\pi^\#\varphi^\#(h)}\\
+C_h\arrow[r,"\varphi^\#_{D(h)}"']&B_{\varphi^\#(h)}\arrow[urr,"\pi^\#_{D(\varphi^\#(h))}"']
+\end{tikzcd}
+\]
+conmuta y $\pi^\#_{D(\varphi^\#(h))}\circ\varphi^\#_{D(h)}$ es extensión de $C\xrightarrow{\pi^\#\circ\varphi^\#}A\to A_{\pi^\#\varphi^\#(h)}$. Esto prueba que
+\[
+(\varphi\circ\pi)^\#=\varphi_*(\pi^\#)\circ\varphi^\#,
+\]
+como se quería (así se componen gavillas estructurales).
+\end{itemize}
+Luego, como morfismos de espacios localmente anillados,
+\[
+\bigl(\Spec(\pi^\#\circ\varphi^\#),(\varphi\circ\pi)^\#\bigr)
+=(\varphi,\varphi^\#)\circ(\pi,\pi^\#),
+\]
+por lo cual $\Spec\colon\cat{Ring}^{\mathrm{op}}\to\cat{LocAn}$ es funtor, con
+\[
+A\longmapsto(\Spec A,\mathcal O_{\Spec A}),
+\qquad\pi^\#\longmapsto(\Spec\pi^\#,\pi^\#).
+\]
+\end{sol}

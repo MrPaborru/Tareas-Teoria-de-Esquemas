@@ -1,0 +1,46 @@
+% Pizarra de T3, páginas 41--42.
+\begin{ejer}[¿Por qué ``localmente anillado''?]\label{ejer:t3-morfismo-no-local}
+Encuentra un morfismo de espacios anillados entre dos esquemas afines que no venga de ningún morfismo de anillos como en el ejercicio anterior. (Sugerencia: usa $\Spec k[y]_{(y)}$, que tiene dos puntos, uno cerrado y uno genérico, y manda el único punto de $\Spec k(x)$ al punto cerrado.) Esto muestra por qué la condición de morfismo local en los tallos, no solo morfismo de espacios anillados, es necesaria en la definición de morfismo de esquemas. \hfill [Vakil 7.2.G]
+\end{ejer}
+\begin{sol}
+Por teorema de correspondencia sabemos que $k[y]\to k[y]_{(y)}$ induce un homeomorfismo
+\[
+\Spec k[y]_{(y)}\xlongrightarrow{\cong}
+\set*{\mathfrak p\en\Spec k[y]\given\mathfrak p\subseteq(y)}.
+\]
+Es decir, $\Spec k[y]_{(y)}=\set{(\bar0),(\bar y)}$, donde $(\bar0)$ es el punto genérico y $(\bar y)$ es cerrado, de lo cual se sigue que los abiertos son $\varnothing$, $\set{(\bar0)}$ y $\Spec k[y]_{(y)}$. Son, respectivamente, $D(\bar0)$, $D(\bar y)$ y $D(\bar1)$. Por otro lado, como $k(x)$ es cuerpo, $\Spec k(x)=\set{(0)}$.
+
+Ahora bien, denotemos $X=\Spec k(x)$, $Y=\Spec k[y]_{(y)}$ y $U=\set{(\bar0)}$. Luego definimos
+\[
+f\colon X\longrightarrow Y,
+\qquad f((0))=(\bar y).
+\]
+Es continua ya que $X$ es discreto. Como
+\[
+\begin{gathered}
+\mathcal O_Y(\varnothing)=0=f_*\mathcal O_X(\varnothing),\qquad
+\mathcal O_Y(Y)=k[y]_{(y)},\\
+f_*\mathcal O_X(Y)=\mathcal O_X(X)=k(x),\qquad
+f_*\mathcal O_X(U)=\mathcal O_X(\varnothing)=0,\\
+\mathcal O_Y(U)=\mathcal O_Y(D(\bar y))=(k[y]_{(y)})_{\bar y}\cong k(y),
+\end{gathered}
+\]
+definimos $f^\#\colon\mathcal O_Y\to f_*\mathcal O_X$ por
+\[
+f^\#_{\varnothing}\colon0\to0,\qquad f^\#_U\colon k(y)\to0
+\quad\text{triviales},\qquad
+f^\#_Y\colon k[y]_{(y)}\to k(x),\quad y\mapsto x.
+\]
+Las únicas restricciones no triviales son las inducidas por $U\subseteq Y$, pero $k[y]_{(y)}\xrightarrow{f^\#_Y}k(x)\to0$ y $k[y]_{(y)}\xrightarrow{\res_U^Y}k(y)\xrightarrow{f^\#_U}0$ son ambos el mapa nulo, así que $f^\#$ es morfismo de gavillas.
+
+Hemos construido un morfismo de espacios anillados $(f,f^\#)$. Sin embargo, en el tallo sobre $(0)\en X$,
+\[
+f^\#_{(0)}\colon\mathcal O_{Y,(\bar y)}=k[y]_{(y)}
+\longrightarrow k(x)=\mathcal O_{X,(0)}
+\]
+coincide con $f^\#_Y$, ya que ambos colímites se calculan sobre un único abierto. Por tanto,
+\[
+(f^\#_{(0)})^{-1}((0))=(\bar0)\ne(\bar y),
+\]
+pero $(0)\triangleleft\mathcal O_{X,(0)}$ y $(\bar y)\triangleleft\mathcal O_{Y,(\bar y)}$ son los maximales. Se sigue que $(f,f^\#)$ no es local. Como los morfismos de anillos inducen morfismos de espacios localmente anillados (se probó en clase y en el \cref{ejer:t3-spec-funtor}), $(f,f^\#)$ no puede provenir de un morfismo de anillos.
+\end{sol}

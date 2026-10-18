@@ -1,0 +1,22 @@
+% Pizarra de T3, páginas 5--6.
+\begin{ejer}[Cosechando: el sembrador de la Sesión 4]\label{ejer:t3-exponencial-tallos}
+Sea ahora $\mathcal O_X^*$ la gavilla de funciones holomorfas que no se anulan, y $\exp\colon\mathcal O_X\to\mathcal O_X^*$, $f\mapsto e^{2\pi i f}$. Muestra que $\exp$ es sobreyectivo en cada tallo, pero no lo es en cada abierto: encuentra un abierto $U\subseteq\mathbb C$ y una función en $\mathcal O_X^*(U)$ que no sea $e^{2\pi i f}$ para ningún $f\en\mathcal O_X(U)$. \hfill [Vakil 2.4.O, cf. 2.3.J]
+\end{ejer}
+\begin{sol}
+Denotamos $E\colon f\mapsto e^{2\pi i f}$. Fijemos $x\en X$ y probemos que $E_x\colon\mathcal O_{X,x}\to\mathcal O_{X,x}^*$ es sobre.
+
+En efecto, sea $[g]\en\mathcal O_{X,x}^*$ arbitrario con representante $g\en\mathcal O_X^*(U)$ para algún abierto $x\en U\subseteq X$. Basta con tomar un disco $x\en B\subseteq U$. Como $\restr{g}{B}\en\mathcal O_X^*(B)$ no se anula, es resultado elemental que admite un logaritmo, es decir, existe $f_1\en\mathcal O_X(B)$ tal que $\restr{g}{B}=\exp\circ f_1$.
+
+Si tomamos $f=\frac{1}{2\pi i}f_1$, entonces $\restr{g}{B}=\exp(2\pi i f)$. Luego, por definición de germen y del morfismo inducido $E_x$,
+\[
+[g]=[\restr{g}{B}]=[\exp(2\pi i f)]=[E_B(f)]=E_x([f]).
+\]
+Esto prueba que $E_x$ es sobre, siendo $x\en X$ arbitrario.
+
+\medskip
+\noindent\emph{Probemos que $E_{\mathbb C^*}$ no es sobre}:\\
+La función $\iota\colon\mathbb C^*\to\mathbb C$, $z\mapsto z$, no se anula, por lo que $\iota\en\mathcal O_X^*(\mathbb C^*)$. Si existiera $f\en\mathcal O_X(\mathbb C^*)$ con $\iota=\exp(2\pi i f)$, entonces $2\pi i f$ sería una rama del logaritmo en $\mathbb C^*$, la cual es bien sabido que no existe. Se sigue que $E_{\mathbb C^*}$ no es sobre.
+
+\medskip
+\noindent\emph{Nota}: Pasé por alto la notación ``$\exp$'' proporcionada por el ejercicio y denoté $\exp$ a la función exponencial usual, $\exp(\cdot)=e^{(\cdot)}$, mientras que denoté $E$ al mapa $\mathcal O_X\to\mathcal O_X^*$, $f\mapsto e^{2\pi i f}$.
+\end{sol}

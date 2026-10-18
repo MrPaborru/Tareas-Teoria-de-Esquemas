@@ -1,0 +1,64 @@
+% Pizarra de T3, páginas 12--14.
+\begin{ejer}[(B1)+(B2) como exactitud]\label{ejer:t3-pegado-exactitud}
+Con la notación del ejercicio anterior, sea $(f_i)_{i\en I}=A$. Reescribe (B1) y (B2) como la exactitud de la sucesión
+\[
+0\longrightarrow A\longrightarrow\prod_{i\en I}A_{f_i}
+\longrightarrow\prod_{i\ne j\en I}A_{f_i f_j}.
+\]
+(Cuidado con los signos en el segundo mapa.) \hfill [Vakil 4.1.3.1, aparte de la demostración de 4.1.2]
+\end{ejer}
+\begin{sol}
+Sea $\varphi_i\colon A\to A_{f_i}$ el morfismo canónico y también
+\[
+\varphi_{i,j}\colon A_{f_i}\longrightarrow A_{f_i f_j},
+\qquad\frac{a}{f_i^n}\longmapsto\frac{a f_j^n}{(f_i f_j)^n}.
+\]
+Categóricamente, el mapa canónico $A\to A_{f_i f_j}$ manda $f_i^n$ a un elemento $f_i^n/1\en A_{f_i f_j}$ con inverso $f_j^n/(f_i f_j)^n$, así que la propiedad universal induce al morfismo $\varphi_{i,j}\colon A_{f_i}\to A_{f_i f_j}$ como el único tal que $\varphi_{i,j}\circ\varphi_i$ es el morfismo canónico $A\to A_{f_i f_j}$.
+
+Estas son las restricciones, e inducen un diagrama de grupos abelianos
+\begin{equation}\label{eq:t3-sucesion-pegado}
+\begin{tikzcd}[column sep=large]
+0\arrow[r]&A\arrow[r,"{\prod_i\varphi_i}"]
+&\displaystyle\prod_{i\en I}A_{f_i}\arrow[r,"\delta"]
+&\displaystyle\prod_{i\ne j\en I}A_{f_i f_j},
+\end{tikzcd}
+\end{equation}
+donde $\delta((s_i)_i)=(\varphi_{i,j}(s_i)-\varphi_{j,i}(s_j))_{i\ne j}$. Como $\varphi_{i,j}\circ\varphi_i=\varphi_{j,i}\circ\varphi_j$ (por definición ambas son el morfismo canónico $A\to A_{f_i f_j}$), se tiene
+\[
+\delta\circ\prod_i\varphi_i=0,
+\qquad\text{de donde}\qquad\im\left(\prod_i\varphi_i\right)\subseteq\ker\delta.
+\]
+Probemos que la exactitud de la \cref{eq:t3-sucesion-pegado} equivale a B1+B2.
+
+\medskip
+\noindent\emph{1. Exactitud en $A\Longleftrightarrow\mathrm{B1}$}:\\
+La exactitud en $A$ se traduce en pedir $\ker\prod_i\varphi_i=0$.
+\[
+\begin{aligned}
+\ker\prod_i\varphi_i=0
+&\quad\Longleftrightarrow\quad
+\forall a\en A,\quad\left(\prod_i\varphi_i(a)=0\ \Longrightarrow\ a=0\right)\\
+&\quad\Longleftrightarrow\quad
+\forall a\en A,\quad\left(\forall i\en I,\ \varphi_i(a)=0\ \Longrightarrow\ a=0\right).
+\end{aligned}
+\]
+Es decir, la exactitud en $A$ equivale a B1.
+
+\medskip
+\noindent\emph{2. Exactitud en $\prod_{i\en I}A_{f_i}\Longleftrightarrow\mathrm{B2}$}:\\
+Para tener la exactitud en $\prod_i A_{f_i}$ basta con tener $\ker\delta\subseteq\im\prod_i\varphi_i$, puesto que la otra contención ya probamos que se cumple siempre. Notemos que una familia $(s_i)_{i\en I}\en\prod_i A_{f_i}$ es compatible cuando $\varphi_{i,j}(s_i)=\varphi_{j,i}(s_j)$ para todos $i\ne j\en I$, es decir, cuando $\delta((s_i)_i)=0$.
+
+Esto prueba que ser $(s_i)_{i\en I}$ compatible equivale a $(s_i)_i\en\ker\delta$. Por tanto,
+\[
+\begin{aligned}
+\ker\delta\subseteq\im\prod_i\varphi_i
+&\quad\Longleftrightarrow\quad
+\left((s_i)_i\en\ker\delta\ \Longrightarrow\ (s_i)_i\en\im\prod_i\varphi_i\right)\\
+&\quad\Longleftrightarrow\quad
+\left(\delta((s_i)_i)=0\ \Longrightarrow\ \exists s\en A,\ \prod_i\varphi_i(s)=(s_i)_i\right)\\
+&\quad\Longleftrightarrow\quad
+\left((s_i)_i\text{ compatible}\ \Longrightarrow\ \exists s\en A,\ \forall i\en I,\ s_i=\varphi_i(s)\right).
+\end{aligned}
+\]
+Esto prueba que la exactitud en $\prod_i A_{f_i}$ equivale a B2.
+\end{sol}

@@ -1,0 +1,57 @@
+% Pizarra de T3, páginas 1--4.
+\begin{ejer}[La sucesión exponencial, a nivel de pregavilla]\label{ejer:t3-sucesion-exponencial}
+Sea $X=\mathbb C$ con la topología clásica, $\mathcal O_X$ la gavilla de funciones holomorfas, y $\mathcal F$ la pregavilla de funciones que admiten un logaritmo holomorfo. Describe una sucesión exacta de pregavillas en $X$
+\[
+0\longrightarrow\mathbb Z\longrightarrow\mathcal O_X\longrightarrow\mathcal F\longrightarrow0,
+\]
+donde $\mathbb Z\to\mathcal O_X$ es la inclusión natural y $\mathcal O_X\to\mathcal F$ está dada por $f\mapsto\exp(2\pi i f)$. Verifica la exactitud. Muestra que $\mathcal F$ no es una gavilla (falla el axioma de engarce: hay funciones que no tienen logaritmo global pero sí lo tienen localmente). \hfill [Vakil 2.3.J]
+\end{ejer}
+\begin{sol}
+Sea $\mathbb Z$ la gavilla de funciones localmente constantes con valores enteros. Precisaré, también, que
+\[
+\mathcal F(U)\coloneq\set*{g\colon U\to\mathbb C\given
+\exists\widetilde g\en\mathcal O_X(U),\ g=\exp\circ\widetilde g}.
+\]
+Como toda función localmente constante es holomorfa, la inclusión $I\colon\mathbb Z\hookrightarrow\mathcal O_X$ está bien definida (en cada abierto es la inclusión $\mathbb Z(U)\hookrightarrow\mathcal O_X(U)$; la naturalidad es obvia). Asimismo, si $f\en\mathcal O_X(U)$, entonces $\exp(2\pi i f)$ tiene a $2\pi i f$ como logaritmo holomorfo, por lo que $\exp(2\pi i f)\en\mathcal F(U)$. Luego, $E\colon\mathcal O_X\to\mathcal F$ está bien definida; además, conmuta con restricciones.
+
+Notemos que $\mathbb Z$ y $\mathcal O_X$ son gavillas de grupos abelianos mediante la suma usual, mientras que $\mathcal F$ lo es como pregavilla con la multiplicación. Aclaro esto para notar que en $\mathcal F$ el neutro es $1$, a pesar de la notación $\mathcal F\to0$. Siguiendo esta línea, notemos que cada componente de $I$ es homomorfismo (pues es una inclusión) y también cada componente de $E$ es homomorfismo, ya que
+\[
+E_U(f+g)=\exp\bigl(2\pi i(f+g)\bigr)
+=\exp(2\pi i f)\exp(2\pi i g)=E_U(f)E_U(g).
+\]
+Esto garantiza que la sucesión corta presentada es de pregavillas de grupos abelianos.
+
+\medskip
+\noindent\emph{Probemos exactitud}:\\
+Como trabajamos en la categoría de pregavillas, podemos calcular núcleos e imágenes entrada por entrada.
+\begin{itemize}
+\item Como $I_U$ es inyectiva para cada abierto $U\subseteq X$, tenemos
+\[
+\forall U\en\Open(X),\qquad (\ker I)(U)=\ker(I_U)=0
+\quad\Longrightarrow\quad\ker I=0.
+\]
+Esto prueba la exactitud en $\mathbb Z$.
+
+\item Dado $U\en\Open(X)$, para todo $g\en\mathcal F(U)$, por definición existe $f_1\en\mathcal O_X(U)$ con $g=\exp\circ f_1$. Luego, $f_2\coloneq\frac{1}{2\pi i}f_1$ cumple que
+\[
+E_U(f_2)=\exp\left(2\pi i\frac{1}{2\pi i}f_1\right)=\exp(f_1)=g.
+\]
+Esto prueba que $\mathcal F(U)=\im(E_U)=(\im E)(U)$ para todo $U\en\Open(X)$, por lo que $\mathcal F=\im E$ y la sucesión es exacta en $\mathcal F$.
+
+\item Finalmente, dado $U\en\Open(X)$, por resultados de variable compleja y continuidad:
+\[
+f\en\ker(E_U)
+\quad\Longleftrightarrow\quad\exp(2\pi i f)=1
+\quad\Longleftrightarrow\quad f(z)\en\mathbb Z\quad\forall z\en U
+\quad\Longleftrightarrow\quad f\en\mathbb Z(U).
+\]
+Esto prueba $(\ker E)(U)=\mathbb Z(U)$ para cada $U\en\Open(X)$, de donde $\ker E=\mathbb Z=\im I$.
+\end{itemize}
+Estos tres puntos prueban la exactitud de la sucesión corta de pregavillas.
+
+\medskip
+\noindent\emph{Probemos que $\mathcal F$ no es gavilla}:\\
+Sea $S\subseteq\Open(X)$ la familia de abiertos simplemente conexos de $X$ que no contienen al cero. Entonces, $S$ es cubierta de $\mathbb C^*\coloneq\mathbb C\setminus\set{0}$. Consideremos la familia $\set{\iota_U\colon U\to\mathbb C}_{U\en S}$ con $\iota_U(z)=z$. Es resultado elemental que todo $U\en S$ admite una rama del logaritmo, es decir, $\log_U\en\mathcal O_X(U)$ con $\iota_U=\exp\circ\log_U$. Esto prueba que $\iota_U\en\mathcal F(U)$; además, la familia $\set{\iota_U}_{U\en S}$ es compatible en traslapes.
+
+No obstante, su pegado como función $\iota_{\mathbb C^*}\colon\mathbb C^*\to\mathbb C$ no admite una rama del logaritmo. Se sigue que $\iota_{\mathbb C^*}\noten\mathcal F(\mathbb C^*)$, por lo que $\set{\iota_U}_{U\en S}$ no admite pegado (si lo tuviera, tendría que ser $\iota_{\mathbb C^*}$).
+\end{sol}

@@ -1,0 +1,18 @@
+% Pizarra de T3, página 7.
+\begin{ejer}\label{ejer:t3-cubierta-distinguidos}
+Sean $f_i\en A$, $i\en J$. Muestra que $\bigcup_{i\en J}D(f_i)=\Spec A$ si y solo si el ideal generado por los $f_i$ es todo $A$, o, equivalentemente, si existen $a_i\en A$ (todos salvo un número finito iguales a $0$) tales que $\sum_{i\en J}a_i f_i=1$. \hfill [Vakil 3.5.B]
+\end{ejer}
+\begin{sol}
+Por un lado, $\bigcup_{i\en J}D(f_i)=D((f_i)_{i\en J})$ y $\Spec A=D(1)$. Además, por el \cref{ejer:2.3} de la tarea anterior, aplicado a ambas contenciones:
+\[
+D((f_i)_{i\en J})=D(1)
+\quad\Longleftrightarrow\quad V((f_i)_{i\en J})=V(1)
+\quad\Longleftrightarrow\quad\sqrt{(f_i)_{i\en J}}=\sqrt{(1)}=A.
+\]
+Como $\sqrt I=A$ equivale a $I=A$, esto último equivale a $(f_i)_{i\en J}=A$. Es decir,
+\[
+\bigcup_{i\en J}D(f_i)=\Spec A
+\quad\Longleftrightarrow\quad(f_i)_{i\en J}=A.
+\]
+Finalmente, $(f_i)_{i\en J}=A$ si y solo si $1\en(f_i)_{i\en J}$ (por la propiedad de absorción de todo ideal); mientras que $1\en(f_i)_{i\en J}$ equivale a que exista una combinación finita $1=\sum_i a_i f_i$, por cómo se expresan los ideales generados en $\cat{CRing}$.
+\end{sol}

@@ -1,0 +1,71 @@
+% Pizarra de T3, páginas 29--31.
+\begin{ejer}[\texorpdfstring{Construcción de $\widetilde M$}{Construcción de M con tilde}]\label{ejer:t3-gavilla-modulo}
+Sea $M$ un $A$-módulo. Define $\widetilde M(D(f))$ como la localización de $M$ en el conjunto multiplicativo de las funciones que no se anulan fuera de $V(f)$. Define los mapas de restricción de la manera análoga a $\mathcal O_{\Spec A}$. Muestra que esto define una gavilla en la base de distinguidos (y por tanto una gavilla en $\Spec A$), y que es un $\mathcal O_{\Spec A}$-módulo. \hfill [Vakil 4.1.D]
+\end{ejer}
+\begin{sol}
+Para cada $f\en A$, recordemos que se definió
+\[
+\begin{aligned}
+S_f&\coloneq\set*{s\en A\given D(f)\subseteq D(s)}\\
+&=\set*{s\en A\given\forall\mathfrak p\en\Spec A,\ f\notin\mathfrak p\Rightarrow s\notin\mathfrak p}.
+\end{aligned}
+\]
+Entonces $\widetilde M(D(f))$ se define como la localización $S_f^{-1}M\cong M_f$. Asimismo, si $D(g)\subseteq D(f)$, se tiene $S_f\subseteq S_g$, por lo que ya vimos en clase que se induce un morfismo
+\[
+\res_g^f\colon S_f^{-1}A\longrightarrow S_g^{-1}A,
+\qquad\frac{a}{s}\longmapsto\frac{a}{s}.
+\]
+Este, a su vez, induce nuestra buscada restricción
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+S_f^{-1}M\arrow[r,"{m/s\mapsto m/s}"]\arrow[d,"\cong"']
+&S_g^{-1}M\arrow[d,"\cong"]\\
+S_f^{-1}A\otimes_A M\arrow[r,"{\res_g^f\otimes\id_M}"]\arrow[d,"\cong"']
+&S_g^{-1}A\otimes_A M\arrow[d,"\cong"]\\
+A_f\otimes_A M\arrow[r,"{\res_g^f\otimes\id_M}"']
+&A_g\otimes_A M.
+\end{tikzcd}
+\]
+Los últimos isomorfismos son inducidos por $S_f^{-1}A\cong A_f$, visto en clase. En particular, este diagrama muestra que localizar $M$ en $S_f$ equivale a hacerlo en las potencias de $f$.
+
+Notamos que, viendo a los $S_f^{-1}M$ y $S_f^{-1}A$ como $A$-módulos mediante $A\to S_f^{-1}A$, acabamos de definir $\widetilde M$ en la base como la composición $(-\otimes_A M)\circ\mathcal O_{\Spec A}$. Como $-\otimes_A M$ es funtor covariante y $\mathcal O_{\Spec A}$ pregavilla, se sigue que $\widetilde M$ es pregavilla.
+
+\medskip
+\noindent\emph{La prueba de que $\widetilde M$ es gavilla es completamente análoga al \cref{ejer:t3-pegado-distinguidos}}:\\
+Sean $f,f_i\en A$ para $i\en I$ tales que $D(f)=\bigcup_iD(f_i)$. Ya vimos que podemos suponer sin perder generalidad $D(f)=\Spec A$ (como vimos en el \cref{ejer:t3-pegado-distinguidos}, basta trabajar con $A_f$ y $M_f$, ya que $\Spec A_f=\bigcup_iD_{A_f}(f_i/1)$), y la cuasicompacidad permite escoger una subcubierta finita.
+
+\medskip
+\noindent\emph{(B1)}: Si $m\en M=\widetilde M(\Spec A)$ se restringe a $m/1=0\en M_{f_i}$ para todo $i\en I$, se sigue que existe $r_i\en\mathbb N_0$ con $f_i^{r_i}m=0$. Sobre la subcubierta finita, tomando $r=\max_i r_i$, tenemos $f_i^r m=0$ para todos esos índices. Sin embargo, como vimos en los \cref{ejer:t3-cubierta-distinguidos,ejer:t3-pegado-distinguidos}, $\Spec A=\bigcup_iD(f_i)$ implica que existen $\alpha_i\en A$, solo finitos no nulos, con $1=\sum_i\alpha_i f_i^r$. Así,
+\[
+m=\sum_i\alpha_i f_i^r m=0.
+\]
+
+\medskip
+\noindent\emph{(B2)}: Sea $m_i/f_i^{r_i}\en M_{f_i}=\widetilde M(D(f_i))$ una familia compatible. Sobre la subcubierta finita podemos suponer $r=r_i$ uniforme, multiplicando $m_i$ por una potencia adecuada de $f_i$. La compatibilidad se traduce en que para todos $i,j$ de dicha subcubierta:
+\[
+\frac{f_j^r m_i}{(f_i f_j)^r}=\frac{f_i^r m_j}{(f_i f_j)^r}
+\quad\Longrightarrow\quad
+\exists n_{ij}\en\mathbb N_0,\quad
+(f_i f_j)^{n_{ij}+r}f_j^r m_i=(f_i f_j)^{n_{ij}+r}f_i^r m_j.
+\]
+Podemos tomar $n\ge n_{ij}+r$ uniforme y así
+\[
+f_i^n f_j^{n+r}m_i=f_j^n f_i^{n+r}m_j.
+\]
+Ahora bien, como existen $\alpha_i$ con $1=\sum_i\alpha_i f_i^{n+r}$, afirmamos que
+\[
+m=\sum_j\alpha_j f_j^n m_j
+\]
+es engarce de la familia. En efecto,
+\[
+\begin{aligned}
+f_i^{n+r}m
+&=\sum_j\alpha_j f_j^n f_i^{n+r}m_j
+=\sum_j\alpha_j f_i^n f_j^{n+r}m_i\\
+&=f_i^n m_i\sum_j\alpha_j f_j^{n+r}=f_i^n m_i.
+\end{aligned}
+\]
+Por lo tanto, $m/1=m_i/f_i^r\en M_{f_i}$ para cada índice de la subcubierta. La igualdad para los demás índices se obtiene restringiendo a los traslapes con la subcubierta finita y aplicando B1, exactamente como al final del \cref{ejer:t3-pegado-distinguidos}.
+
+Hemos demostrado que $\widetilde M$ es gavilla sobre la base de abiertos distinguidos. Finalmente, como los $M_f$ son $A_f$-módulos y sus restricciones son inducidas por las de $\mathcal O_{\Spec A}$, se sigue que $\widetilde M$ es $\mathcal O_{\Spec A}$-módulo.
+\end{sol}

@@ -1,0 +1,22 @@
+% Pizarra de T3, página 34.
+\begin{ejer}[\texorpdfstring{$\widetilde{(\cdot)}$ es exacto}{El funtor tilde es exacto}]\label{ejer:t3-funtor-modulo-exacto}
+Muestra que $M\mapsto\widetilde M$ es un funtor exacto de $A$-módulos a $\mathcal O_{\Spec A}$-módulos. (Usa los dos ejercicios anteriores: exactitud de gavillas se checa en tallos, y los tallos de $\widetilde M$ son localizaciones de $M$, que son exactas.)
+\end{ejer}
+\begin{sol}
+Sea $0\to M\xrightarrow{\varphi}N\xrightarrow{\psi}P\to0$ una sucesión exacta de $A$-módulos. Como localizar es exacto, para todo $\mathfrak p\en\Spec A$, la sucesión
+\[
+0\longrightarrow M_{\mathfrak p}\longrightarrow N_{\mathfrak p}\longrightarrow P_{\mathfrak p}\longrightarrow0
+\]
+es exacta. Pero el \cref{ejer:t3-tallo-modulo} da un isomorfismo $\widetilde M_{\mathfrak p}\cong M_{\mathfrak p}$ canónico que hace conmutar el siguiente diagrama:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+0\arrow[r]&M_{\mathfrak p}\arrow[r]&N_{\mathfrak p}\arrow[r]&P_{\mathfrak p}\arrow[r]&0\\
+0\arrow[r]\arrow[u,equal]
+&\widetilde M_{\mathfrak p}\arrow[r]\arrow[u,"\cong"]
+&\widetilde N_{\mathfrak p}\arrow[r]\arrow[u,"\cong"]
+&\widetilde P_{\mathfrak p}\arrow[r]\arrow[u,"\cong"]
+&0\arrow[u,equal].
+\end{tikzcd}
+\]
+Entonces, la fila inferior también es exacta. Como la sucesión $0\to\widetilde M\to\widetilde N\to\widetilde P\to0$ es exacta en cada tallo, es sucesión exacta de gavillas.
+\end{sol}

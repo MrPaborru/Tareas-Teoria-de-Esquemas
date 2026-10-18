@@ -1,0 +1,93 @@
+% Pizarra de T3, páginas 8--11.
+\begin{ejer}[\texorpdfstring{(B1) y (B2), de $\Spec A$ a un $D(f)$ arbitrario}{(B1) y (B2), de Spec A a un D(f) arbitrario}]\label{ejer:t3-pegado-distinguidos}
+Ya mostraste (Sesión 5) que si $(f_i)_{i\en I}=A$, entonces $A\to\prod_i A_{f_i}$ es inyectivo (base identity para $\Spec A$) y que toda familia compatible de secciones en los $A_{f_i}$ engarza a una sección global (base gluability para $\Spec A$). Haz los cambios necesarios en ese argumento para mostrar que las mismas dos propiedades valen para un abierto distinguido $D(f)$ arbitrario en vez de todo $\Spec A$ (sugerencia: sustituye $A$ por $A_f$). \hfill [Vakil 4.1.B, cf. 4.1.A]
+\end{ejer}
+\begin{sol}
+Supongamos $D(f)=\bigcup_{i\en I}D(f_i)$. El homeomorfismo del \cref{ejer:2.10} de la tarea anterior,
+\[
+\Phi\colon\Spec A_f\xlongrightarrow{\cong}D(f),
+\]
+mapea $D_{A_f}(g/f)$ a $D(f)\cap D(g)$ para todo $g\en A$. En efecto,
+\[
+J\en D_{A_f}(g/f)
+\quad\Longleftrightarrow\quad g/f\notin J
+\quad\Longleftrightarrow\quad g\notin\Phi(J)
+\quad\Longleftrightarrow\quad\Phi(J)\en D(g).
+\]
+Luego,
+\[
+\Spec A_f=D_{A_f}(f/f)=\Phi^{-1}(D(f))
+=\Phi^{-1}\left(\bigcup_iD(f_i)\right)=\bigcup_iD_{A_f}(f_i/f).
+\]
+Denotemos $g_i=f_i/f$; así tenemos $\Spec A_f=\bigcup_iD_{A_f}(g_i)$. Además, por el \cref{ejer:t3-cubierta-distinguidos}, esto equivale a $A_f=(g_i)_i$ y a que $1=\alpha_1g_1+\cdots+\alpha_k g_k$ (reordenando los $g_i$ de ser necesario). Para cualquier $r\en\mathbb N$, al elevar esto a una potencia suficientemente alta:
+\begin{equation}\label{eq:t3-potencias-generan}
+1=\alpha'_1g_1^r+\cdots+\alpha'_k g_k^r.
+\end{equation}
+
+\medskip
+\noindent\emph{Repliquemos ahora el argumento de la Sesión 5}:\\
+Primero recordemos que las restricciones $A_f\to(A_f)_g$ mandan $s/f^n\mapsto(s/f^n)/1$. Identificamos canónicamente $(A_f)_{g_i}$ con $A_{f_i}$, pues $D(f_i)\subseteq D(f)$, y $(A_f)_{g_i g_j}$ con $A_{f_i f_j}$.
+
+\medskip
+\noindent\emph{(B1)}: Sea $\beta\en A_f$ con restricciones $\beta/1=0\en(A_f)_{g_i}$ para $i\en I$. En particular, para cada $1\le i\le k$ existe $r_i\en\mathbb N_0$ tal que $\beta g_i^{r_i}=0$. Multiplicando esto por potencias de $g_i$, podemos escoger $r\en\mathbb N_0$ uniforme con
+\[
+\beta g_i^r=0,\qquad\forall i=1,\ldots,k.
+\]
+Multiplicando la \cref{eq:t3-potencias-generan} por $\beta$, obtenemos entonces
+\[
+\beta=\alpha'_1\beta g_1^r+\cdots+\alpha'_k\beta g_k^r=0.
+\]
+Hemos probado el axioma B1.
+
+\medskip
+\noindent\emph{(B2)}: Sea $s_i=\beta_i/g_i^{r_i}\en(A_f)_{g_i}$ una familia compatible. En particular, podemos poner $s_i=\beta'_i/g_i^r$ para $1\le i\le k$, multiplicando $\beta_i$ por una potencia de $g_i$. Entonces, la compatibilidad implica para $i,j\en\set{1,\ldots,k}$:
+\[
+\frac{g_j^r\beta'_i}{(g_i g_j)^r}=\frac{g_i^r\beta'_j}{(g_i g_j)^r}\en(A_f)_{g_i g_j}
+\quad\Longrightarrow\quad
+\exists m_{ij}\en\mathbb N_0,\quad
+(g_i g_j)^{m_{ij}+r}g_j^r\beta'_i=(g_i g_j)^{m_{ij}+r}g_i^r\beta'_j.
+\]
+Como hay una cantidad finita, podemos tomar también $m\ge m_{ij}+r$ uniforme. Así,
+\[
+g_i^m g_j^{m+r}\beta'_i=g_j^m g_i^{m+r}\beta'_j,
+\qquad i,j\en\set{1,\ldots,k}.
+\]
+Como ya vimos que podemos poner $1=\alpha'_1g_1^{m+r}+\cdots+\alpha'_k g_k^{m+r}$, afirmamos que
+\[
+s\coloneq\lambda_1\alpha'_1+\cdots+\lambda_k\alpha'_k,
+\qquad\lambda_i\coloneq g_i^m\beta'_i,
+\]
+es engarce de la familia. En efecto, por un lado, para $1\le i\le k$ se tiene
+\[
+\begin{aligned}
+g_i^{m+r}s
+&=\sum_{j=1}^k g_i^{m+r}\lambda_j\alpha'_j
+=\sum_{j=1}^k g_i^{m+r}g_j^m\beta'_j\alpha'_j\\
+&=\sum_{j=1}^k g_i^m g_j^{m+r}\beta'_i\alpha'_j
+=g_i^m\beta'_i\sum_{j=1}^k\alpha'_j g_j^{m+r}
+=g_i^m\beta'_i.
+\end{aligned}
+\]
+Por lo tanto, $s/1=\beta'_i/g_i^r\en(A_f)_{g_i}$ para todo $1\le i\le k$.
+
+Fijemos un índice arbitrario $i\en I$. Como $\Spec A_f=\bigcup_{j=1}^kD_{A_f}(g_j)$, se tiene
+\[
+D_{A_f}(g_i)=\bigcup_{j=1}^kD_{A_f}(g_i g_j).
+\]
+Pero para todo $1\le j\le k$, ya sabemos:
+\[
+\frac{s}{1}=\frac{\beta'_j}{g_j^r}=\frac{\beta_j}{g_j^{r_j}}\en(A_f)_{g_j},
+\qquad\text{por tanto}\qquad
+\frac{s}{1}=\frac{g_i^{r_j}\beta_j}{(g_i g_j)^{r_j}}\en(A_f)_{g_i g_j}.
+\]
+Asimismo, la compatibilidad de $s_i$ nos da
+\[
+\frac{g_i^{r_j}\beta_j}{(g_i g_j)^{r_j}}
+=\frac{g_j^{r_i}\beta_i}{(g_i g_j)^{r_i}}.
+\]
+Esto prueba que $s/1=g_j^{r_i}\beta_i/(g_i g_j)^{r_i}\en(A_f)_{g_i g_j}$. Por consiguiente, las secciones $s/1,\beta_i/g_i^{r_i}\en(A_f)_{g_i}$ se restringen igual a la cubierta $\set{D_{A_f}(g_i g_j)}_{j=1}^k$, así que B1 garantiza
+\[
+\frac{s}{1}=\frac{\beta_i}{g_i^{r_i}}\en(A_f)_{g_i}.
+\]
+Como $i\en I$ es arbitrario, hemos probado que $s$ es engarce de $\set{s_i}_{i\en I}$.
+\end{sol}

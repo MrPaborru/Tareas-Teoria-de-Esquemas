@@ -1,0 +1,32 @@
+% Pizarra de T3, páginas 15--16; corrección de fracciones reducidas acordada.
+\begin{ejer}[\texorpdfstring{El ejemplo aritmético: $\Spec\mathbb Z$}{El ejemplo aritmético: Spec Z}]\label{ejer:t3-espectro-enteros}
+Sea $X=\Spec\mathbb Z$. Muestra que todo abierto propio de $X$ es de la forma $D(f)$ para algún entero $f\ne0$, y que $\mathcal O_X(D(f))=\mathbb Z_f\subseteq\mathbb Q$. Verifica explícitamente, para $f=6$, qué racionales $a/b$ (con $\gcd(a,b)=1$) pertenecen a $\mathcal O_X(D(6))$. \hfill [Liu, Ejemplo 3.5 (§2.3.1)]
+\end{ejer}
+\begin{sol}
+Sea $U\subsetneq X$ no vacío (si es vacío, $U=D(0)$, ya que en $\mathbb Z$ el único elemento nilpotente es cero). Por definición, $U=X\setminus V(I)$, donde $I\triangleleft\mathbb Z$; como $\mathbb Z$ es DIP, existe $f\en\mathbb Z$ con $I=(f)$. Se sigue que $U=X\setminus V(f)=D(f)$. Más aún, como $U$ no es vacío, tenemos $f\ne0$.
+
+Como $\set*{f^n\given n\en\mathbb N_0}\subseteq\mathbb Z\setminus\set{0}$ y $\mathbb Q=(\mathbb Z\setminus\set{0})^{-1}\mathbb Z$, sabemos que hay un morfismo natural $\mathbb Z_f\to\mathbb Q$. Como vimos en clase, lo que impide a este morfismo ser inyectivo son los posibles divisores de cero en los correspondientes conjuntos multiplicativos; luego, como $\mathbb Z$ es dominio entero, se tiene garantizada la inyectividad:
+\[
+\mathbb Z_f\hookrightarrow\mathbb Q.
+\]
+Esto permite identificar a $\mathbb Z_f$ naturalmente como subconjunto de $\mathbb Q$. Por la construcción de la gavilla estructural, $\mathcal O_X(D(f))=\mathbb Z_f$.
+
+Ahora bien, por definición, $\mathbb Z_6$ consta de fracciones de la forma $a/6^N$ para $a\en\mathbb Z$ y $N\en\mathbb N_0$. Si buscamos cancelar divisores de $a$ y $6^N$ en común, obtenemos que las fracciones reducidas son
+\[
+\mathbb Z_6=
+\set*{\frac{a}{2^n3^m}\given
+\begin{gathered}
+n,m\en\mathbb N_0,\quad a\en\mathbb Z,\\
+n>0\Rightarrow2\nmid a,\qquad m>0\Rightarrow3\nmid a
+\end{gathered}}.
+\]
+En efecto, tomando $N=\max\set{n,m}$, tendríamos
+\[
+\frac{a}{2^n3^m}=\frac{2^{N-n}3^{N-m}a}{6^N}\en\mathbb Z_6.
+\]
+Recíprocamente, para $a/6^N$ con $a\ne0$, existen $k,\ell\en\mathbb N_0$ con $a=2^k3^\ell a'$ para $a'\en\mathbb Z$ con $2\nmid a'$ y $3\nmid a'$. Luego, si $s=\min\set{k,N}$ y $t=\min\set{\ell,N}$, se sigue
+\[
+\frac{a}{6^N}=\frac{2^{k-s}3^{\ell-t}a'}{2^{N-s}3^{N-t}}.
+\]
+Esta fracción está reducida: si $N-s>0$, entonces $s=k$ y su numerador no es divisible por $2$; análogamente, si $N-t>0$, entonces $t=\ell$ y su numerador no es divisible por $3$. Para $a=0$, la forma reducida es $0/1$. Por tanto, una fracción reducida $a/b$, con $b>0$, pertenece a $\mathcal O_X(D(6))$ si y solo si $b=2^n3^m$ para ciertos $n,m\en\mathbb N_0$.
+\end{sol}

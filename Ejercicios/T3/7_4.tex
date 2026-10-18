@@ -1,0 +1,64 @@
+% Pizarra de T3, páginas 46--47.
+\begin{ejer}[El Corolario central: la equivalencia contravariante]\label{ejer:t3-equivalencia-afines}
+Muestra que la categoría de anillos y la categoría opuesta de esquemas afines son equivalentes. \hfill [Vakil 7.3.E]
+\end{ejer}
+\begin{sol}
+Probemos que $\Spec\colon\cat{Ring}^{\mathrm{op}}\to\cat{LocAn}$, definido en el \cref{ejer:t3-spec-funtor}, es plenamente fiel. Veamos que $(\pi,\pi^\#)\mapsto\pi^\#_{\Spec B}$ es inverso de
+\[
+\Hom(B,A)\longrightarrow\Hom(\Spec A,\Spec B).
+\]
+\begin{itemize}
+\item Para una de las composiciones, sea $(\pi,\pi^\#)\colon\Spec A\to\Spec B$. Entonces la flecha
+\[
+\varphi\coloneq\pi^\#_{\Spec B}\colon
+B=\mathcal O_{\Spec B}(\Spec B)\longrightarrow\mathcal O_{\Spec A}(\Spec A)=A
+\]
+cumple, para todo $\mathfrak p\en\Spec A$,
+\[
+\begin{aligned}
+a\en\varphi^{-1}(\mathfrak p)
+&\quad\Longleftrightarrow\quad\frac{\varphi(a)}{1}\en\mathfrak p A_{\mathfrak p}
+\quad\Longleftrightarrow\quad\pi^\#_{\mathfrak p}\left(\frac{a}{1}\right)\en\mathfrak p A_{\mathfrak p}\\
+&\quad\Longleftrightarrow\quad\frac{a}{1}\en\pi(\mathfrak p)B_{\pi(\mathfrak p)}
+\quad\Longleftrightarrow\quad a\en\pi(\mathfrak p).
+\end{aligned}
+\]
+Aquí usamos, respectivamente, las definiciones del mapa en tallos y la localidad de $\pi^\#_{\mathfrak p}$. Se sigue $\pi(\mathfrak p)=\varphi^{-1}(\mathfrak p)$, así $\pi=\Spec\varphi$ en espacios.
+
+Para gavillas, sea $g\en B$ arbitrario; el siguiente diagrama conmuta por naturalidad de $\pi^\#$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+B\arrow[r,"{\varphi=\pi^\#_{\Spec B}}"]\arrow[d]&A\arrow[d]\\
+B_g\arrow[r,"\pi^\#_{D(g)}"']&A_{\varphi(g)}.
+\end{tikzcd}
+\]
+Esto implica que $\pi^\#_{D(g)}$ es extensión de $B\xrightarrow{\varphi}A\to A_{\varphi(g)}$ para todo abierto distinguido $D(g)$, por lo que $\pi^\#=\varphi^\#$, donde $\varphi^\#$ denota el mapa de gavillas construido en el \cref{ejer:t3-spec-funtor}. Hemos probado
+\[
+(\Spec\varphi,\varphi^\#)=(\pi,\pi^\#).
+\]
+
+\item Para la otra composición, sea $\pi^\#\colon B\to A$ morfismo de anillos. Este induce un
+\[
+(\pi,\pi^\#)\colon\Spec A\longrightarrow\Spec B.
+\]
+Entonces basta ver que el mapa inicial $\pi^\#$ coincide con $\pi^\#_{\Spec B}$. En efecto, para todo $b\en B$,
+\[
+\pi^\#_{\Spec B}\left(\frac{b}{1}\right)
+=\frac{\pi^\#(b)}{\pi^\#(1)}=\frac{\pi^\#(b)}{1},
+\]
+recordando que estamos identificando $A=A_1$ y $B=B_1$. Esto prueba que $\pi^\#=\pi^\#_{\Spec B}$.
+\end{itemize}
+Finalmente, tenemos que $\Spec$ induce una biyección
+\[
+\Hom(B,A)\xlongrightarrow{\cong}\Hom(\Spec A,\Spec B),
+\]
+por lo que es pleno y fiel. Como su imagen esencial es, por definición, la categoría de esquemas afines, tenemos un funtor
+\[
+\Spec\colon\cat{Ring}^{\mathrm{op}}\longrightarrow\cat{AffSch}
+\]
+plenamente fiel y esencialmente sobre: una equivalencia de categorías. Más aún, la asignación
+\[
+(\pi,\pi^\#)\longmapsto\pi^\#_{\Spec B}
+\]
+es la acción en flechas del funtor $\Gamma$ de secciones globales, por lo que hemos probado que $\Gamma\colon\cat{AffSch}\to\cat{Ring}^{\mathrm{op}}$ es un cuasi-inverso de $\Spec$.
+\end{sol}
