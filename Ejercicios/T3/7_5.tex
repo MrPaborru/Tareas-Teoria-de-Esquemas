@@ -3,7 +3,7 @@
 Muestra que los morfismos $X\to\Spec A$ están en biyección natural con los morfismos de anillos $A\to\Gamma(X,\mathcal O_X)$. (Sugerencia: muéstralo primero cuando $X$ es afín, y usa que los morfismos engarzan para pasar al caso general.) \hfill [Vakil 7.3.G]
 \end{ejer}
 \begin{sol}
-El funtor de secciones globales $\Gamma\colon\cat{Sch}\to\cat{Ring}^{\mathrm{op}}$ da en morfismos una función
+El funtor de secciones globales $\Gamma\colon\Sch\to\Ring^{\mathrm{op}}$ da en morfismos una función
 \begin{equation}\label{eq:t3-biyeccion-globales}
 \Hom(X,\Spec A)\xrightarrow{\Gamma}\Hom(A,\mathcal O_X(X)),
 \end{equation}
@@ -199,7 +199,7 @@ como morfismos de esquemas.
 \end{itemize}
 Hemos probado que $\eta$ y $\varepsilon$ son las transformaciones unidad y counidad de una adjunción. Por tanto,
 \[
-\Hom_{\cat{Sch}}(X,\Spec A)\cong\Hom_{\cat{Ring}}(A,\mathcal O_X(X)),
+\Hom_{\Sch}(X,\Spec A)\cong\Hom_{\Ring}(A,\mathcal O_X(X)),
 \]
 naturalmente, mediante
 \[
@@ -212,8 +212,8 @@ naturalmente, mediante
 \noindent\emph{Nota}: Notemos que en esta demostración solo usamos que $X$ es espacio localmente anillado, así que esto también sirve como prueba de la adjunción más general
 \[
 \begin{tikzcd}[column sep=huge]
-\cat{Ring}^{\mathrm{op}}\arrow[r,bend left=25,"\Spec"]\arrow[r,phantom,"\dashv" description]
-&\cat{LocAn}\arrow[l,bend left=25,"\Gamma"].
+\Ring^{\mathrm{op}}\arrow[r,bend left=25,"\Spec"]\arrow[r,phantom,"\dashv" description]
+&\LocAn\arrow[l,bend left=25,"\Gamma"].
 \end{tikzcd}
 \]
 Aquí $\Gamma$ es adjunto izquierdo de $\Spec$.
