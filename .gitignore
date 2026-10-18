@@ -1,2 +1,3 @@
-# Compilación y revisión visual local.
-/build/
+# Carpeta de compilación: solo se sincroniza el PDF final.
+/build/*
+!/build/main.pdf
