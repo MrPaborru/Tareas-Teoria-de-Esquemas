@@ -28,7 +28,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAPITULOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cftpagenumbersoff{chap}
-\renewcommand{\cftchappresnum}{\bfseries\color{white}\makebox[1em][c]}
+% Contorno del renglón; el relleno se ajusta al número por separado.
 \newcommand{\chaptertocbox}{%
     \makebox[0pt][l]{%
         \tikz[remember picture,overlay]{
@@ -36,15 +36,43 @@
                 ([yshift=-0.35em]0,0)
                 rectangle
                 ++(\textwidth,1.22em);
-            \fill[color=grisCIMAT, line width=1pt]
-                ([yshift=-0.35em]0,0)
-                rectangle
-                ++(1em,1.22em);
         }%
     }%
 }
 \renewcommand{\cftchapfont}{\large\chaptertocbox}
 \renewcommand{\cftchapaftersnumb}{\scshape}
+
+% Conservamos el ancho mínimo de 1em, la altura y el espacio hasta el título.
+\newsavebox{\chaptertocnumber}
+\newcommand{\chaptertocnumberline}[1]{%
+    \begingroup
+    \setlength{\fboxsep}{0pt}%
+    \sbox{\chaptertocnumber}{%
+        \colorbox{grisCIMAT}{%
+            \rule[-0.35em]{0pt}{1.22em}%
+            \makebox[\maxof{1em}{\widthof{\bfseries#1}+0.3em}][c]{%
+                \bfseries\color{white}#1%
+            }%
+        }%
+    }%
+    \makebox[\dimexpr\wd\chaptertocnumber+\cftchapnumwidth-1em\relax][l]{%
+        % El fondo no altera el interlineado original de la entrada.
+        \smash{\usebox{\chaptertocnumber}}\vphantom{\bfseries#1}%
+    }%
+    \endgroup
+    \cftchapaftersnumb
+}
+
+% Aplicamos el número adaptable únicamente a los capítulos, como en los apuntes.
+\makeatletter
+\let\oldl@chapter\l@chapter
+\renewcommand{\l@chapter}[2]{%
+    \begingroup
+    \let\numberline\chaptertocnumberline
+    \oldl@chapter{#1}{#2}%
+    \endgroup
+}
+\makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

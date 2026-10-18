@@ -53,12 +53,16 @@
         \begin{center}
             \setlength{\fboxrule}{1.5pt}
             {\Huge\scshape\Materia}\\[2cm]
-            \fcolorbox{rojoCIMAT}{rojoCIMAT}{%
+            \begingroup
+            % Una sola pieza de color, con las mismas dimensiones exteriores.
+            \addtolength{\fboxsep}{\fboxrule}%
+            \colorbox{rojoCIMAT}{%
                 \makebox[4cm][c]{%
                     \color{white}\fontsize{52.5}{0}\selectfont%
                     \textbf{1\textordfeminine{\! - \!}\NumTareas\textordfeminine}%
                 }%
-            }\\[-0.1cm]
+            }%
+            \endgroup\\[-0.1cm]
             \fcolorbox{rojoCIMAT}{white}{%
                 \makebox[4cm][c]{\Huge\scshape\so{tareas}}%
             }\\[2cm]
