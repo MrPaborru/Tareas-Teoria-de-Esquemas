@@ -1,0 +1,48 @@
+%------------------------------ Ejercicio 2 -------------------------------
+\setcounter{neje}{1}
+\begin{nejer}
+Considera un dominio acotado $\Omega \subseteq \mathbb{C}$ y sea $f\colon \Omega \to \Omega$ una función holomorfa. Denote por $f_n = f^{\circ n}$ la $n$-ésima iterada de $f$ consigo misma y suponga la existencia de un punto $z_0 \en \Omega$ tal que $f(z_0) = z_0$ y $|f'(z_0)| < 1$. Demuestre que cuando $n \to \infty$, la sucesión $f_n$ converge uniformemente en compactos de $\Omega$ a la función constante $g(z) = z_0$.
+\end{nejer}
+\begin{sol}
+Sea $\lambda = f'(z_0)$. Por hipótesis $|\lambda| < 1$, así que elegimos $r$ tal que $|\lambda| < r < 1$.
+
+Por continuidad de $f'$, existe $\delta > 0$ tal que $D_{\delta}(z_0) \subseteq \Omega$ y $|f'(z)| < r$ para todo $z \en D_{\delta}(z_0)$. Como $f(z_0)=z_0$, para cada $z \en D_{\delta}(z_0)$ la \emph{desigualdad valor medio}%
+\footnote{
+    Probar esta desigualdad es sencillo: por teorema fundamental del cálculo $\int_{[z_0,z]}f'(z) \dd{z} = f(z)-f(z_0)$ así que por estimación estándar se sigue que $\abs{f(z) - f(z_0)} \leq \abs{z-z_0} \sup_{[z_0,z]}\abs{f'(w)}$
+} %
+garantiza que 
+{\thickmuskip=10mu
+\[
+|f(z) - z_0| = |f(z)-f(z_0)| \le \sup_{w\en [z,z_0]}|f'(w)| \cdot|z - z_0| \le r\,|z - z_0|
+\]}%
+En particular, $|f(z) - z_0| \le r|z - z_0|$ para todo $z\en D_{\delta}(z_0)$, así que el hecho de que $r<1$ también garantiza que $f(D_{\delta}(z_0)) \subseteq D_{\delta}(z_0)$. Iterando la desigualdad obtenemos
+{\thickmuskip=10mu
+\[
+|f_n(z) - z_0| \le r|f_{n-1}(z)-z_0| \le \cdots \le r^n |z - z_0| \qquad \forall z \en D_{\delta}(z_0), \forall n \en \mathbb{N}
+\]}%
+De aquí se deduce (ya que $r<1$) que:
+{\thickmuskip=10mu
+\[
+\sup_{D_{\delta}(z_0)} \abs{f_n(z)-z_0} \leq r^n\delta \xrightarrow{n\to\infty} 0
+\]}%
+por lo cual $f_n(z) \rightrightarrows z_0$ en $D_{\delta}(z_0)$ (en particular, uniformemente en compactos de $D_{\delta}(z_0)$).
+
+Ahora bien, dado que $\Omega$ es acotado y $f_n(\Omega) \subseteq \Omega$, la familia $\set{f_n\given n \en\mathbb{N}}$ es uniformemente acotada en $\Omega$, así que el teorema de Montel implica que es normal.
+% es decir, toda sucesión posee una subsucesión que converge uniformemente en compactos. 
+Ahora probemos, mediante contradicción, que $f_n(z) \to z_0$ uniformemente en compactos de $\Omega$. En efecto, de otro modo existirían un compacto $K\subseteq \Omega$, un $\varepsilon_0>0$ y una subsucesión $\set{f_{n(k)}}^\infty_{k=1}$ de tal modo que 
+{\thickmuskip=10mu
+\[
+\sup_{z\en K} \abs{f_{n(k)}(z)-z_0} \ge \varepsilon_0, 
+\qquad\forall k\!\en\!\mathbb{N}
+\]}%
+como $\set{f_n \given n\en\mathbb{N}}$ es normal, $\set{f_{n(k)}}^\infty_{k=1}$ tiene a su vez una subsucesión $\set{f_{n(k(i))}}^\infty_{i=1}$ que converge unif. en compactos de $\Omega$ a alguna $h$, pero ya vimos que $f_n(z) \rightrightarrows z_0$ en $D_{\delta}(z_0)$, por lo cual
+\[
+h(z) = \lim_{i\to\infty} f_{n(k(i))}(z) = z_0,
+\qquad\forall z\en D_{\delta}(z_0)
+\]
+Como $h$ es holomorfa (límite uniforme en compactos de holomorfas), el principio de identidad fuerza a que $h \equiv z_0$ en todo $\Omega$. En particular, se sigue que $f_{n(k(i))} \rightrightarrows z_0$ en el compacto $K$, por lo que existe un $i\en\mathbb{N}$ tal que
+\[
+\sup_{z\en K} \abs{f_{n(k(i))}(z)-z_0} < \varepsilon_0
+\]
+Esto contradice la elección de $\set{f_{n(k)}}^\infty_{k=1}$. El error estuvo en suponer que $f_n$ no converge uniformemente en compactos a $z_0$, así que forzosamente tiene que hacerlo.
+\end{sol}

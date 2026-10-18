@@ -1,0 +1,55 @@
+%------------------------------ Ejercicio 2 -------------------------------
+\setcounter{eje}{1}
+\begin{ejer}
+Suponga que $F(z)$ es holomorfa cerca de $z=z_0$ y $F(z_0) = F'(z_0) = 0$, mientras que $F''(z_0) \neq 0$. Muestre que existen dos curvas $\Gamma_1$ y $\Gamma_2$ que pasan por $z_0$, son ortogonales en $z_0$, y tales que $F$ restringida a $\Gamma_1$ es real y tiene un mínimo en $z_0$, mientras que $F$ restringida a $\Gamma_2$ también es real pero tiene un máximo en $z_0$.\par
+\emph{Sugerencia}: Escriba $F(z) = g(z)^2$ para $z$ cerca de $z_0$, y considere la aplicación $z \mapsto g(z)$ y su inversa.
+\end{ejer}
+\begin{sol}
+Supongamos que $F$ es holomorfa en un entorno $\Omega \pert z_0$. El hecho de que $F(z_0) = F'(z_0) = 0$ y $F''(z_0) \neq 0$ implica que $z_0$ es cero de orden 2,%
+\footnote{
+    Ya que los coeficientes de su desarrollo de Taylor en $z_0$ son $a_0 = F(z_0) =0, a_1=F'(z_0)=0$ y $a_2 = \frac12F''(z_0)\neq0$. De donde se sigue $F(z) = (z-z_0)^2\sum^\infty_{n=0}a_{n+2}(z-z_0)^n$.
+}
+por lo cual existe un entorno $U\subseteq \Omega$ de $z_0$ (que podemos suponer simplemente conexo haciéndolo posiblemente más chico) y una función $h \en \mathcal{H}(U)$ que nunca se anula, de tal modo que $f(z) = (z-z_0)^2h(z)$ para todo $z\en U$. Luego, gracias a que $h$ no se anula y su dominio es simplemente conexo, existe $\log h(z) \en \mathcal{H}(U)$ tal que $e^{\log h(z)} = h(z)$. Por ende, podemos definir $g \en \mathcal{H}(U)$ de tal modo que
+\[
+g(z) \coloneq (z-z_0)e^{\frac12\log h(z)},
+\qquad\forall z\en U
+\]
+Así, por propiedades de la exponencial, se sigue de inmediato:
+\[
+g(z)^2 
+= (z-z_0)^2\bigl(e^{\frac12\log h(z)}\bigr)^2
+=(z-z_0)^2e^{\log h(z)}
+=(z-z_0)^2h(z) = F(z),
+\qquad \forall z \en U
+\]
+Ahora bien, como la exponencial no se anula, la definición de $g$ implica directamente que tiene una única raíz simple en $z_0$, de donde se sigue que $g'(z_0) \neq 0$.%
+\footnote{
+    De otro modo, tendríamos $g(z_0)=g'(z_0)=0$, lo cual implicaría que $z_0$ es polo de orden al menos 2 de $g$, pero acabamos de ver que es polo simple.
+}
+En particular $g$ es continuamente $\mathbb{R}$-diferenciable con jacobiano $\det J_g(z_0) = \abs{g'(z_0)}^2 \neq 0$, así que el teorema de la función inversa garantiza que existen abiertos $z_0 \en A\subseteq U$ y $B\subseteq \mathbb{C}$ tales que $g|_A \colon A \to B$ es biyectiva, pero $g$ es holomorfa, por lo cual $g|_A^{-1}$ también es holomorfa. Además, $0=g(z_0)\en B$. \par
+Finalmente, tomemos un $r>0$ de tal modo que $\ubar{D}_r(0) \subseteq B$, y definamos dos curvas suaves a través de las parametrizaciones:
+\begin{align*}
+\alpha_1,\alpha_2 \colon [-r,r] &\to B
+\quad\text{tales que}\quad
+\alpha_1(t) = t \;\text{ y }\; \alpha_2(t)= it
+\end{align*}
+Como $\alpha_1(0) = 0 = \alpha_2(0)$, $\alpha_1'(t) = 1$ y $\alpha'_2(t) = i$, se sigue que $\alpha_1$ y $\alpha_2$ son ortogonales en 0.
+Luego, ya que $(g|^{-1}_A)'(0) = \frac{1}{g'(z_0)} \neq 0$, tenemos (\cref{prob:8.2}) que $g|^{-1}_A$ preserva ángulos en $0$; por consiguiente, las curvas $\Gamma_1 \coloneq g|^{-1}_A(\alpha_1([-r,r]))$ y $\Gamma_2 \coloneq g|^{-1}_A(\alpha_2([-r,r]))$, parametrizadas por $g|^{-1}_A \circ \alpha_1$ y $g|^{-1}_A\circ\alpha_2$, son ortogonales en $z_0 = g|^{-1}_A(0)$. Solo falta ver que $F|_{\Gamma_1}$ y $F|_{\Gamma_2}$ toman valores reales, y alcanzan su mínimo y máximo en $z_0$, respectivamente.
+\begin{itemize}[leftmargin=1em]
+\item Recordemos que $\Gamma_1$ es parametrizada por $g|^{-1}_A\circ\alpha_1$. Luego, recordando que $F(z) = g(z)^2$ y $\alpha_1(t) = t$, obtenemos que para todo $t\en[-r,r]$: 
+\[
+F \circ  g|^{-1}_A \circ \alpha_1(t) 
+= g\bigl(g|^{-1}_A(\alpha_1(t))\bigr)^2
+=t^2
+\]
+En particular $F \circ  g|^{-1}_A \circ \alpha_1$ toma valores reales y alcanza el mínimo en $t=0$. No obstante, $g|^{-1}_A \circ \alpha_1 \colon [-r,r] \to \Gamma_1$ es homeomorfismo, así que se sigue que $F|_{\Gamma_1}$ también toma valores reales y alcanza el mínimo en $g|^{-1}_A \circ \alpha_1(0) = g|^{-1}_A(0)= z_0$.
+
+\item Análogamente, $\Gamma_2$ es parametrizada por $g|^{-1}_A\circ\alpha_2$. Luego, recordando que $F(z) = g(z)^2$ y $\alpha_2(t) = it$, obtenemos que para todo $t\en[-r,r]$: 
+\[
+F \circ  g|^{-1}_A \circ \alpha_2(t) 
+= g\bigl(g|^{-1}_A(\alpha_2(t))\bigr)^2
+=(it)^2 = -t^2
+\]
+En particular $F \circ  g|^{-1}_A \circ \alpha_2$ toma valores reales y alcanza el máximo en $t=0$. No obstante, $g|^{-1}_A \circ \alpha_2\colon [-r,r] \to \Gamma_2$ es homeomorfismo, así que se sigue que $F|_{\Gamma_2}$ también toma valores reales y alcanza el máximo en $g|^{-1}_A \circ \alpha_2(0) = g|^{-1}_A(0)= z_0$.
+\end{itemize}
+\end{sol}

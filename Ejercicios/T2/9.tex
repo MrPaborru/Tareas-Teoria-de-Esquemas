@@ -1,0 +1,64 @@
+\begin{ejer}
+Demuestra que
+\[
+\left(k[x,y]/(xy)\right)_{\ubar x}\cong k[x]_x,
+\qquad\text{con }y\longmapsto0
+\]
+\end{ejer}
+\begin{sol}
+La flecha $k[x,y]\to k[x]$ tal que $y\mapsto0$, inducida por la propiedad universal, se compone con el morfismo canónico $k[x]\to k[x]_x$, lo cual resulta en
+\[
+k[x,y]\longrightarrow k[x]_x,
+\qquad
+\p(x,y)\longmapsto\frac{\p(x,0)}{1},
+\qquad
+y\longmapsto\frac{0}{1}
+\]
+En particular, $xy\mapsto0$, así que su kernel contiene al ideal $(xy)$ e induce un único morfismo
+\[
+\varphi\colon\frac{k[x,y]}{(xy)}\longrightarrow k[x]_x,
+\qquad
+\ubar{\p(x,y)}\longmapsto\frac{\p(x,0)}{1},
+\qquad
+\ubar y\longmapsto\frac{0}{1}
+\]
+Como $\varphi(\ubar x)=\frac{x}{1}$ es invertible en $k[x]_x$, $\varphi$ induce a su vez
+\[
+\Phi\colon\left(\frac{k[x,y]}{(xy)}\right)_{\ubar x}\longrightarrow k[x]_x,
+\qquad
+\Phi\left(\frac{\ubar{\p(x,y)}}{\ubar x^n}\right)
+=\frac{\varphi(\ubar{\p(x,y)})}{x^n}
+\]
+Construyamos su inversa: el resultado de componer morfismos canónicos
+\[
+k[x]\longrightarrow k[x,y]\longrightarrow\frac{k[x,y]}{(xy)}
+\longrightarrow\left(\frac{k[x,y]}{(xy)}\right)_{\ubar x},
+\qquad
+\p(x)\longmapsto\frac{\ubar{\p(x)}}{1}
+\]
+manda $x$ al elemento invertible $\frac{\ubar x}{1}$, por lo que induce un morfismo
+\[
+\Psi\colon k[x]_x\longrightarrow\left(\frac{k[x,y]}{(xy)}\right)_{\ubar x},
+\qquad
+\Psi\left(\frac{\p(x)}{x^n}\right)=\frac{\ubar{\p(x)}}{\ubar x^n}
+\]
+Solo resta probar que $\Phi$ y $\Psi$ son inversos entre sí:
+\[
+(\Phi\circ\Psi)\left(\frac{\p(x)}{x^n}\right)
+=\Phi\left(\frac{\ubar{\p(x)}}{\ubar x^n}\right)
+=\frac{\varphi(\ubar{\p(x)})}{x^n}
+=\frac{\p(x)}{x^n}
+\]
+Para la otra composición basta probar que
+\[
+(\Psi\circ\Phi)\left(\frac{\ubar{\p(x,y)}}{\ubar x^n}\right)
+=\frac{\ubar{\p(x,y)}}{\ubar x^n}
+\]
+gracias a que $\ubar y=0$ en $\left(k[x,y]/(xy)\right)_{\ubar x}$, pues $\ubar x\ubar y=0$ implica $\ubar y=\frac{1}{\ubar x}\ubar x\ubar y=0$. Entonces
+\[
+(\Psi\circ\Phi)\left(\frac{\ubar{\p(x,y)}}{\ubar x^n}\right)
+=\Psi\left(\frac{\varphi(\ubar{\p(x,y)})}{x^n}\right)
+=\Psi\left(\frac{\p(x)}{x^n}\right)
+=\frac{\ubar{\p(x)}}{\ubar x^n}
+\]
+\end{sol}

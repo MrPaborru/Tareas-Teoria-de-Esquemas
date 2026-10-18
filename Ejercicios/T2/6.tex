@@ -1,0 +1,38 @@
+\begin{ejer}
+Sea $\varphi\colon A\to B$ un morfismo de anillos. Demuestra que
+\[
+(\operatorname{Spec}\varphi)^{-1}(V(I))=V(\varphi(I)B)
+\]
+y concluye que $\operatorname{Spec}\varphi\colon\operatorname{Spec}B\to\operatorname{Spec}A$ es continua.
+\end{ejer}
+\begin{sol}
+Primero, por definición:
+\[
+\mathfrak{p}\en(\operatorname{Spec}\varphi)^{-1}(V(I))
+\quad\Longleftrightarrow\quad
+\varphi^{-1}(\mathfrak{p})=\operatorname{Spec}\varphi(\mathfrak{p})\en V(I)
+\quad\Longleftrightarrow\quad
+I\subseteq\varphi^{-1}(\mathfrak{p})
+\]
+Pero la imagen inversa es adjunto derecho de la imagen directa, por lo cual
+\[
+I\subseteq\varphi^{-1}(\mathfrak{p})
+\quad\Longleftrightarrow\quad
+\varphi(I)\subseteq\mathfrak{p}
+\]
+Asimismo, como $\mathfrak{p}$ es ideal y $\varphi(I)B$ es el ideal generado por el subconjunto $\varphi(I)$, se tiene también
+\[
+\varphi(I)\subseteq\mathfrak{p}
+\quad\Longleftrightarrow\quad
+\varphi(I)B\subseteq\mathfrak{p}
+\]
+Estas equivalencias prueban:
+\[
+\mathfrak{p}\en(\operatorname{Spec}\varphi)^{-1}(V(I))
+\quad\Longleftrightarrow\quad
+\varphi(I)B\subseteq\mathfrak{p}
+\quad\Longleftrightarrow\quad
+\mathfrak{p}\en V(\varphi(I)B)
+\]
+Hemos demostrado $(\operatorname{Spec}\varphi)^{-1}(V(I))=V(\varphi(I)B)$, de lo cual se sigue que la imagen inversa bajo $\operatorname{Spec}\varphi$ de un cerrado es cerrada. En otras palabras, $\operatorname{Spec}\varphi$ es continua.
+\end{sol}

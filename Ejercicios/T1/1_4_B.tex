@@ -1,0 +1,36 @@
+%------------------------------ Ejercicio 1.4.B -------------------------------
+\setcounter{neje}{1}
+\begin{nejer}
+\emph{Ejercicio importante.} Muestre que en la categoría $\cat{Sets}$,
+$$
+\set*{ (a_i)_{i\en\mathscr{I}} \in \prod\nolimits_{i\en\mathscr{I}} A_i \given F(m)(a_j) = a_k \text{ para todo } m \en \hom_{\mathscr{I}}(j, k) },
+$$
+junto con los mapas de proyección obvios hacia cada $A_i$, es el límite $\varprojlim_{\mathscr{I}} A_i$.\par
+(Esto también funciona en $\cat{Mod}_A$ y $\cat{Rings}$).
+\end{nejer}
+\begin{sol}
+Denotemos por $L$ al conjunto dado y $\rho_i \colon L \to A_i$ a las proyecciones correspondientes. Probemos que estos últimos cumplen la propiedad universal:
+\begin{itemize}
+\item 
+Si $m\en\hom(j,k)$ entonces para todo $(a_i)_{i\en\mathscr{I}} \en L$ se cumple por definición que 
+\[
+F(m)\bigl(\rho_j\bigl((a_i)_{i\en\mathscr{I}}\bigr)\bigr)
+= F(m)(a_j)
+= a_k
+= \rho_k\bigl((a_i)_{i\en\mathscr{I}}\bigr)
+\]
+en otras palabras, $F(m) \circ \rho_j = \rho_k$, es decir, el siguiente diagrama conmuta:
+\[\begin{tikzcd}[cramped, ampersand replacement=\&, row sep = small, column sep = 1em]
+	\& L \& \\
+	{A_j} \&\& {A_k}
+	\arrow["{\rho_j}"', from=1-2, to=2-1]
+	\arrow["{\rho_k}", from=1-2, to=2-3]
+	\arrow["{F(m)}", from=2-1, to=2-3]
+\end{tikzcd}\]
+
+\item 
+Supongamos que tomamos otro objeto $B$ y otra familia de morfismos $f_i \colon B \to A_i$ que cumplen $F(m) \circ f_j = f_k$ para todo $m\en\hom(j,k)$. Entonces la función $(f_i)_{i\en\mathscr{I}} \colon B \to \prod_{i\en\mathscr{I}}A_i$ tal que $(f_i)_{i\en\mathscr{I}}(b) \coloneq (f_i(b))_{i\en\mathscr{I}}$ cumple $F(m)\bigl( f_j(b) \bigr) = f_k(b)$ para todo $m\en\hom(j,k)$, así $(f_i(b))_{i\en\mathscr{I}} \en L$ para todo $b\en B$, de donde $\im((f_i)_{i\en\mathscr{I}}) \subseteq L$, y podemos restringir el codominio a $(f_i)_{i\en\mathscr{I}} \colon B \to L$. Más aún, se cumple que $\rho_k \circ (f_i)_{i\en\mathscr{I}} = f_k$ para todo $k\en K$.\par 
+Solo resta ver que $(f_i)_{i\en\mathscr{I}}$ es única: si $h \colon B \to L$ también cumple $\rho_k \circ h = f_k$ para todo $k\en K$, entonces para todo $b \en B$ se tiene $h(b) = \bigl(\rho_i(h(b))\bigr)_{i\en\mathscr{I}} = \bigl(f_i(b)\bigr)_{i \en\mathscr{I}} = (f_i)_{i\en\mathscr{I}}(b)$, i.e., $h = (f_i)_{i\en\mathscr{I}}$.
+\end{itemize}
+Esto prueba que $L$ es el límite del diagrama.
+\end{sol}

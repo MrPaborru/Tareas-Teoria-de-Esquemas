@@ -1,0 +1,14 @@
+\setcounter{eje}{13}
+\begin{ejer}
+Demuestre que todas las funciones enteras e inyectivas tienen la forma $f(z) = az+b$ para algunos $a, b \en \mathbb{C}$, y $a \neq 0$.
+\end{ejer}
+\begin{sol}
+Definamos la función $g(z) = f(\nicefrac{1}{z})$. Cero es la única singularidad aislada de $g$, veamos que forzosamente será un polo (procediendo por contradicción):
+\begin{itemize}[leftmargin=1em]
+\item Supongamos que $0$ es singularidad removible de $g$. Entonces tenemos que $g(z) = f(\nicefrac{1}{z})$ es acotada en un disco $D_r(0)$ con $r>0$. De esto se sigue que $f(z)$ es acotada en $\set{\abs{z} > r}$; sin embargo, $f$ también es acotada en $\ubar{D}_r(0)$ por continuidad, así que $f$ es acotada en $\mathbb{C}$. Como $f$ es entera, el teorema de Louiville implica que forzosamente es constante, lo cual contradice la inyectividad de $f$. \emph{Se sigue que cero no es singularidad removible}.
+
+\item Supongamos que $0$ es singularidad esencial de $g$. Se sigue del teorema de Casorati-Weierstrass que $g(\mathbb{D}^*)$ es denso en $\mathbb{C}$. No obstante, como $A\coloneq\set{\abs{z}>1}$ es abierto, el teorema del mapeo abiero garantiza que $g(A)$ es abierto, así que la densidad garantiza $g(\mathbb{D}^*) \cap g(A) \neq 0$. Luego, al tomar $y\en g(\mathbb{D}^*) \cap g(A)$, tenemos que existen $z_0\en\mathbb{D}^*$ y $z_1\en A$ (en part. $z_0\neq z_1$, ya que $\mathbb{D}^* \cap A = \varnothing$) con $g(z_0) = y = g(z_1)$, de donde $f(\nicefrac{1}{z_0}) = f(\nicefrac{1}{z_1})$, con $\nicefrac{1}{z_0} \neq \nicefrac{1}{z_1}$. Esto contradice la inyectividad de $f$. \emph{Se sigue que cero no es singularidad esencial}.
+\end{itemize}
+Hemos probado que cero es polo de $g$.\par
+Ahora bien, sea $f(z) = \sum a_nz^n$ desarrollo de potencias para $f$ al rededor de cero y sobre $\mathbb{C}$. Particularmente, $g(z) = \sum a_n z^{-n}$ es la serie de Laurent de $g$ centrada en cero, pero como cero es un polo, se sigue que existe $N\en\mathbb{N}$ tal que $a_n = 0$ para todo $n>N$, es decir, $f(z) = a_0+\cdots+a_Nz^N$. Como $f$ es inyectiva, solo puede tener un único cero, así que es de la forma $f(z) = a_N(z-c)^N$. Más aún, si $\omega_1,\dots,\omega_N$ son las raíces $N$-ésimas de la unidad, $f(\omega_1+c) = \cdots=f(\omega_N+c) = a_N$, así que la inyectividad de $f$ fuerza a que $N=1$. Por lo tanto, $f(z) = a_Nz - a_Nc$: esto prueba lo que se quería al tomar $a = a_N$ (evidentemente $a_N \neq0$, pues $f$ no puede ser constante al ser inyectiva) y $b = -a_Nc$.
+\end{sol}

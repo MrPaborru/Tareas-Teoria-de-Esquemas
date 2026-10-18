@@ -1,0 +1,49 @@
+%------------------------------ Ejercicio 11 -------------------------------
+\setcounter{eje}{10}
+\begin{ejer}
+Muestre que si $f\colon D(0, R) \to \mathbb{C}$ es holomorfa, con $|f(z)| \le M$ para algún $M > 0$, entonces
+\[ \left| \frac{f(z) - f(0)}{M^2 - \ubar{f(0)}f(z)} \right| \le \frac{|z|}{MR}. \]
+\emph{Sugerencia}: Use el lema de Schwarz.
+\end{ejer}
+\begin{sol}
+Primero notemos que el ejercicio no se cumple cuando $f$ es constante, por ejemplo, si $f(z) \equiv M$, el cociente $\frac{f(z) - f(0)}{M^2 - \ubar{f(0)}f(z)}$ ni si quiera está definido. Supongamos entonces que $f$ no es constante. Luego, la condición $|f(z)| \le M$ se traduce en que $\im(f) \subseteq \ubar{D}(0,M)$; pero como $f$ es holomorfa no constante, el teorema del mapeo abierto garantiza que $\im(f)$ es abierto, por lo cual $\im(f) \subseteq D(0,M)$, es decir, $|f(z)| < M$ para todo $z\en D(0,R)$.%
+\footnote{
+    En particular, el cociente $\frac{f(z) - f(0)}{M^2 - \ubar{f(0)}f(z)}$ estará bien definido gracias a que $\abs{\ubar{f(0)}f(z)} < M^2$.
+}
+\par
+Definamos la función holomorfa $g \colon \mathbb{D} \to \mathbb{D}$ de modo que $g(z) = \frac{1}{M}f(Rz)$. Tenemos que $g$ está bien definida ya que $z\en\mathbb{D}$ implica $Rz\en D(0,R)$ y, por hipótesis, para todo $z\en\mathbb{D}$ tenemos $|f(Rz)| <M$, de donde $|g(z)| = \abs{\frac{1}{M}f(Rz)} < 1$. Por otro lado, si consideramos $\alpha \coloneqq \frac{f(0)}{M}$, tenemos que $|\alpha|<1$, por lo cual está bien definido el factor de Blaschke:
+\[
+\psi_\alpha \colon \mathbb{D} \to \mathbb{D}
+\qquad\text{tal que}\qquad
+\psi_\alpha(z) = \frac{\alpha-z}{1-\ubar{\alpha}z}
+\]
+Ahora bien, la composición $\psi_\alpha \circ g \colon \mathbb{D} \to \mathbb{D}$ satisface:
+\[
+\psi_\alpha \circ g(0) 
+\;=\; \frac{\alpha-g(0)}{1-\ubar{\alpha}g(0)}
+\;=\; \frac{\frac{f(0)}{M}-\frac{f(0)}{M}}{1-\ubar{\alpha}g(0)}
+\;=\; 0
+\]
+Por lo tanto, el teorema de Schwarz implica que $\abs{\psi_\alpha \circ g(z)} \le |z|$ para todo $z\en\mathbb{D}$. Sustituyendo:
+\[
+M\cdot\abs{ \frac{f(0) - f(Rz)}{M^2 - \ubar{f(0)}f(Rz)} }
+\;=\; \abs{
+    \frac{ \frac{f(0)}{M} - \frac{f(Rz)}{M} }{ 1 - \frac{\ubar{f(0)}}{M}\frac{f(Rz)}{M} }
+}
+\;=\; \abs{\psi_\alpha \circ g(z)} 
+\;\le\; |z|,
+\qquad\forall z\en\mathbb{D}
+\]
+Por consiguiente, si $z\en D(0,R)$, entonces $\frac{z}{R} \en \mathbb{D}$, por lo que sustituyendo este valor en lo anterior:
+\[
+M\cdot\abs{ \frac{f(0) - f(z)}{M^2 - \ubar{f(0)}f(z)} }
+\;=\; M\cdot\abs{ \frac{f(0) - f(R\frac{z}{R})}{M^2 - \ubar{f(0)}f(R\frac{z}{R})} }
+\;\leq\; \abs{\frac{z}{R}}
+\]
+Es decir, para todo $z\en D(0,R)$:
+\[
+\abs{ \frac{f(z) - f(0)}{M^2 - \ubar{f(0)}f(z)} } 
+\;=\;\abs{ \frac{f(0) - f(z)}{M^2 - \ubar{f(0)}f(z)} } 
+\;\leq\; \frac{\abs{z}}{MR}
+\]
+\end{sol}

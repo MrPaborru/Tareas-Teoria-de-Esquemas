@@ -1,0 +1,35 @@
+%------------------------------ Ejercicio 8 -------------------------------
+\setcounter{eje}{7}
+\begin{ejer}
+Pruebe que para todo $z$ el siguiente producto converge, y
+\[ \cos(z/2)\cos(z/4)\cos(z/8)\cdots = \prod_{k=1}^{\infty} \cos(z/2^k) = \frac{\sin z}{z} \]
+[\textit{Sugerencia}: Utilice el hecho de que $\sin 2z = 2\sin z \cos z$.]
+\end{ejer}
+\begin{sol}
+Primero probemos, mediante inducción, que $\sin(z) = 2^n\sin(z/2^n)\prod^n_{k=1}\cos(z/2^k)$:
+\begin{itemize}[leftmargin=1em]
+\item \emph{Caso base}: es inmediato de la identidad del ángulo doble que $\sin(z) = 2\sin(z/2)\cos(z/2)
+$.
+\item \emph{Paso inductivo}: si suponemos que la fórmula se cumple para $n$ entonces, en particular, al evaluarla en $z/2$, obtenemos $\sin(z/2) = 2^n\sin(z/2^{n+1})\prod^n_{k=1}\cos(z/2^{k+1})$; sin embargo, ya tenemos que $\sin(z) = 2\sin(z/2)\cos(z/2)$. Por lo tanto
+\begin{align*}
+\sin(z) 
+&= 2\bigg(2^n\sin(z/2^{n+1})\prod^n_{k=1}\cos(z/2^{k+1})\bigg)\cos(z/2)\\
+&=2^{n+1}\sin(z/2^{n+1})\prod^n_{k=0}\cos(z/2^{k+1})\\    
+&=2^{n+1}\sin(z/2^{n+1})\prod^{n+1}_{k=1}\cos(z/2^{k})   
+\end{align*}
+Esto completa la inducción.
+\end{itemize}
+Ahora bien, de la fórmula recién probada, se sigue para todo $z\en\mathbb{C}^*$:
+\begin{align*}
+\prod^{n}_{k=1}\cos(z/2^k) 
+\;=\; \sin(z) \cdot \frac{2^{-n}}{\sin(2^{-n}z)}
+\;=\; \frac{\sin(z)}{z} \cdot \frac{2^{-n}z}{\sin(2^{-n}z)}
+\end{align*}
+Al tomar $n\to\infty$ se cumple que $2^{-n}z \to 0$, y así $\frac{2^{-n}z}{\sin(2^{-n}z)} \to 1$. Luego, la última igualdad garantiza que el producto converge a
+\[
+\prod^{\infty}_{k=1}\cos(z/2^k) 
+\;=\; \frac{\sin(z)}{z},
+\qquad\forall z \en \mathbb{C}^*
+\]
+Para $z=0$ es inmediato que $\cos(z/2^k) = \cos(0) = 1$, por lo que todos los productos parciales son iguales a $1$, de donde se sigue que el producto infinito converge a $1$.
+\end{sol}

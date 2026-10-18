@@ -1,0 +1,74 @@
+%------------------------------ Ejercicio 3 -------------------------------
+\setcounter{eje}{2}
+\begin{ejer}
+Suponga que $U$ y $V$ son conformemente equivalentes. Pruebe que si $U$ es simplemente conexo, entonces también lo es $V$. Note que esta conclusión sigue siendo válida si simplemente asumimos que existe una biyección continua entre $U$ y $V$.
+\end{ejer}
+\begin{sol}
+Sea $f:U\to V$ una equivalencia conforme. Entonces $f$ es una
+biyección continua y, como $f^{-1}$ también es holomorfa, se sigue que
+$f^{-1}
+\colon V\to U$ es continua. Por tanto, $f$ es un homeomorfismo.
+
+Supongamos que $U$ es simplemente conexo y sean $\gamma_0,\gamma_1 \colon [a,b] \to V$ dos curvas en $V$ con $\gamma_0(a) = \gamma_1(a)$ y $\gamma_0(b)=\gamma_1(b)$.
+Definimos las curvas
+\[
+\sigma_0\coloneq f^{-1}\circ\gamma_0,
+\qquad
+\sigma_1\coloneq f^{-1}\circ\gamma_1
+\]
+Entonces $\sigma_0,\sigma_1 \colon [a,b] \to U$ son curvas con
+\[
+\sigma_0(a)
+=
+f^{-1}(\gamma_0(a))
+=
+f^{-1}(\gamma_1(a))
+= \sigma_1(a)
+\qquad\text{y}\qquad
+\sigma_0(b)
+=
+f^{-1}(\gamma_0(b))
+=
+f^{-1}(\gamma_1(b))
+= \sigma_1(b)
+\]
+Como $U$ es simplemente conexo, existe una familia de curvas
+$\set*{\sigma_s\colon[a,b]\to U}_{0\le s\le1}$ con $\sigma_s(t)$ conjuntamente continua en $s$ y $t$, de tal modo que $\sigma_s(t)\big|_{s=0}=\sigma_0(t)$ y $\sigma_s(t)\big|_{s=1}=\sigma_1(t)$ para todo $t\en[a,b]$ y con extremos $\sigma_s(a) = \sigma_0(a)$ y $\sigma_s(b) = \sigma_0(b)$ para todo $0\le s \le 1$.
+
+Ahora definimos, para cada $0\le s\le1$, la curva $\gamma_s \coloneq f\circ\sigma_s$ en $V$.
+Es elemental probar que $\set{\gamma_s}_{0\le s\le1}$ define una homotopía entre
+$\gamma_0$ y $\gamma_1$:
+En efecto, para todo $t\en[0,1]$ tenemos:
+\[
+\gamma_s(t)\big|_{s=0}
+=
+f(\sigma_0(t))
+=
+f(f^{-1}(\gamma_0(t)))
+=
+\gamma_0(t)
+\quad\text{y}\quad
+\gamma_s(t)\big|_{s=1}
+=
+f(\sigma_1(t))
+=
+f(f^{-1}(\gamma_1(t)))
+=
+\gamma_1(t)
+\]
+asimismo, para todo $0\le s \le 1$:
+\[
+\gamma_s(a)=f(\sigma_s(a)) = f(\sigma_0(a))=\gamma_0(a)
+\qquad\text{y}\qquad
+\gamma_s(b)=f(\sigma_s(b)) = f(\sigma_0(b))=\gamma_0(b)
+\]
+
+Finalmente, como $f$ es continua y $\sigma_s(t)$ es conjuntamente
+continua en $(s,t)$, se sigue que $\gamma_s(t)$ también es
+conjuntamente continua en $(s,t)$.
+Por tanto, $\gamma_0$ y $\gamma_1$ son homotópicas en $V$.
+Como las curvas elegidas fueron arbitrarias, concluimos que $V$
+es simplemente conexo.
+
+Notemos que en esta demostración solo usamos el hecho de $f$ es homeomorfismo. Más aún, el teorema de invarianza del dominio garantiza que toda biyección continua $f \colon U \to V$ será abierta, y por tanto, un homeomorfismo. Luego, para esta propiedad basta con suponer que $f$ es biyección continua.
+\end{sol}

@@ -1,0 +1,137 @@
+\begin{ejer}[2.2.C de \texorpdfstring{\cite{vakil2025}}{[vakil2025]}]
+Los axiomas de identidad y engarce (\emph{gluability}) de una gavilla se pueden interpretar como que $\mathcal{F}(\bigcup_{i\en I}U_i)$ es cierto límite. ¿Cuál es ese límite?
+\end{ejer}
+\begin{sol}
+Sea $\set{U_i}_{i\en I}$ una familia de abiertos en $X$ y $U\coloneq\bigcup_{i\en I}U_i$. Para cada $i,j\en I$ hay un par de flechas
+\[
+\res^{U_i}_{U_i\cap U_j}\colon\mathcal{F}(U_i)\longrightarrow\mathcal{F}(U_i\cap U_j),
+\qquad
+\res^{U_j}_{U_i\cap U_j}\colon\mathcal{F}(U_j)\longrightarrow\mathcal{F}(U_i\cap U_j)
+\]
+las cuales, por la propiedad universal del producto, inducen un diagrama
+\begin{equation}\label{eq:desc}
+\begin{tikzcd}[column sep=huge]
+\prod_{i\en I}\mathcal{F}(U_i)
+\arrow[r,shift left=.8ex,
+"{\prod_{i,j}\res^{U_i}_{U_i\cap U_j}}"]
+\arrow[r,shift right=.8ex,swap,
+"{\prod_{i,j}\res^{U_j}_{U_i\cap U_j}}"]
+& \prod_{i,j\en I}\mathcal{F}(U_i\cap U_j)
+\end{tikzcd}
+\end{equation}
+Caracterizado por: $\;\pi_{i,j}\circ \prod_{i,j}{\res^{U_i}_{U_i\cap U_j}} = {\res^{U_i}_{U_i\cap U_j}} \circ \pi_i\;$ y $\;\pi_{i,j}\circ \prod_{i,j}{\res^{U_j}_{U_i\cap U_j}} = {\res^{U_j}_{U_i\cap U_j}} \circ \pi_j\;$.
+
+Asimismo, las $\res^U_{U_i}\colon\mathcal{F}(U)\to\mathcal{F}(U_i)$ inducen
+\[
+{\textstyle\prod_i\res^U_{U_i}}\colon\mathcal{F}(U)\longrightarrow\prod_{i\en I}\mathcal{F}(U_i)
+\]
+\emph{Afirmamos que los axiomas de pegado equivalen a que $\prod_i\res^U_{U_i}$ es ecualizador del diagrama (\ref{eq:desc}) para toda familia de abiertos}:\\
+Fijemos una familia $\set{U_i}_{i\en I}$ con $U=\bigcup_{i\en I}U_i$.
+\begin{enumerate}
+\item 
+En primer lugar, por funtorialidad de $\mathcal{F}$,
+\[\textstyle
+\prod_{i,j}\res^{U_i}_{U_i\cap U_j}\circ\prod_i\res^U_{U_i}
+=\prod_{i,j}\left(\res^{U_i}_{U_i\cap U_j}\circ\res^U_{U_i}\right)
+=\prod_{i,j}\res^U_{U_i\cap U_j},
+\]
+del mismo modo que
+\[\textstyle
+\prod_{i,j}\res^{U_j}_{U_i\cap U_j}\circ\prod_i\res^U_{U_i}
+=\prod_{i,j}\left(\res^{U_j}_{U_i\cap U_j}\circ\res^U_{U_j}\right)
+=\prod_{i,j}\res^U_{U_i\cap U_j}.
+\]
+Esto prueba que $\prod_i\res^U_{U_i}$ siempre ecualiza al par de flechas.
+
+\item 
+Probemos que el axioma de identidad equivale a la inyectividad de $\prod_i\res^U_{U_i}$; mientras que el de pegado equivale a que $\im(\prod_i\res^U_{U_i})$ coincide con
+\[\textstyle
+E\coloneq\set*{(s_i)_i\en\prod_i\mathcal{F}(U_i)\given
+\prod_{i,j}\res^{U_i}_{U_i\cap U_j}(s_i)_i
+=\prod_{i,j}\res^{U_j}_{U_i\cap U_j}(s_i)_i}
+\]
+    \begin{itemize}
+    \item Dados $s,t\en\mathcal{F}(U)$,
+    \[\textstyle
+    (s|_{U_i})_{i\en I}=\prod_i\res^U_{U_i}(s)
+    =\prod_i\res^U_{U_i}(t)=(t|_{U_i})_{i\en I}
+    \]
+    equivale a $s|_{U_i}=t|_{U_i}$ para todo $i\en I$. Por consiguiente, la inyectividad de $\prod_i\res^U_{U_i}$:
+    \[\textstyle
+    \left(\prod_i\res^U_{U_i}(s)=\prod_i\res^U_{U_i}(t)\quad\Longrightarrow\quad s=t\right)
+    \]
+    equivale al axioma de identidad:
+    \[
+    \left(\forall i\en I,\ s|_{U_i}=t|_{U_i} \quad\Longrightarrow\quad s=t\right)
+    \]
+
+    \item Para lo segundo, por (1) ya sabemos que siempre $\im(\prod_i\res^U_{U_i})\subseteq E$. Además,
+    \[\textstyle
+    (s_i|_{U_i\cap U_j})_{i,j}
+    =\prod_{i,j}\res^{U_i}_{U_i\cap U_j}(s_i)_i,
+    \qquad
+    \prod_{i,j}\res^{U_j}_{U_i\cap U_j}(s_i)_i
+    =(s_j|_{U_i\cap U_j})_{i,j}.
+    \]
+    Por tanto,
+    \[\textstyle
+    E=\set*{(s_i)_i\en\prod_i\mathcal{F}(U_i)\given
+    \forall i,j\en I,\ s_i|_{U_i\cap U_j}=s_j|_{U_i\cap U_j}},
+    \]
+    es decir, $E$ consta exactamente de las familias de secciones compatibles en traslapes. Luego
+    \[\textstyle
+    \im\left(\prod_i\res^U_{U_i}\right)=E
+    \]
+    equivale a que para toda familia $(s_i)_i\en E$ existe $s\en\mathcal{F}(U)$ con $s|_{U_i}=s_i$ para todo $i\en I$. Esto prueba que $\im(\prod_i\res^U_{U_i})=E$ equivale al axioma de pegado.
+    \end{itemize}
+
+\item 
+Notemos que la inclusión $\iota_E\colon E\hookrightarrow\prod_i\mathcal{F}(U_i)$ es siempre ecualizador del diagrama (\ref{eq:desc}). En efecto, por definición de $E$,
+\[\textstyle
+\prod_{i,j}{\res^{U_i}_{U_i\cap U_j}}\circ\iota_E
+=\prod_{i,j}{\res^{U_j}_{U_i\cap U_j}}\circ\iota_E,
+\]
+y si $q\colon Q\to\prod_i\mathcal{F}(U_i)$ también cumple
+\[\textstyle
+\prod_{i,j}{\res^{U_i}_{U_i\cap U_j}}\circ q
+=\prod_{i,j}{\res^{U_j}_{U_i\cap U_j}}\circ q,
+\]
+se tiene que ambas flechas son iguales en $\im(q)$, así que $\im(q)\subseteq E$. Esto garantiza que $q\colon Q\to E$ es la única flecha que hace conmutar
+\[
+\begin{tikzcd}[column sep=large,row sep=small]
+Q \arrow[drr,"q"] \arrow[d,dashed] \\
+E \arrow[rr,hook,"\iota_E"'] && \displaystyle\prod_i\mathcal{F}(U_i).
+\end{tikzcd}
+\]
+\end{enumerate}
+Ahora bien, por punto (2) tenemos que $\mathcal{F}$ es gavilla si y solo si $\prod_i\res^U_{U_i}\colon\mathcal{F}(U)\to E$ es una biyección para toda cubierta $\set{U_i}_{i\en I}$. Pero por (3), $\iota_E$ es ecualizador del diagrama (\ref{eq:desc}), así que $\mathcal{F}(U)\to E$ es biyección si y solo si $\prod_i\res^U_{U_i}$ es ecualizador de (\ref{eq:desc}).
+
+Hemos probado que $\mathcal{F}$ es gavilla si y solo si $\prod_i\res^U_{U_i}$ es ecualizador de
+\[
+\begin{tikzcd}[column sep=huge]
+\displaystyle\prod_{i\en I}\mathcal{F}(U_i)
+\arrow[r,shift left=.8ex,
+"{\prod_{i,j}\res^{U_i}_{U_i\cap U_j}\circ\pi_i}"]
+\arrow[r,shift right=.8ex,swap,
+"{\prod_{i,j}\res^{U_j}_{U_i\cap U_j}\circ\pi_j}"]
+& \displaystyle\prod_{i,j\en I}\mathcal{F}(U_i\cap U_j)
+\end{tikzcd}
+\]
+para toda cubierta $\set{U_i}_{i\en I}$ de cualquier abierto $U\subseteq X$. En otras palabras,
+\[\textstyle
+\mathcal{F}\text{ es gavilla}
+\quad\Longleftrightarrow\quad
+\left(\mathcal{F}(U),\prod_i\res^U_{U_i}\right)
+\cong\lim\left(
+\begin{tikzcd}[ampersand replacement=\&,column sep=huge,baseline=-.5ex]
+\prod_{i\en I}\mathcal{F}(U_i)
+\arrow[r,shift left=.8ex,
+"{\prod_{i,j}\res^{U_i}_{U_i\cap U_j}}"]
+\arrow[r,shift right=.8ex,swap,
+"{\prod_{i,j}\res^{U_j}_{U_i\cap U_j}}"]
+\& \prod_{i,j\en I}\mathcal{F}(U_i\cap U_j)
+\end{tikzcd}
+\right)
+\]
+para toda cubierta $\set{U_i}_{i\en I}$ de cualquier abierto $U\subseteq X$.
+\end{sol}

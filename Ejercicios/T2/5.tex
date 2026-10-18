@@ -1,0 +1,41 @@
+\begin{ejer}
+Demuestra que $D(f)\subseteq D(g)$ si y solo si $f\in\sqrt{(g)}$.
+\end{ejer}
+\begin{sol}
+Gracias a que $D(f)=V(f)^c$ y al \myref{ejer:2.3}:
+\[
+D(f)\subseteq D(g)
+\quad\Longleftrightarrow\quad
+V(g)\subseteq V(f)
+\quad\Longleftrightarrow\quad
+\sqrt{(f)}\subseteq\sqrt{(g)}. \tag{$*$}
+\]
+Resta probar que $\sqrt{(f)}\subseteq\sqrt{(g)}$ si y solo si $(f)\subseteq\sqrt{(g)}$. En efecto, la necesidad es inmediata de que $(f)\subseteq\sqrt{(f)}$. Para la suficiencia:
+\[
+(f)\subseteq\sqrt{(g)}%
+\quad%
+\underset{%
+    \mathclap{\substack{%
+    \big\uparrow\\\text{monotonía de }\sqrt{\cdot}%
+    }}
+}{\implies}%
+\quad%
+\sqrt{(f)} \quad\subseteq\quad \sqrt{\sqrt{(g)}} 
+\quad%
+\underset{%
+    \mathclap{\substack{%
+    \big\uparrow\\\text{idempotencia de }\sqrt{\cdot}%
+    }}
+}{=}%
+\quad%
+\sqrt{(g)},
+\]
+Esta equivalencia junto a $(*)$ garantizan:
+\[
+D(f)\subseteq D(g)
+\quad\Longleftrightarrow\quad
+(f)\subseteq\sqrt{(g)}
+\quad\Longleftrightarrow\quad
+f\in\sqrt{(g)}.
+\]
+\end{sol}

@@ -1,0 +1,28 @@
+\begin{ejer}
+Describe los cerrados de $\operatorname{Spec}\mathbb{Z}$ y de $\operatorname{Spec}k[x]$, y determina qué subconjuntos son densos.
+\end{ejer}
+\begin{sol}
+Supongamos que $A$ es DIP. Entonces $A$ es también DFU y
+\[
+\operatorname{Spec}A=\set*{(\p)\given \p\text{ es irreducible o nulo}}.
+\]
+Todo $l\in A\setminus\set{0}$ se factoriza en irreducibles $l=\p_1\p_2\cdots \p_k$ de forma única hasta asociados. Luego:
+\[
+V(l)=\set[\big]{(\p)\given (l)\subseteq(\p),\ \p\text{ irreducible o nulo}}
+=\set{(\p_1),(\p_2),\ldots,(\p_k)}
+\]
+Como $V(0)=\operatorname{Spec}A$, los cerrados son exactamente $\operatorname{Spec}A$ y los subconjuntos finitos que no incluyen al $(0)$. Por tanto, los subconjuntos densos son los infinitos y los que incluyen al $(0)$. Esto responde al ejercicio recordando que $\mathbb{Z}$ y $k[x]$ son DIP (pues $k$ es campo):
+\[
+\begin{aligned}
+\operatorname{Spec}\mathbb{Z} &= \set{(0)}\cup\set*{(\p)\given \p\text{ es primo}}\\
+\operatorname{Spec}k[x] &= \set{(0)}\cup
+\set*{(\p(x))\given \p(x)\in k[x]\text{ es mónico irreducible}}
+\end{aligned}
+\]
+Si $k$ es algebraicamente cerrado, los polinomios mónicos irreducibles son
+precisamente los lineales $x-a$, con $a\in k$, y entonces la última descripción se
+reduce a 
+\[
+\operatorname{Spec}k[x]=\set{(0)}\cup\set*{(x-a)\given a\in k}
+\]
+\end{sol}

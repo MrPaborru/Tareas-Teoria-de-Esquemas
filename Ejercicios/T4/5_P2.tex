@@ -1,0 +1,98 @@
+%------------------------------ Problema 2 -------------------------------
+\setcounter{pro}{1}
+\begin{prob}
+En este problema, discutimos los productos de Blaschke, que son análogos acotados en el disco de los productos de Weierstrass para funciones enteras.
+\begin{enumerate}[label=(\alph*), leftmargin=1.5em]
+    \item Muestre que para $0 < |\alpha| < 1$ y $|z| \le r < 1$, se cumple la desigualdad
+    \[ \left| \frac{\alpha + |\alpha|z}{(1-\ubar{\alpha}z)\alpha} \right| \le \frac{1+r}{1-r} \]
+    \item Sea $\{\alpha_n\}$ una sucesión en el disco unitario tal que $\alpha_n \neq 0$ y $\sum_{n=1}^\infty (1 - |\alpha_n|) < \infty$. Note que este será el caso si $\{\alpha_n\}$ son los ceros de una función holomorfa acotada en el disco unitario (vea el Problema 1). Muestre que el producto
+    \[ 
+    f(z) = \prod_{n=1}^\infty \frac{\alpha_n - z}{1 - \ubar{\alpha}_n z} \frac{|\alpha_n|}{\alpha_n} 
+    \]
+    converge uniformemente para $|z| \le r < 1$, y define una función holomorfa en el disco unitario que tiene precisamente los ceros $\alpha_n$ y ningún otro cero. Muestre que $|f(z)| \le 1$.
+\end{enumerate}
+\end{prob}
+\begin{sol}
+\begin{enumerate}[label=(\alph*), leftmargin = 1.5em]
+\item 
+Como $|z|\le r$ (y $\alpha\neq 0$), por desigualdad triangular se tiene:
+\begin{equation}\label{eq:cotanum}
+\abs{1+\tfrac{|\alpha|}{\alpha}z}
+\;\leq\; 1 + |z|
+\;\leq\; 1 + r 
+\end{equation}
+Asimismo, gracias a que $|\alpha| < 1$ y $|z| \le r < 1$: 
+\[
+|\alpha||z| \le r <1
+\quad\implies\quad
+-|\alpha||z| \ge -r > -1
+\quad\implies\quad
+1-|\alpha||z| \ge 1-r >0
+\]
+De esto se sigue, por desigualdad triangular inversa:
+\[
+|1-\ubar{\alpha}z| 
+\;\ge\; | 1 -|\alpha||z||
+\;=\; 1-|\alpha||z|
+\;\ge\; 1-r
+\;>\; 0
+\]
+Por lo tanto $\frac{1}{|1-\ubar{\alpha}z|} \leq \frac{1}{1-r}$. Junto a (\ref{eq:cotanum}), esto demuestra que
+\[
+\abs{ \frac{\alpha+|\alpha|z}{(1-\ubar{\alpha}z)\alpha} }
+\;=\; \abs{ \frac{ 1+\tfrac{|\alpha|}{\alpha}z }{ 1 - \ubar{\alpha}z } } 
+\;=\; \frac{ \abs{1+\tfrac{|\alpha|}{\alpha}z} }{ \abs{1 - \ubar{\alpha}z} }
+\;\le\; \frac{1+r}{1-r}
+\]
+\item 
+Fijemos $r<1$ arbitrario y escojamos cualquier otro $r' \en (r,1)$. Si definimos $F_{n}(z) \coloneq \frac{\alpha_n - z}{1 - \ubar{\alpha}_n z} \frac{|\alpha_n|}{\alpha_n}$ en el disco $\mathbb{D}$, entonces haciendo álgebra y luego aplicando (a), se cumple para todo $z\en D_{r'}(0)$:
+\begin{align*}
+\abs{F_{n}(z) - 1}
+&= \abs{ 
+    \frac{\alpha_n - z}{1 - \ubar{\alpha}_n z} \frac{|\alpha_n|}{\alpha_n} - 1
+}
+= \abs{
+    \frac{ (\alpha_n - z)|\alpha_n| - (1 - \ubar{\alpha}_n z)\alpha_n }{ (1 - \ubar{\alpha}_n z)\alpha_n }
+}\\
+&= \abs{
+    \frac{ |\alpha_n|\alpha_n - |\alpha_n|z - \alpha_n + \abs{\alpha_n}^2 z }{ (1 - \ubar{\alpha}_n z)\alpha_n }
+}
+= \abs{
+    \frac{ (|\alpha_n|-1)\alpha_n + (|\alpha_n|-1)|\alpha_n|z }{ (1 - \ubar{\alpha}_n z)\alpha_n }
+}\\
+&= \abs\big{|\alpha_n|-1} \cdot \abs{
+    \frac{ \alpha_n + |\alpha_n|z }{ (1 - \ubar{\alpha}_n z)\alpha_n }
+}
+\leq (1-\alpha_n)\frac{1+r'}{1-r'}
+\qquad 
+\boxed{
+\begin{tabular}{c}\footnotesize
+    Notemos que\\\footnotesize
+    $\abs{|\alpha_n|-1} = 1- |\alpha_n|$\\\footnotesize
+    gracias a que $\alpha_n \en \mathbb{D}^*$
+\end{tabular}
+}
+\end{align*}
+Como la sucesión $(1-\alpha_n)\frac{1+r'}{1-r'}$ es sumable por hipótesis, la proposición 3.2 de \cite[\S 5.3]{stein} dice que el producto $\prod^\infty_{n=1}F_n(z)$ converge uniformemente en compactos de $D_{r'}(0)$ a una función holomorfa; en particular, converge uniformemente en el compacto $\ubar{D_r}(0) \subseteq D_{r'}(0)$. Como el radio $r\en(0,1)$ es arbitrario, el producto converge en todo $\mathbb{D}$ a una función $f\en\mathcal{H}(\mathbb{D})$.\par
+Por otro lado, si fijamos un $z\en\mathbb{D}$ y tomamos $a_n \coloneq F_n(z)-1$, acabamos de probar que $a_n$ es absolutamente sumable (ya que $|a_n| \le (1-\alpha_n)\frac{1+r'}{1-r'}$ con $|z| \le r'$), por lo que la prop. 3.1 de \cite[\S 5.3]{stein} garantiza que $\prod^\infty_{n=1}F_n(z)$ es cero si y solo si algún $F_n(z)$ es cero, pero $F_n(z) = 0$ equivale a $z = \alpha_n$. Esto prueba que $f(z) = 0$ si y solo si $z=\alpha_n$ para algún $n\en\mathbb{N}$.\par
+Finalmente, para ver que $|f(z)| \le 1$ para todo $z \en \mathbb{D}$, basta con probar que cada factor del producto es a lo más $1$. En efecto, dado $z\en\mathbb{D}$, tenemos que:
+\begin{align*}
+|1 - \ubar{\alpha}_n z|^2 - |\alpha_n - z|^2 
+&= (1 - \ubar{\alpha}_n z)(1 - \alpha_n \ubar{z}) - (\alpha_n - z)(\ubar{\alpha}_n - \ubar{z}) \\
+&= \big(1 - \alpha_n \ubar{z} - \ubar{\alpha}_n z + |\alpha_n|^2|z|^2\big) 
+ - \big(|\alpha_n|^2 - \alpha_n \ubar{z} - \ubar{\alpha}_n z + |z|^2\big) \\
+&= 1 - |\alpha_n|^2 - |z|^2 + |\alpha_n|^2|z|^2 \\
+&= (1 - |\alpha_n|^2)(1 - |z|^2)
+\end{align*}
+Dado que $|\alpha_n| < 1$ y $|z| < 1$, el producto $(1 - |\alpha_n|^2)(1 - |z|^2) > 0$.
+Por lo tanto, se cumple $|1 - \ubar{\alpha}_n z|^2 > |\alpha_n - z|^2$, lo cual implica que
+\[
+|F_n(z)|^2 
+= \abs{
+    \frac{\alpha_n - z}{1 - \ubar{\alpha}_n z} \frac{|\alpha_n|}{\alpha_n}
+}
+= \frac{|\alpha_n - z|^2}{|1 - \ubar{\alpha}_n z|^2} < 1
+\]
+De esto se sigue que $|F_n(z)| < 1$, por lo que $\abs{\prod^N_{n=1}F_n(z)} < 1$ para todo $N\en\mathbb{N}$, y al tomar límite, se concluye que $|f(z)| = \abs{\prod^\infty_{n=1}F_n(z)} \le 1$.
+\end{enumerate}
+\end{sol}

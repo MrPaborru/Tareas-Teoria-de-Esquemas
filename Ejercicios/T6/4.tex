@@ -1,0 +1,16 @@
+%------------------------------ Ejercicio 4 -------------------------------
+\setcounter{neje}{3}
+\begin{nejer}
+Sea $\mathcal{S}$ una familia de funciones univalentes $f\colon \mathbb{D} \to \mathbb{C}$ las cuales satisfacen $f(0) = 0$ y $f'(0) = 1$. Demuestre que $\mathcal{S}$ es cerrado con respecto a la convergencia uniforme en compactos: esto es, para cualquier sucesión en $\mathcal{S}$ que converge uniformemente en compactos de $\Omega$ a $f$, se cumple que $f \en \mathcal{S}$.
+\end{nejer}
+\begin{sol}
+Sea $\{f_n\}^\infty_{n=1}$ una sucesión en $\mathcal{S}$ que converge uniformemente en compactos a $f\colon\mathbb{D} \to \mathbb{C}$.
+
+En primer lugar, por los teoremas 5.2 y 5.3 (\cite[\S2.5]{stein}) se sigue que $f$ es holomorfa en $\mathbb{D}$ y $f_n'(z) \to f'(z)$ uniformemente en compactos; en particular, ya que $f_n\en\mathcal{S}$:
+\[
+f(0) = \lim_{n\to\infty}f_n(0) = 0
+\quad\text{y}\quad
+f'(0) = \lim_{n\to\infty}f'_n(0) = 1
+\]
+Además, la proposición 3.5 (\cite[\S8.3]{stein}) garantiza que $f$ es inyectiva o constante (al ser límite uniforme en compactos de funciones inyectivas), pero ya probamos que $f'(z)=1 \neq0$, así que $f$ no puede ser constante y, por consiguiente, es inyectiva. Hemos probado que $f\en\mathcal{S}$.
+\end{sol}

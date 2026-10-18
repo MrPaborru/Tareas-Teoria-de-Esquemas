@@ -1,0 +1,37 @@
+%------------------------------ Ejercicio 8 -------------------------------
+\setcounter{neje}{7}
+\begin{nejer}
+Encuentre una función armónica $u$ en el primer cuadrante abierto que se extienda continuamente hasta la frontera excepto en los puntos $0$ y $1$, y que tome los siguientes valores en la frontera: $u(x, y) = 1$ en las semirrectas $\{y=0, x>1\}$ y $\{x=0, y>0\}$, y $u(x, y) = 0$ en el segmento $\{0<x<1, y=0\}$.
+% [\textit{Sugerencia}: Encuentre mapas conformes $F_1, F_2, \ldots, F_5$ indicados en la Figura 11. Note que $\frac{1}{\pi} \arg(z)$ es armónica en el semiplano superior, es igual a $0$ en el eje real positivo, y a $1$ en el eje real negativo.]
+\end{nejer}
+\begin{sol}
+Denotemos $Q\coloneq \set{z\en\mathbb{C} \given \Re(z),\Im(z) > 0}$ y definamos $\phi \colon \ubar{Q}\setminus\set{0,1} \to \mathbb{C}$ por:
+\[
+\phi(z)=\frac{z^2}{1-z^2},
+\qquad\forall z\en\ubar{Q}\setminus\set{0,1}
+\]
+Notemos que, al ser $\phi$ un cociente de polinomios que no se anulan, se sigue que es continua no nula en $\ubar{Q}\setminus\set{0,1}$ y holomorfa en $Q$. Encontremos los valores que toma $\phi$ en la frontera:
+\begin{itemize}[leftmargin=1em]
+\item Si $1>x>0$ entonces $1-x^2 > 0$ y como $x^2>0$ se sigue
+\[
+\phi(x+i0)=\frac{x^2}{1-x^2}\in\mathbb{R}^+
+\]
+\item Si $x>1$ entonces $1-x^2<0$ y como $x^2>0$ se sigue
+\[
+\phi(x+i0)=\frac{x^2}{1-x^2}\in\mathbb{R}^-
+\]
+\item Si $y>0$ entonces $1-(iy)^2 = 1+y^2 > 0$ y como $(iy)^2 = -y^2 <0$ se sigue
+\[
+\phi(0+iy) = \frac{(iy)^2}{1-(iy)^2} = \frac{-y^2}{1+y^2} \en \mathbb{R}^-
+\]
+\end{itemize}
+Por consiguiente, $\phi$ envía el segmento $\{0<x<1,y=0\}$ sobre $\mathbb{R}^+$ y las semirrectas $\{x>1,y=0\}$ y $\{x=0,y>0\}$ sobre $\mathbb{R}^-$. Más aún, notemos que $\phi|_Q$ es la composición de $z^2$ y el automorfismo del semiplano superior $f_A\en\aut(\mathbb{H})$ tal que $f_{A}(w) = \frac{w}{1-w}$ con matriz asociada $A = \smqty(1&0\\-1&1) \en SL_2(\mathbb{R})$. Como $z^2$ mapea conformemente a $Q$ sobre $\mathbb{H}$ y $f_A$ es automorfismo del semiplano, tenemos que $\phi$ mapea conformemente a $Q$ sobre $\mathbb{H}$.\par
+\medskip
+Por lo recién probado, la imagen de $\phi$ está contenida en la región $\Omega \coloneq \mathbb{C} \setminus\set{iy \given y\le0}$, así que existe una rama del logaritmo $\log_\Omega\en \mathcal{H}(\Omega)$ de modo que $\log_\Omega(z) = \ln|z| + i\Arg_\Omega(z)$ donde $\Arg_\Omega$ toma valores en $(-\frac{\pi}{2},\frac{3\pi}{2})$ y es armónica al ser parte imaginaria de una función holomorfa. Entonces podemos definir la armónica $V \colon \Omega \to (-\frac12,\frac32)$ por $V(z) = \frac{1}{\pi}\Arg_\Omega(z)$, por lo que consideramos $u \colon \ubar{Q}\setminus\set{0,1} \to (-\frac12,\frac32)$ como la composición $u \coloneq V \circ \phi$. Por un lado, $u$ es armónica en $Q$ ya que ahí es composición de la función armónica $V$ y la función holomorfa $\phi|_Q$. Analicemos los valores que toma $u$ en la frontera:
+\begin{itemize}[leftmargin=1em]
+\item Si $1>x>0$ ya vimos que $\phi(x+i0) \en \mathbb{R}^+$, así que $u(x,0) = \frac{1}{\pi}\Arg_\Omega(\phi(x+i0)) = 0$.
+\item Si $x>1$ ya vimos que $\phi(x+i0) \en \mathbb{R}^-$, así que $u(x,0) = \frac{1}{\pi}\Arg_\Omega(\phi(x+i0)) = \frac{1}{\pi}\pi = 1$.
+\item Si $y>0$ ya vimos que $\phi(0+iy) \en \mathbb{R}^-$, así que $u(0,y) = \frac{1}{\pi}\Arg_\Omega(\phi(0+iy)) = \frac{1}{\pi}\pi = 1$.
+\end{itemize}
+Por consiguiente, $u$ manda el segmento $\{0<x<1,y=0\}$ a $0$ y las semirrectas $\{x>1,y=0\}$ y $\{x=0,y>0\}$ a $1$.
+\end{sol}

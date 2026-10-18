@@ -1,0 +1,168 @@
+%------------------------------ Problema 1 -------------------------------
+\setcounter{pro}{0}
+\begin{prob}[Solo resolver (e) y (g)]
+Considere una aplicación holomorfa en el disco unitario $f\colon \mathbb{D} \to \mathbb{C}$ que satisface $f(0) = 0$. Por el teorema de la aplicación abierta, la imagen $f(\mathbb{D})$ contiene un pequeño disco centrado en el origen. Entonces nos preguntamos: ¿existe $r > 0$ tal que para toda $f\colon \mathbb{D} \to \mathbb{C}$ con $f(0) = 0$, tengamos ${D}_r(0) \subseteq f(\mathbb{D})$?
+\begin{enumerate}[label=(\alph*), leftmargin=1.5em]
+    \item Muestre que sin más restricciones sobre $f$, no existe tal $r$. Basta encontrar una sucesión de funciones $\{f_n\}$ holomorfas en $\mathbb{D}$ tales que $1/n \noten f_n(\mathbb{D})$. Calcule $f_n'(0)$, y discuta.
+    
+    \item Asuma además que $f$ también satisface $f'(0) = 1$. Muestre que a pesar de esta nueva suposición, no existe $r > 0$ que satisfaga la condición deseada.
+    \end{enumerate}
+    
+    El teorema de Koebe-Bieberbach establece que si además de $f(0) = 0$ y $f'(0) = 1$ también asumimos que $f$ es inyectiva, entonces tal $r$ existe y el mayor valor posible es $r = 1/4$.
+
+    \begin{enumerate}[label=(\alph*), leftmargin=1.5em, resume]
+    \item Como primer paso, muestre que si $h(z) = 1/z + c_0 + c_1 z + c_2 z^2 + \cdots$ es analítica e inyectiva para $0 < |z| < 1$, entonces $\sum_{n=1}^\infty n|c_n|^2 \le 1$.
+    
+    \item Si $f(z) = z + a_2 z^2 + \cdots$ satisface las hipótesis del teorema, muestre que existe otra función $g$ que satisface las hipótesis del teorema tal que $g^2(z) = f(z^2)$. 
+    
+    \item Con la notación de la parte anterior, muestre que $|a_2| \le 2$, y que la igualdad se cumple si y solo si $f(z) = z/(1 - e^{i\theta}z)^2$ para algún $\theta \en \mathbb{R}$.
+    
+    \item Si $h(z) = 1/z + c_0 + c_1 z + c_2 z^2 + \cdots$ es inyectiva en $\mathbb{D}^*$ y omite los valores $z_1$ y $z_2$, muestre que $|z_1 - z_2| \le 4$.
+    
+    \item Complete la demostración del teorema.
+\end{enumerate}
+\end{prob}
+\begin{sol}
+\begin{itemize}[leftmargin=1.5em]
+\item[(e)] 
+Sea $g(z)=z+b_2z^2+b_3z^3+b_4z^4+\cdots$ la función obtenida en el inciso anterior, de modo que $g$ también satisface las hipótesis del teorema y además $g(z)^2=f(z^2)$. Como
+\[
+f(z)=z+a_2z^2+a_3z^3+\cdots
+\]
+tenemos
+\[
+f(z^2)=z^2+a_2z^4+a_3z^6+\cdots
+\]
+Por otra parte,
+\[
+g(z)^2
+=
+\left(z+b_2z^2+b_3z^3+\cdots\right)^2
+=
+z^2+2b_2z^3+(b_2^2+2b_3)z^4+\cdots
+\]
+Igualando coeficientes con $f(z^2)$, tenemos $2b_2=0$ y $(b_2^2+2b_3) = a_2$, de donde \(a_2 = 2b_3\) y así 
+\[
+g(z) = z + \frac{a_2}{2}z^3+\cdots
+\]
+Luego, como $g$ es inyectiva en $\mathbb D$ y $g(0)=0$, el único cero de $g$ es $0$ (simple); de este modo
+\[
+h(z)\coloneqq\frac{1}{g(z)},
+\qquad z\en\mathbb{D}^*
+\]
+es holomorfa en $\mathbb D^*$ con un polo simple en $0$, por lo que tiene un desarrollo de Laurent alrededor del origen de la forma 
+\[
+h(z)=\frac{c_{-1}}{z}+c_0+c_1z+c_2z^2+\cdots
+\qquad
+\forall z\en\mathbb D^*
+\]
+Por definición se tiene $h(z)g(z)=1$, así que
+\[
+\left(\frac{c_{-1}}{z}+c_0+c_1z+\cdots\right)
+\left(z + \frac{a_2}{2}z^3+\cdots\right)
+= 1
+\]
+es decir,
+\[
+1=c_{-1} + c_0z + (\tfrac{1}{2}c_{-1}a_2+c_1)z^2 + \cdots
+\]
+igualando coeficientes, obtenemos $c_{-1} = 1$, $c_0=0$ y $c_1 = -\frac12a_2$. Por tanto, 
+\[h(z) = \frac{1}{z}-\frac12a_2z+\cdots\]
+como $h$ es analítica en $\mathbb D^*$ y es inyectiva gracias a que $g$ lo es, el inciso (c) garantiza que $\sum n\abs{c_n}^2 \leq 1$, en particular, $\abs{c_1}^2 \leq 1$, de donde $\abs{c_1} \leq 1$, y luego $\abs{a_2} = 2\abs{c_1} \leq 2$.\par
+Ahora supongamos que $\abs{a_2} = 2$. En este caso, $\abs{c_1}=1$ por lo que
+\[
+1 \leq \sum^\infty_{n=0}n\abs{c_n}^2 \leq 1
+\]
+así que forzosamente $c_n=0$ para $n> 1$, de donde se sigue:
+\[
+h(z) = \frac{1}{z}+c_1z
+\quad\implies\quad 
+g(z) = \frac{1}{\frac{1}{z}+c_1z} = \frac{z}{1+c_1z^2}
+\qquad\forall z\en\mathbb D^* 
+\]
+El principio de identidad garantiza que se cumple esta última igualdad en todo $\mathbb D$. Luego, 
+\[
+f(z^2) = g(z)^2 = \frac{z^2}{(1+c_1z^2)^2},
+\quad\forall z\en\mathbb D
+\]
+Como la función $z^2$ es sobreyectiva en $\mathbb D$, se puede cancelar por la derecha para así obtener
+\[
+f(z) = \frac{z}{(1+c_1z)^2}
+\]
+Más aún, gracias a que $\abs{c_1} = 1$, existe $\theta \en \mathbb R$ tal que $c_1 = -e^{i\theta}$. De este modo:
+\[
+f(z) = \frac{z}{(1-e^{i\theta}z)^2},
+\quad\forall z\en\mathbb D
+\]
+
+Recíprocamente, si
+\[
+f(z)=\frac{z}{(1-e^{i\theta}z)^2},
+\quad\forall z\en\mathbb D
+\]
+entonces gracias a que $\abs{e^{i\theta}z} < 1$ y a que $\frac{1}{(1-x)^2} = \sum^\infty_{n=1}nx^{n-1}$ (basta derivar $\frac{1}{1-x} = \sum x^n$) con $\abs{x} <1$, obtenemos que
+\[
+f(z) = z\sum^\infty_{n=1}n(e^{i\theta}z)^{n-1} = \sum^\infty_{n=1}ne^{i\theta(n-1)} z^n
+\]
+En particular, $a_2 = 2e^{i\theta}$ así que $\abs{a_2} = 2$.\par\vspace{1em}
+Hemos probado que $\abs{a_2}\le 2$
+y la igualdad ocurre si y solo si
+\[
+f(z)=\frac{z}{(1-e^{i\theta}z)^2}
+\quad\text{para algún}\quad
+\theta\en\mathbb R
+\]
+
+\item[(g)]
+Supongamos que $f$ satisface las hipótesis del teorema. Entonces, ya que $f$ es inyectiva y $f(0) = 0$, esta tiene un único cero en en el origen el cual es simple. Por lo tanto,
+\[
+h(z) \coloneq \frac{1}{f(z)},
+\quad\text{con } z\en\mathbb D^*
+\]
+es holomorfa en $\mathbb D^*$ y tiene un polo simple en el origen, así que su serie de Laurent tiene la forma:
+\[
+h(z) = \frac{c_{-1}}{z} + c_0 + c_1z+\cdots
+\]
+pero $c_{-1}=\res_{z=0}h(z) = \lim_{z\to0}zh(z) = \lim_{z\to0}\frac{z}{f(z)} = \Big(\lim_{z\to0}\frac{f(z)}{z}\Big)^{-1} = f'(0)^{-1} = 1$.\par
+Ahora bien, supongamos que $f$ omite a $w\en\mathbb C$ (es decir, $w\noten f(\mathbb D)$). Esto implica que $h$ omite a $1/w$ y evidentemente $h$ omite a $0$ (ya que $1/f$ no se puede anular). Como $h$ es inyectiva gracias a que $f$ lo es, el inciso (f) garantiza que $\abs{1/w - 0} \le 4$. Por lo tanto, $\abs{w}\ge \nicefrac{1}{4}$. Hemos probado que $w\noten f(\mathbb D)$ implica $w \ge \nicefrac{1}{4}$, por lo cual $D_{1/4}(0) \subseteq f(\mathbb D)$.\par\vspace{1em}
+\emph{Veamos que $r=1/4$ es, en efecto, el mayor valor que satisface el teorema}:\\
+Para probar esto, basta encontrar una función $f$ de modo que existe $w \noten f(\mathbb D)$, con $\abs{w}=\nicefrac{1}{4}$, pues así, $D_r(0) \subseteq f(\mathbb D)$ implicará $r \le \nicefrac{1}{4}$.
+
+Con este fin, inspirándonos en la expresión para $f$ dada en el inciso (e), proponemos
+\[
+f(z) \coloneq \frac{z}{(1-z)^2},
+\quad\text{con }z\en\mathbb D
+\]
+Claramente $f$ es holomorfa, $f(0) =0$ y $f'(0) = \frac{(1-z)^2 + 2z(1-z)}{(1-z)^4} \Big|_{z=0} = 1$. Probemos que $f$ es inyectiva: si $f(z_1)=f(z_2)$, entonces
+\[
+z_1(1-z_2)^2=z_2(1-z_1)^2
+\]
+Al desarrollar y simplificar,
+\[
+z_1-2z_1z_2+z_1z_2^2
+=
+z_2-2z_1z_2+z_2z_1^2
+\]
+de donde
+\[
+(z_1-z_2)(1-z_1z_2)=z_1-z_2+z_1z_2(z_2-z_1)=0
+\]
+Como $|z_1z_2|<1$, se tiene $z_1z_2\neq 1$, luego necesariamente $z_1=z_2$. Así, $f$ es inyectiva.
+
+Ahora notemos que $f$ omite $-\nicefrac{1}{4}$: si $f(z)=-\nicefrac14$, entonces
+\[
+\frac{z}{(1-z)^2}=-\frac14
+\quad\Longrightarrow\quad
+4z=-(1-z)^2
+\quad\Longrightarrow\quad
+z^2+2z+1=0
+\]
+de donde $(z+1)^2=0$, es decir, $z=-1$. Como $-1\noten\mathbb D$, se sigue que $-\nicefrac14\noten f(\mathbb D)$.
+
+Por tanto, si $D_r(0)\subseteq f(\mathbb D)$, necesariamente $r\le \nicefrac14$. Como el teorema ya garantiza que $D_{1/4}(0)\subseteq f(\mathbb D)$ para toda función que satisface las hipótesis, concluimos que $\nicefrac14$ es exactamente el mayor valor posible. 
+\end{itemize}
+\end{sol}
+
+
+
+

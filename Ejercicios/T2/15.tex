@@ -1,0 +1,11 @@
+\begin{ejer}[2.2.E de \texorpdfstring{\cite{vakil2025}}{[vakil2025]}]
+Sea $S$ un conjunto con la topología discreta, y sea $\mathcal{F}(U)$ el conjunto de funciones continuas y localmente constantes $U\to S$. Demuestra que $\mathcal{F}$ es una gavilla (la \emph{gavilla constante con valores $S$}). 
+\end{ejer}
+\begin{sol}
+En este contexto, que $U\to S$ sea continua es lo mismo a que sea localmente constante. Probemos las condiciones de gavilla:
+\begin{enumerate}
+    \item \emph{Identidad.} Sea $\set{U_i}_{i\en I}$ cubierta del abierto $U$. Si $r,t\en\mathcal{F}(U)$ cumplen $r|_{U_i}=t|_{U_i}$ para todo $i\en I$, el que $r$ y $t$ son funciones y $U=\bigcup_{i\en I}U_i$ garantiza que $r=t$.
+
+    \item \emph{Pegado.} Sea $(r_i)_{i\en I}\en\prod_{i\en I}\mathcal{F}(U_i)$ compatible en traslapes. Esto es una familia de funciones compatibles, así que existe una función $r\colon U\to S$ con $r|_{U_i}=r_i$ para todo $i\en I$. Más aún, $r$ es continua por el lema del pegado, ya que los $U_i$ son abiertos, así que $r\en\mathcal{F}(U)$.
+\end{enumerate}
+\end{sol}

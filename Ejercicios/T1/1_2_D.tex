@@ -1,0 +1,65 @@
+%------------------------------ Ejercicio 1.2.D -------------------------------
+\begin{nejer}
+Muestre que $\mathscr{V} \to \cat{f.d.Vec}_k$ define una equivalencia de categorías, describiendo un ``inverso''.\medskip\\
+(Recuerde que no estamos siendo rigurosos con las suposiciones de la teoría de conjuntos, ver Precaución 0.3.1, así que siéntase libre de elegir simultáneamente bases para cada espacio vectorial en $\cat{f.d.Vec}_k$. Para hacer esto preciso, necesitaría usar la teoría de conjuntos de G\"odel-Bernays o de lo contrario reemplazar $\cat{f.d.Vec}_k$ por una categoría pequeña muy similar, pero no nos preocuparemos por esto).
+\end{nejer}
+\begin{sol}
+Sea $F\colon\mathscr{V}\to\cat{f.d.Vec}_k$ el funtor dado por la inclusión,
+es decir, $F(k^n)=k^n$ y $F(f)=f$.\medskip\\
+\emph{Construyamos un cuasi-inverso
+$G\colon\cat{f.d.Vec}_k\to\mathscr{V}$}:\\
+Por la observación del enunciado, podemos elegir para cada
+$V\en\cat{f.d.Vec}_k$ una base
+$\mathscr{B}_V=\bigl(e_1^V,\ldots,e_{\dim(V)}^V\bigr)$. Luego definimos $\beta_V\colon k^n\to V$ como el isomorfismo de representación en la base $\mathscr{B}_V$, es decir,
+$\beta_V(a_1,\ldots,a_n)=\sum_{i} a_i e_i^V$. Entonces el funtor $G$ asignará $G(V)= k^{\dim(V)}$ para todo $V\en \cat{f.d.Vec}_k$ y $G(f)=\beta^{-1}_W\circ f\circ\beta_V$ para todo morfismo $f \colon V \to W$. Afirmamos que el funtor $G$ está bien definido:
+
+Por construcción, $G(f)$ es lineal. Además, $G(\id_V)
+=\beta_V^{-1}\circ\id_V\circ\beta_V
+=\id_{G(V)}$
+y, si damos flechas componibles $f \colon V\to W, g\colon W\to U$, entonces
+\[
+\begin{aligned}
+G(g\circ f)
+=\beta_U^{-1}\circ(g\circ f)\circ\beta_V
+=(\beta_U^{-1}\circ g\circ\beta_W)
+  \circ(\beta_W^{-1}\circ f\circ\beta_V)
+=G(g)\circ G(f).
+\end{aligned}
+\]
+Por lo tanto, $G$ es un funtor.\medskip\\
+\emph{Ahora probemos que $G$ es un cuasi-inverso de $F$}:
+\begin{itemize}
+\item Por un lado, $G(F(k^n)) = G(k^n) = k^n$ así que los isomorfismos $\beta_{k^n}\colon k^n \to k^n$ conforman un isomorfismo natural $G \circ F \Rightarrow \id_{\mathscr{V}}$. Probar la naturalidad es simple, pues
+\[
+\beta_{k^m} \circ G(F(f)) 
+=\beta_{k^m}\circ  \beta_{k^m}^{-1}\circ f\circ\beta_{k^n}
+=f \circ \beta_{k^n}
+\]
+En otras palabras, el siguiente diagrama conmuta:
+\[
+\begin{tikzcd}[row sep = 1.4em]
+G(F(k^n)) \arrow[r,"G(F(f))"] \arrow[d,"\beta_{k^n}"'] &
+G(F(k^m)) \arrow[d,"\beta_{k^m}"]\\
+k^n \arrow[r,"f"] & k^m.
+\end{tikzcd}
+\]
+
+\item Por otro lado, para cada $V\in\cat{f.d.Vec}_k$ tenemos el isomorfismo
+$\beta_V\colon F(G(V))\to V$, así que esto define un isomorfismo natural $\beta \colon F \circ G \Rightarrow \id_{\cat{f.d.Vec}_k}$. Probemos la naturalidad: si $f\colon V\to W$, por la
+definición de $G(f)$ se cumple
+\[
+\beta_W\circ G(f)
+=\beta_W \circ \beta_W^{-1}\circ f\circ\beta_V
+= f\circ\beta_V
+\]
+En otras palabras, el siguiente diagrama conmuta:
+\[
+\begin{tikzcd}[row sep = 1.4em]
+F(G(V)) \arrow[r,"F(G(f))"] \arrow[d,"\beta_V"'] &
+F(G(W)) \arrow[d,"\beta_W"]\\
+V \arrow[r,"f"] & W.
+\end{tikzcd}
+\]
+\end{itemize}
+Esto prueba que $G$ es cuasi-inversa de $F$.
+\end{sol}

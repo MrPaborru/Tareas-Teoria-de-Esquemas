@@ -1,0 +1,46 @@
+%------------------------------ Ejercicio 6 -------------------------------
+\setcounter{neje}{5}
+\begin{nejer}
+Considere la familia de funciones $\mathcal{F} = \set{f\colon \mathbb{D} \to \mathbb{D} \given f \text{ holomorfa}}$.
+\begin{enumerate}[label=(\alph*),leftmargin=1.5em]
+    \item Demuestre que
+    \[ \sup\set[\big]{\Re f'(0) \given f \en \mathcal{F}} = \sup\set[\big]{|f'(0)| \given f \en \mathcal{F}} = 1 \]
+    y que la única función en $\mathcal{F}$ que maximiza estos supremos es la identidad.\par
+    [\textit{Sugerencia}: Problema 5 y Lema de Schwarz.]
+    \item Si $\Omega \subseteq \mathbb{C}$ es un dominio que satisface las hipótesis del Teorema de la Aplicación de Riemann, demuestre que para cada $z_0 \en \Omega$, existe una única función holomorfa y biyectiva $f\colon \Omega \to \mathbb{D}$ que maximiza $\Re f'(z_0)$ y que por lo tanto, es la única función que maximiza dicho valor.\par
+    [\textit{Sugerencia}: Teorema de la Aplicación de Riemann.]
+\end{enumerate}
+\end{nejer}
+\begin{sol}
+Denotemos $S \coloneq \sup_{f\en \mathcal{F}}|f'(0)|$ y $R\coloneq \sup_{f\en \mathcal{F}} \Re f'(0)$. Como la parte real de un complejo es menor o igual a su módulo, tenemos por automático $R \le S$.
+\begin{enumerate}[label=(\alph*),leftmargin=1.5em]
+%------------------------------------------------
+\item %(a)
+Por el problema 5 de la lista 6 de ejercicios (tomando $\Omega = \mathbb{D}$ y $z_0 = 0$) sabemos que 
+{\thickmuskip=7mu
+\[
+S = \sup\set[\big]{|f'(0)| \given f \en \mathcal{F} \;\text{ y }\; f(0) = 0}
+\]}%
+pero por lema de Schwarz cualquier $f\en\mathcal{F}$ con $f(0) = 0$ satisface $|f'(0)| \le 1$, por lo cual $R \le S \le 1$. Recíprocamente, la identidad $\id_\mathbb{D} \en \mathcal{F}$ satisface $|\id'_{\mathbb{D}}(0)| = 1 = \Re\id'_{\mathbb{D}}(0)$, así que se cumple $R=S=1$.\par
+Por otro lado, supongamos que $h\en\mathcal{F}$ maximiza el supremo $R$, es decir, $\Re h'(0) = 1$. Como tenemos $\Re h'(0) \leq |h'(0)| \leq 1$, se sigue que también $|h'(0)| = 1 = S$.%
+\footnote{
+    Notemos que maximizar únicamente a $|f'(0)|$ no implica ser la identidad, puesto que cualquier rotación lo hace.
+}
+Entonces el problema 5 (inciso b) implica que $h(0) = 0$, así que como $|h'(0)| = 1$, el lema de Schwarz garantiza que existe $c\en \partial\mathbb{D}$ de modo que $h(z) = c z$ para $z\en\mathbb{D}$. Se sigue que $h'(0) = c$, pero ya teníamos que $\Re(c) = 1 = |c|$, por lo tanto $c=1$, es decir, $h= \id_{\mathbb{D}}$.
+%------------------------------------------------
+\item %(b)
+Por el teorema del mapeo de Riemann existe un único mapeo conforme $F \colon \Omega \to \mathbb{D}$ con $F(z_0) = 0$ y $F'(z_0)\en\mathbb{R}^+$. Probemos que $F$ es el mapeo que buscamos. En efecto, sea $f\colon\Omega \to \mathbb{D}$ holomorfa, por el inciso anterior para $(f\circ F^{-1}) \colon \mathbb{D} \to \mathbb{D}$ sabemos que
+\[
+\Re\bigl({ f'(z_0)F'(z_0)^{-1} }\bigr)
+= \Re\bigl({(f\circ F^{-1})'(0)}\bigr)
+\leq 1
+\text{ \quad y \quad el "=" ocurre si y solo si $f\circ F^{-1} = \id_{\mathbb{D}}$}
+\]
+En otras palabras, ya que $F'(z_0) \en \mathbb{R}^+$, tenemos $\Re\bigl({ f'(z_0)F'(z_0)^{-1} }\bigr) = \Re\bigl(f'(z_0)\bigr)F'(z_0)^{-1}$, así que lo anterior se traduce en que
+\[
+\Re\bigl(f'(z_0)\bigr) \leq F'(z_0) = \Re\bigl(F'(z_0)\bigr)
+\text{ \quad y \quad el "=" ocurre si y solo si $f = F$}
+\]
+Esto prueba que $F$ es el único mapeo que maximiza $\set[\big]{ \Re\bigl(f'(z_0)\bigr) \given f\colon \Omega \to \mathbb{D} \text{ es holomorfa} }$
+\end{enumerate}
+\end{sol}

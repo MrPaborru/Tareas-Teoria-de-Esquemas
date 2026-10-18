@@ -1,0 +1,33 @@
+%------------------------------ Ejercicio 1.3.N -------------------------------
+\setcounter{neje}{13}
+\begin{nejer}[Productos fibrados de conjuntos]
+Muestre que en $\cat{Sets}$,
+$$
+X \times_Z Y = \set[\big]{ (x, y) \in X \times Y \colon \alpha(x) = \beta(y) }.
+$$
+Más precisamente, muestre que el lado derecho, equipado con sus mapas evidentes a $X$ y $Y$, cumple con la propiedad universal del producto fibrado.
+\end{nejer}
+\begin{sol}
+Denotemos $P\coloneq \set*{ (x, y) \in X \times Y \given \alpha(x) = \beta(y) }$ y sean $\rho_X \colon P \to X,\,\rho_Y \colon P \to Y$ las proyecciones en las coordenadas correspondientes. Verifiquemos la propiedad universal:
+\begin{itemize}
+\item Si $(x,y) \in P$, por definición $\alpha(\rho_X(x,y)) = \alpha(x) = \beta(y) = \beta(\rho_Y(x,y))$, así que $\alpha \circ \rho_X = \beta \circ\rho_Y$. Es decir, el siguiente diagrama conmuta
+\[\begin{tikzcd}[ampersand replacement=\&]
+	P \ar[r, "\rho_X"] \ar[d, "\rho_Y"'] \& X \ar[d, "\alpha"] \\
+	Y \ar[r, "\beta"'] \& Z
+\end{tikzcd}\]
+
+\item Supongamos que $Q$ es un conjunto con morfismos $f\colon Q \to X$ y $g\colon Q\to Y$ tales que $\alpha\circ f = \beta\circ g$:
+\[\begin{tikzcd}[ampersand replacement=\&]
+	Q \ar[r, "f"] \ar[d, "g"'] \& X \ar[d, "\alpha"] \\
+	Y \ar[r, "\beta"'] \& Z
+\end{tikzcd}\]
+Entonces la aplicación $(f,g) \colon Q \to X \times Y$ con $(f,g)(q) = (f(q),g(q))$ satisface que $\alpha(f(q)) = \beta(g(q))$, es decir, $\operatorname{Im}(f,g) \subseteq P$, por lo tanto podemos restringir el codominio para obtener $(f,g) \colon Q \to P$. Por definición $\rho_X \circ (f,g) = f$ y $\rho_Y \circ (f,g) = g$, dando lugar al diagrama conmutativo:
+\[\begin{tikzcd}[ampersand replacement=\&]
+	Q \ar[ddr, bend right, "g"'] \ar[drr, bend left, "f"] \ar[dr, dashed, "{(f,g)}"] \& \&\\
+	\& P \ar[d, "\rho_Y"'] \ar[r, "\rho_X"] \& X \ar[d, "\alpha"] \\
+	\& Y \ar[r, "\beta"'] \& Z
+\end{tikzcd}\]
+
+Solo resta probar la unicidad de $(f,g)$. Si $h \colon Q \to P$ también cumple $\rho_X \circ h = f$ y $\rho_Y \circ h = g$, entonces para cada $q\in Q$ tenemos $\rho_X(h(q)) = f(q)$ y $\rho_Y(h(q)) = g(q)$, de donde $h(q) = (f(q),g(q))$. Así $h = (f,g)$.
+\end{itemize}
+\end{sol}

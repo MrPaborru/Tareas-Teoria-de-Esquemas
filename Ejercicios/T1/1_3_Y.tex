@@ -1,0 +1,34 @@
+%------------------------------ Ejercicio 1.3.Y -------------------------------
+\setcounter{neje}{25}
+\begin{nejer}[Lema de Yoneda]
+\emph{Ejercicio importante que debería hacer una vez en su vida.} 
+\begin{enumerate}[label=(\alph*)]
+\item Suponga que tiene dos objetos $A$ y $A'$ en una categoría $\mathscr{C}$, y morfismos
+$$i_C \colon \hom(C,A) \to \hom(C,A') $$
+que conmutan con los mapas de precomposición (1.3.10.1). Muestre que los $i_C$ (al variar $C\en\mathscr{C}$) son inducidos por un único morfismo $g \colon A \to A'$. Más precisamente, muestre que existe un único $g \colon A \to A'$ tal que para todo $C \en \mathscr{C}$, $i_C$ es $u \mapsto g \circ u$.
+\item Si además los $i_C$ son todos biyecciones, muestre que el $g$ resultante es un isomorfismo.
+\end{enumerate}
+% (Sugerencia para ambos: Esto es mucho más fácil de lo que parece. Esta afirmación es tan general que en realidad solo hay un par de cosas que posiblemente podría intentar. Por ejemplo, si espera encontrar un morfismo $A \to A'$, ¿dónde lo encontrará? Bueno, está buscando un elemento de $\hom(A,A')$. Así que simplemente reemplace $C = A$ en (1.3.10.2), y vea a dónde va la identidad).
+\end{nejer}
+\begin{sol}\hphantom{t}
+\begin{enumerate}[label=(\alph*)]
+\item 
+Como $i_A \colon \hom(A,A) \to \hom(A,A')$, tomamos $g \coloneq i_A(\id_A)$ y afirmamos que $i_C(u) = g \circ u$ para todo $u\en \hom(C,A)$. En efecto, $i_A(\id_A) \circ u = h_{A'}(u)\bigl(i_A(\id_A)\bigr)$ (recordemos que $h_{A'}(u)$ es el mapa precomposición con $u$). Como $i_A$ conmuta con $h_{A'}(u)$ por hipótesis, la igualdad anterior se convierte en $i_A(\id_A) \circ u = i_C\bigl(h_A(u)(\id_A)\bigr) = i_C({\id_A} \circ u) = i_C(u)$. En otras palabras $i_C(u) = g \circ u$.
+
+\item 
+Como la familia $\set{i_C}_C$ conmuta con los mapas precomposición, $\set{i^{-1}_C \colon \hom(C,A') \to \hom(C,A)}_C$ también lo hace. En efecto, si $C'\en \mathscr{C}$ y $f\colon C' \to C$ entonces ya tenemos $h_{A'}(f)\circ i_C = i_{C'} \circ h_A(f)$. Al componer con $i^{-1}_{C'}$ y precomponer con $i^{-1}_C$ obtenemos $h_A(f) \circ i^{-1}_C = i^{-1}_{C'} \circ h_{A'}(f)$.\par
+Luego, aplicamos lo probado en (a) a la familia $\set{i^{-1}_C}_C$ para tener $g' = i^{-1}_C(\id_{A'})\colon A' \to A$ tal que $i^{-1}_C(v) = g' \circ v$. Se sigue que
+\[
+g' \circ g 
+= g' \circ i_C(\id_A) 
+= i^{-1}_C(i_C(\id_A)) 
+= \id_A
+\qquad\text{y}\qquad
+g \circ g'
+= g \circ i^{-1}_C(\id_{A'}) 
+= i_C(i^{-1}_C(\id_{A'})) 
+= \id_{A'}
+\]
+Por tanto, $g$ es un isomorfismo.
+\end{enumerate}
+\end{sol}

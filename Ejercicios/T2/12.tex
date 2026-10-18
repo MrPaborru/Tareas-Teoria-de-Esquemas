@@ -1,0 +1,14 @@
+\begin{ejer}
+Sean $\mathfrak{p}\subseteq\mathfrak{q}$ en $\operatorname{Spec}A$. Construye un morfismo natural $A_{\mathfrak{q}}\to A_{\mathfrak{p}}$.\\
+(\emph{Sugerencia}: usa la propiedad universal de $A_{\mathfrak{q}}$.)
+\end{ejer}
+\begin{sol}
+El morfismo canónico $A\to A_{\mathfrak{p}}$ manda $t\in\mathfrak{q}^c\subseteq\mathfrak{p}^c$ a $\frac{t}{1}$, cuyo inverso es $\frac{1}{t}\en A_{\mathfrak{p}}$, pues $\frac{t}{1}\frac{1}{t}=\frac{t}{t}=\frac{1}{1}$. Como $A\to A_{\mathfrak{p}}$ manda todo elemento de $\mathfrak{q}^c$ a un elemento invertible, la propiedad universal garantiza que existe una única flecha que hace conmutar el diagrama
+\[
+\begin{tikzcd}[column sep=large]
+A \arrow[r] \arrow[d] & A_{\mathfrak p}\\
+A_{\mathfrak q} \arrow[ur,dashed]
+\end{tikzcd}
+\]
+Esta única $A_{\mathfrak{q}}\to A_{\mathfrak{p}}$ que hace conmutar el anterior diagrama es el buscado morfismo natural.
+\end{sol}

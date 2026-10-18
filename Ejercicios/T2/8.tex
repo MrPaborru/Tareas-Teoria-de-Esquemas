@@ -1,0 +1,24 @@
+\begin{ejer}
+Demuestra que $\varphi\colon A\to S^{-1}A$ es inyectivo si y solo si $S$ no contiene divisores de cero.
+\end{ejer}
+\begin{sol}
+Dado $a\en A$,
+\[
+\frac{a}{1}=\frac{0}{1}
+\quad\Longleftrightarrow\quad
+\exists s\en S,\ sa=0.
+\]
+Esto prueba que
+\[
+\exists a\en A\setminus\set{0},\ \varphi(a)=0
+\quad\Longleftrightarrow\quad
+\exists a\en A\setminus\set{0},\exists s\en S,\ sa=0
+\]
+es decir, ya que $S$ no contiene al cero:
+\[
+\varphi\text{ no es inyectiva}
+\quad\Longleftrightarrow\quad
+S\text{ contiene divisores de cero}
+\]
+Por contraposición, esto prueba lo deseado.
+\end{sol}

@@ -1,0 +1,60 @@
+%------------------------------ Ejercicio 1.3.D -------------------------------
+\setcounter{neje}{3}
+\begin{nejer}
+Verifique que $A \to S^{-1}A$ satisface la siguiente propiedad universal: $S^{-1}A$ es inicial entre las $A$-álgebras $B$ donde cada elemento de $S$ es enviado a un elemento invertible en $B$. (Recuerde: los datos de «una $A$-álgebra $B$» y «un mapa de anillos $A \to B$» son los mismos). Traducción: cualquier mapa $A \to B$ donde cada elemento de $S$ se envía a un elemento invertible debe factorizarse de manera única a través de $A \to S^{-1}A$. Otra traducción: un mapa de anillos con dominio $S^{-1}A$ es lo mismo que un mapa de anillos desde $A$ que envía cada elemento de $S$ a un elemento invertible. Además, un $S^{-1}A$-módulo es lo mismo que un $A$-módulo para el cual $s \times \cdot \colon M \to M$ es un isomorfismo de $A$-módulos para todo $s \en S$.
+\end{nejer}
+\begin{sol}
+Denotemos $q\colon A \to S^{-1}A$ al mapa canónico y sea $f \colon A \to B$ morfismo de anillos tal que $f(s)$ es invertible para cada $s\en S$. Entonces definimos el morfismo $\hat{f} \colon S^{-1}A \to B$ de modo que $\frac{a}{s} \mapsto f(s)^{-1}f(a)$. Veamos que $\hat{f}$ satisface lo deseado:
+\begin{itemize}
+\item\emph{Está bien definido}: si $\frac{a}{s} = \frac{b}{t}$ entonces existe un $r\en S$ tal que $r(ta - sb) = 0$. Al evaluar en $f$ se sigue que $f(r)\big(f(t)f(a) - f(s)f(b)\big) = 0$. Como $f(r)$ es invertible, podemos cancelarlo de esto último y obtener $f(t)f(a) = f(s)f(b)$, de donde se sigue que $f(s)^{-1}f(a) = f(t)^{-1}f(b)$.%
+\footnote{Recordemos que los anillos se suponen conmutativos.}
+
+\item\emph{Es homomorfismo de anillos}: es obvio que manda identidades en identidades; además, si tomamos $a,b\en A$ y $s,r\en S$ entonces\\
+\vspace{0.5em}
+\noindent
+\begin{minipage}{0.48\linewidth}
+\[
+\begin{aligned}
+\hat{f}\bigl(\tfrac{a}{s} + \tfrac{b}{t}\bigr)
+&= \hat{f}\bigl(\tfrac{ta + sb}{st}\bigr)\\
+&= f(st)^{-1}f(ta + sb)\\
+&= f(s)^{-1}f(t)^{-1}\bigl(f(t)f(a) + f(s)f(b)\bigr)\\
+&= f(s)^{-1}f(a) + f(t)^{-1}f(b)\\
+&= \hat{f}(\tfrac{a}{s}) + \hat{f}(\tfrac{b}{t})
+\end{aligned}
+\]
+\end{minipage}%
+\hfill
+\begin{minipage}{0.48\linewidth}
+\[
+\begin{aligned}
+\hat{f}\bigl(\tfrac{a}{s} \cdot \tfrac{b}{t}\bigr)
+&= \hat{f}\bigl(\tfrac{ab}{st}\bigr)\\
+&= f(st)^{-1}f(ab)\\
+&= f(s)^{-1}f(t)^{-1}f(a)f(b)\\
+&= \bigl(f(s)^{-1}f(a)\bigr)\bigl(f(t)^{-1}f(b)\bigr)\\
+&= \hat{f}(\tfrac{a}{s}) \cdot \hat{f}(\tfrac{b}{t})
+\end{aligned}
+\]
+\end{minipage}
+
+\item\emph{Cumple la propiedad universal}: para todo $a\en A$ se tiene $f(a) = f(a)f(1)^{-1} = \hat{f}(\frac{a}{1}) = \hat{f}(q(a))$. Esto prueba que $f$ se factoriza a través de $q$ mediante $\hat{f}$, i.e., el siguiente diagrama conmuta:
+\[\begin{tikzcd}[ampersand replacement=\&,sep = small]
+	\& {S^{-1}A} \& \\
+	A \&\& B
+	\arrow["{\hat{f}}", from=1-2, to=2-3]
+	\arrow["q", from=2-1, to=1-2]
+	\arrow["f"{description}, from=2-1, to=2-3]
+\end{tikzcd}\]
+Para la unicidad, supongamos que $g\colon S^{-1}(A) \to B$ también cumple $f = g \circ q$ y sean $a\en A, s\en S$ arbitrarios. Como $(\frac{s}{1})^{-1} = \frac{1}{s}$, aplicando que $g$ es morfismo de anillos obtenemos:
+\[
+g(\tfrac{a}{s})
+\;=\; g\bigl( (\tfrac{s}{1})^{-1} \cdot \tfrac{a}{1} \bigr)
+\;=\; g(\tfrac{s}{1})^{-1} \cdot g(\tfrac{a}{1})
+\;=\; g(q(s))^{-1} \cdot g(q(a)) 
+\;=\; f(s)^{-1}f(a)
+\;=\; \hat{f}(\tfrac{a}{s})
+\]
+se sigue que $g=\hat{f}$ así que $\hat{f}$ es único.
+\end{itemize}
+\end{sol}

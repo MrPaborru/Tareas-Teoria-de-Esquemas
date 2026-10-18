@@ -1,0 +1,30 @@
+\begin{ejer}
+Demuestra que $V(I)=V(\sqrt{I})$ y, más aún, que
+\[
+V(I)\subseteq V(J)\quad\Longleftrightarrow\quad \sqrt{J}\subseteq\sqrt{I}.
+\]
+\end{ejer}
+\begin{sol}
+Antes que nada, recordemos que
+\[
+\sqrt{I}=\bigcap_{\mathfrak{p}\in V(I)}\mathfrak{p}.
+\]
+\begin{itemize}
+    \item Por mera definición de intersección:
+    \[
+    \mathfrak{p}_0\en V(I)
+    \quad\Longleftrightarrow\quad
+    \mathfrak{p}_0\supseteq\bigcap_{\mathfrak{p}\in V(I)}\mathfrak{p}=\sqrt{I}
+    \quad\Longleftrightarrow\quad
+    \mathfrak{p}_0\en V(\sqrt{I}).
+    \]
+
+    \item Si $\sqrt{J}\subseteq\sqrt{I}$, se tiene $V(\sqrt{I})\subseteq V(\sqrt{J})$; gracias a lo recién probado, esto significa $V(I)\subseteq V(J)$. La otra implicación es una simple propiedad de la intersección:
+    \[
+    V(I)\subseteq V(J)
+    \quad\Longrightarrow\quad
+    \sqrt{J}=\bigcap_{\mathfrak{p}\in V(J)}\mathfrak{p}
+    \subseteq\bigcap_{\mathfrak{p}\in V(I)}\mathfrak{p}=\sqrt{I}.
+    \]
+\end{itemize}
+\end{sol}

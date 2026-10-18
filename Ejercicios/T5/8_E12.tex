@@ -1,0 +1,36 @@
+%------------------------------ Ejercicio 12 -------------------------------
+\setcounter{eje}{11}
+\begin{ejer}
+Un número complejo $w \in \mathbb{D}$ es un punto fijo para la aplicación $f\colon \mathbb{D} \to \mathbb{D}$ si $f(w) = w$.
+\begin{enumerate}[label=(\alph*),leftmargin=1.5em]
+\item Pruebe que si $f\colon \mathbb{D} \to \mathbb{D}$ es analítica y tiene dos puntos fijos distintos, entonces $f$ es la identidad, esto es, $f(z) = z$ para todo $z \in \mathbb{D}$.
+\item ¿Toda función holomorfa $f\colon \mathbb{D} \to \mathbb{D}$ debe tener un punto fijo?\par \emph{Sugerencia}: Considere el semiplano superior.
+\end{enumerate}
+\end{ejer}
+\begin{sol}
+\begin{enumerate}[label=(\alph*),leftmargin=1.5em]
+\item 
+Sean $w_1,w_2\en\mathbb{D}$ distintos tales que $f(w_1)=w_1$ y $f(w_2) = w_2$. Como $|w_1| < 1$, está bien definido el factor de Blaschke $\psi_{w_1} \en \aut(\mathbb{D})$, el cual recordemos que cumple:
+\[
+\psi_{w_1} \circ \psi_{w_1} = \id_{\mathbb{D}},
+\qquad \psi_{w_1}(0)=w_1,
+\qquad \psi_{w_1}(w_1) = 0
+\]
+En consecuencia, la función holomorfa $F= \psi_{w_1} \circ f \circ \psi_{w_1} \colon \mathbb{D} \to \mathbb{D}$ satisface:
+\[
+F(0) = \psi_{w_1}\bigl(f(\psi_{w_1}(0))\bigr) = \psi_{w_1}\bigl(f(w_1)\bigr) = \psi_{w_1}(w_1) = 0
+\]
+y tomando $w_3 \coloneq \psi_{w_1}(w_2)$ (notemos que $w_2\neq w_1$ implica por inyectividad de $\psi_{w_1}$ que $w_3 \neq 0$):
+\[
+F(w_3) = F\bigl(\psi_{w_1}(w_2)\bigr) = \psi_{w_1}\bigl(f(\psi_{w_1}(\psi_{w_1}(w_2)))\bigr) = \psi_{w_1}\bigl(f(w_2)\bigr) = \psi_{w_1}(w_2) = w_3
+\]
+Como $F(0) = 0$ y, en particular, $|F(w_3)| = |w_3|$, el lema de Schwarz garantiza que existe $c\en\mathbb{C}$ de norma uno con $F(z) = cz$ para todo $z\en\mathbb{D}$; en particular, $w_3 = F(w_3) = cw_3$, así que (ya que $w_3\neq 0$) $c=1$. Esto prueba que $F = \id_{\mathbb{D}}$; sin embargo, recordando que $\psi_{w_1} \circ \psi_{w_1} = \id_{\mathbb{D}}$ y la definición de $F$:
+\[
+\psi_{w_1} \circ {\id_{\mathbb{D}}} \circ \psi_{w_1} = \id_{\mathbb{D}} = F = \psi_{w_1} \circ f \circ \psi_{w_1}
+\]
+Así que, cancelando el automorfismo $\psi_{w_1}$ por ambos lados, concluimos $\id_{\mathbb{D}} = f$.
+
+\item 
+Consideremos el mapeo conforme $F \colon \mathbb{H} \to \mathbb{D}$ del teorema 1.2 (\cite[\S 8.1]{stein}). Luego, dado algún real $r>1$, consideramos el automorfismo $m_r \en \aut(\mathbb{H})$ con $m_r(z) = rz$. Afirmamos que $f \coloneq F \circ m_r\circ F^{-1} \en\aut(\mathbb{D})$ no tiene puntos fijos. En efecto, si suponemos por contradicción que existe $w\en\mathbb{D}$ con $f(w) = w$, entonces $F \circ m_r\circ F^{-1}(w) = w$, de donde $m_r\circ F^{-1}(w) = F^{-1}(w)$, es decir, $rF^{-1}(w) = F^{-1}(w)$; sin embargo, $r >1$, así que forzosamente $F^{-1}(w)=0$. Esto es absurdo, pues por definición $F^{-1}(w)\en\mathbb{H}$: el error estuvo en suponer que $f$ tiene un punto fijo, por lo cual no lo tiene. 
+\end{enumerate}
+\end{sol}

@@ -1,0 +1,110 @@
+%------------------------------ Problema 2 -------------------------------
+\setcounter{pro}{1}
+\begin{prob}
+El ángulo entre dos números complejos no nulos $z$ y $w$ (tomados en ese orden) es simplemente el ángulo orientado, en $(-\pi, \pi]$, que se forma entre los dos vectores en $\mathbb{R}^2$ correspondientes a los puntos $z$ y $w$. Este ángulo orientado, digamos $\alpha$, está determinado unívocamente por las dos cantidades
+\[ \frac{(z,w)}{|z||w|} \quad \text{y} \quad \frac{(z,-iw)}{|z||w|}, \]
+las cuales son simplemente el coseno y el seno de $\alpha$, respectivamente. Aquí, la notación $(\cdot, \cdot)$ corresponde al producto interno euclidiano usual en $\mathbb{R}^2$, que en términos de números complejos toma la forma $(z,w) = \Re(z\ubar{w})$.
+
+En particular, ahora podemos considerar dos curvas suaves $\gamma\colon [a,b] \to \mathbb{C}$ y $\eta\colon [a,b] \to \mathbb{C}$, que se intersectan en $z_0$, digamos $\gamma(t_0) = \eta(t_0) = z_0$, para algún $t_0 \in (a,b)$. Si las cantidades $\gamma'(t_0)$ y $\eta'(t_0)$ son no nulas, entonces representan las tangentes a las curvas $\gamma$ y $\eta$ en el punto $z_0$, y decimos que las dos curvas se intersectan en $z_0$ en el ángulo formado por los dos vectores $\gamma'(t_0)$ y $\eta'(t_0)$.
+
+Se dice que una función holomorfa $f$ definida cerca de $z_0$ preserva ángulos en $z_0$ si para cualesquiera dos curvas suaves $\gamma$ y $\eta$ que se intersectan en $z_0$, el ángulo formado entre las curvas $\gamma$ y $\eta$ en $z_0$ es igual al ángulo formado entre las curvas $f \circ \gamma$ y $f \circ \eta$ en $f(z_0)$. En particular, asumimos que las tangentes a las curvas $\gamma, \eta, f \circ \gamma$, y $f \circ \eta$ en el punto $z_0$ y $f(z_0)$ son todas no nulas.
+\begin{enumerate}[label=(\alph*),leftmargin=1.5em]
+    \item Pruebe que si $f\en \mathcal{H}(\Omega)$ es holomorfa y $f'(z_0) \neq 0$, entonces $f$ preserva ángulos en $z_0$. \par
+    \emph{Sugerencia}: Observe que $(f'(z_0)\gamma'(t_0), f'(z_0)\eta'(t_0)) = |f'(z_0)|^2(\gamma'(t_0), \eta'(t_0))$.
+    \item Recíprocamente, pruebe lo siguiente: suponga que $f\colon \Omega \to \mathbb{C}$ es una función con valores complejos, que es diferenciable en el sentido real en $z_0 \in \Omega$, y el Jacobiano satisface $J_f(z_0) \neq 0$. Si $f$ preserva ángulos en $z_0$, entonces $f$ es holomorfa en $z_0$ con $f'(z_0) \neq 0$.
+\end{enumerate}
+\end{prob}
+\begin{sol}
+Para evitar confusiones, denotaremos al producto punto por $\ang{z,w}$ en lugar de $(z,w)$. Notemos que si $a,z,w\en\mathbb{C}$ entonces 
+\[
+\ang{az,aw} = \Re(az\ubar{aw}) = \Re(\abs{a}^2z\ubar{w}) = \abs{a}^2\Re(z\ubar{w}) = \abs{a}^2\ang{z,w}
+\]
+\begin{enumerate}[label=(\alph*),leftmargin=1.5em]
+\item 
+Por regla de la cadena: $(f\circ\gamma)'(t_0) = f'(z_0)\gamma'(t_0)$ y $(f\circ\eta)'(t_0) = f'(z_0)\eta'(t_0)$. Así que:
+\begin{equation}\label{eq:prod}
+\ang[\big]{(f\circ \gamma)'(t_0),\,(f\circ\eta)'(t_0)}
+=\ang[\big]{f'(z_0)\gamma'(t_0),\, f'(z_0)\eta'(t_0)}
+=\abs{f'(z_0)}^2\ang[\big]{\gamma'(t_0),\, \eta'(t_0)}
+\end{equation}
+dividiendo por $\abs{(f\circ\gamma)'(t_0)}\cdot\abs{(f\circ\eta)'(t_0)} = \abs{f'(z_0)\gamma'(t_0)}\cdot\abs{f'(z_0)\eta'(t_0)} = \abs{f(z_0)}^2\abs{\gamma'(t_0)}\abs{\eta'(t_0)}$, obtenemos
+\begin{equation}\label{eq:prescos}
+\frac{ \ang[\big]{(f\circ \gamma)'(t_0),\,(f\circ\eta)'(t_0)} }{ \abs{(f\circ\gamma)'(t_0)}\abs{(f\circ\eta)'(t_0)} }
+\;=\; \frac{ \ang[\big]{\gamma'(t_0),\, \eta'(t_0)} }{ \abs{\gamma'(t_0)}\abs{\eta'(t_0)} }
+\end{equation}
+Análogamente, basta con replicar (\ref{eq:prod}) con la segunda entrada multiplicada por $-i$ para obtener:
+\[
+\ang[\big]{(f\circ \gamma)'(t_0),\,-i(f\circ\eta)'(t_0)}
+\;=\; \abs{f'(z_0)}^2\ang[\big]{\gamma'(t_0),\, -i\eta'(t_0)}
+\]
+que al dividir de nuevo por $\abs{(f\circ\gamma)'(t_0)}\abs{(f\circ\eta)'(t_0)} = \abs{f(z_0)}^2\abs{\gamma'(t_0)}\abs{\eta'(t_0)}$ resulta en:
+\begin{equation}\label{eq:pressen}
+\frac{ \ang[\big]{(f\circ \gamma)'(t_0),\,-i(f\circ\eta)'(t_0)} }{ \abs{(f\circ\gamma)'(t_0)}\abs{(f\circ\eta)'(t_0)} }
+\;=\; \frac{ \ang[\big]{\gamma'(t_0),\, -i\eta'(t_0)} }{ \abs{\gamma'(t_0)}\abs{\eta'(t_0)} }
+\end{equation}
+de (\ref{eq:prescos}) y (\ref{eq:pressen}) se sigue que $f$ preserva ángulos.
+
+\item 
+Antes que nada, notemos que para todos $z,w\en\mathbb{C}$, se cumple
+\[
+\frac{w\ubar{z}}{\abs{w\ubar{z}}}
+\;=\; \frac{\Re(w\ubar{z})}{\abs{w}\abs{z}} + i\frac{\Im(w\ubar{z})}{\abs{w}\abs{z}}
+\;=\; \frac{\Re(w\ubar{z})}{\abs{w}\abs{z}} + i\frac{\Re(-iw\ubar{z})}{\abs{w}\abs{z}}
+\;=\; \frac{\ang{w,z}}{\abs{w}\abs{z}} + i\frac{\ang{-iw,z}}{\abs{w}\abs{z}}
+\;=\; \frac{\ang{z,w}}{\abs{z}\abs{w}} + i\frac{\ang{z,-iw}}{\abs{z}\abs{w}}
+\]
+Como la parte real es el coseno del ángulo de $z$ a $w$ y la imaginaria el seno, se sigue que el argumento de $\frac{w\ubar{z}}{\abs{w\ubar{z}}}$ es el ángulo de $z$ a $w$. Luego, el hecho de que $f$ preserva ángulos en $z_0$ se traduce en que
+\begin{equation}\label{eq:presang}
+\frac{ (f\circ\gamma)'(t_0)\ubar{(f\circ\eta)'(t_0)} }{ \abs{(f\circ\gamma)'(t_0)\ubar{(f\circ\eta)'(t_0)}} }
+\;=\; \frac{ \gamma'(t_0)\ubar{\eta'(t)} }{ \abs{\gamma'(t_0)\ubar{\eta'(t)}} }
+\end{equation}
+para todo par de curvas suaves $\gamma,\eta$ con $\gamma(t_0) = \eta(t_0) = z_0$ y derivadas no nulas en $z_0$.%
+\footnote{
+    Notemos que para que tenga sentido preguntarse si $f$ preserva ángulos es necesario pedir que $\det J_f(z_0) \neq 0$, pues de otro modo podría pasar que $\gamma'(t_0) \neq 0$ pero $(f\circ \gamma)'(t_0) = J_f(z_0)\cdot \gamma'(t_0) = 0$. Luego, esta hipótesis para $f$ garantiza que los cocientes en (\ref{eq:presang}) están bien definidos siempre que las derivadas de las curvas son no nulas en el punto en cuestión.
+}
+
+Ahora bien, sea $r>0$ con $\ubar{D}_r(z_0) \subseteq \Omega$ y consideremos las curvas 
+\[
+\gamma_1,\eta_1\colon [-r,r] \to \Omega
+\qquad\text{tales que}\qquad
+\gamma_1(t) = z_0 + t \quad\text{y}\quad \eta_1(t) = z_0 + it
+\]
+por lo que $\gamma_1(0) = \eta_1(0) = z_0$, $\gamma_1'(0) = 1$ y $\eta_1'(0)=i$. Como el número complejo $1$ se corresponde a $(1,0)\en\mathbb{R}^2$ y $i$ se corresponde a $(0,1)\en\mathbb{R}^2$, tenemos que, por definición, $(f\circ\gamma_1)'(0) = J_f(z_0)\cdot\gamma_1'(0)$ es igual a la parcial $\partial_xf(z_0)$ y $(f\circ\eta_1)'(0) = J_f(z_0)\cdot\eta_1'(0)$ a la parcial $\partial_yf(z_0)$, así que al sustituir en (\ref{eq:presang}):
+\[
+\frac{ \partial_xf(z_0)\ubar{\partial_yf(z_ 0)} }{ \abs*{\partial_xf(z_0)}\abs*{\partial_yf(z_0)} }
+\;=\; \frac{ \partial_xf(z_0)\ubar{\partial_yf(z_ 0)} }{ \abs{\partial_xf(z_0)\ubar{\partial_yf(z_ 0)}} }
+\;=\; \frac{ 1\ubar{i} }{ \abs{1\ubar{i}} } \;=\; -i,
+\]
+lo cual, al multiplicar por $\partial_yf(z_0)\abs*{\partial_xf(z_0)}$, se convierte en
+\begin{equation}\label{eq:casiCR}
+\partial_xf(z_0)\abs*{\partial_yf(z_0)} \;=\; -i\partial_yf(z_0)\abs*{\partial_xf(z_0)}
+\end{equation}
+Por otro lado, podemos considerar las curvas
+\[
+\gamma_2,\eta_2\colon\bigl[-\tfrac{r}{\sqrt{2}},\tfrac{r}{\sqrt{2}}\bigr] \to \Omega
+\qquad\text{tales que}\qquad
+\gamma_2(t) = z_0 + (1+i)t \quad\text{y}\quad \eta_2(t) = z_0 + (1-i)t
+\]
+que cumplen $\gamma_2(0)=\eta_2(0) = z_0$, $\gamma_2'(0) = 1+i$ (corresp. a $(1,1)\en\mathbb{R}^2$) y $\eta_2'(0) = 1-i$ (corresp. a $(1,-1)\en\mathbb{R}^2$). Luego, tenemos que $(f\circ\gamma_2)'(0) = J_f(z_0)\cdot\gamma_2'(0) = \partial_xf(z_0)+\partial_yf(z_0)$ y $(f\circ\eta_2)'(0) = J_f(z_0)\cdot\eta_2'(0) = \partial_xf(z_0)-\partial_yf(z_0)$. Así, al sustituir en (\ref{eq:presang}):
+\begin{equation}\label{eq:angdiag}
+\frac{ (\partial_xf(z_0)+\partial_yf(z_0))(\ubar{\partial_xf(z_0)} -\ubar{\partial_yf(z_0)}) }{ \abs{(\partial_xf(z_0)+\partial_yf(z_0))(\ubar{\partial_xf(z_0)} -\ubar{\partial_yf(z_0)})} }
+\;=\; \frac{ (1+i)(\ubar{1-i}) }{ \abs{(1+i)(\ubar{1-i})} }
+\;=\; \frac{ (1+i)^2 }{2}
+\;=\; i
+\end{equation}
+sin embargo, 
+\[
+(\partial_xf(z_0)+\partial_yf(z_0))(\ubar{\partial_xf(z_0)} -\ubar{\partial_yf(z_0)}) = \abs{\partial_xf(z_0)}^2-\abs*{\partial_yf(z_0)}^2+2i\Im\bigl(\partial_yf(z_0)\ubar{\partial_xf(z_0)}\bigr)
+\]
+Así, al igualar partes reales en (\ref{eq:angdiag}), obtenemos
+\[
+\frac{ \abs{\partial_xf(z_0)}^2-\abs*{\partial_yf(z_0)}^2 }{ \abs{\abs{\partial_xf(z_0)}^2-\abs*{\partial_yf(z_0)}^2+2i\Im\bigl(\partial_yf(z_0)\ubar{\partial_xf(z_0)}\bigr)} } = 0
+\qquad\text{de donde}\qquad
+\abs{\partial_xf(z_0)}^2=\abs*{\partial_yf(z_0)}^2
+\]
+En otras palabras, $\abs{\partial_xf(z_0)}=\abs*{\partial_yf(z_0)}$, así que podemos cancelarlo de (\ref{eq:casiCR}) para obtener que $\partial_xf(z_0) = -i\partial_yf(z_0)$. Como $f$ es $\mathbb{R}^2$ diferenciable en $z_0$ y satisface las ecuaciones de Cauchy-Riemann ahí, se sigue que es $\mathbb{C}$-derivable en $z_0$.%
+\footnote{
+    Si bien el libro solo prueba esta implicación en entornos, se puede hacer puntualmente. En efecto, el que se cumpla (CR) implica que $J_f(z_0) = \left(\smqty{a&-b\\b&a}\right)$, así que $J_f(z_0)\cdot z = (a+ib)z$ para todo $z\en\mathbb{C}$. De este modo, por definición de derivada en $\mathbb{R}^2$, tenemos que $\lim_{h\to0}\frac{\norm{f(z_0+h)-f(z_0)-J_f(z_0)\cdot h}}{\norm{h}}=0$. Sustituyendo en este límite la forma de $J_f(z_0)\cdot h$ y recordando que la norma euclideana es el modulo complejo, obtenemos $\lim_{h\to0}\abs{\frac{f(z_0+h)-f(z_0)-(a+ib)h}{h}}=0$ de donde $\lim_{h\to0}\frac{f(z_0+h)-f(z_0)}{h}-(a+ib) = 0$, por lo que  $f'(z_0) = \lim_{h\to0}\frac{f(z_0+h)-f(z_0)}{h} = (a+ib)$.
+}
+\end{enumerate}
+\end{sol}

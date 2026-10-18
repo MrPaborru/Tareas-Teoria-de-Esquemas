@@ -1,0 +1,76 @@
+\setcounter{eje}{14}
+\begin{ejer}
+Utilice las desigualdades de Cauchy o el principio del módulo máximo para resolver los siguientes problemas:
+\begin{enumerate}[label=(\alph*),leftmargin=1.5em]
+    \item Pruebe que si $f$ es una función entera que satisface $\sup_{|z|=R} |f(z)| \leq A R^k + B$ para todo $R>0$, y para algún entero $k \geq 0$ y algunas constantes $A, B > 0$, entonces $f$ es un polinomio de grado $\leq k$.
+    \item Muestre que si $f$ es holomorfa en el disco unitario, es acotada, y converge uniformemente a cero en el sector $\theta < \arg z < \varphi$ conforme $|z| \to 1$, entonces $f = 0$.
+    \item Sean $w_1, \ldots, w_n$ puntos en el círculo unitario en el plano complejo. Pruebe que existe un punto $z$ en el círculo unitario tal que el producto de las distancias desde $z$ a los puntos $w_j$, con $1 \leq j \leq n$, es al menos $1$. Concluya que existe un punto $w$ en el círculo unitario tal que el producto de las distancias desde $w$ a los puntos $w_j$, con $1 \leq j \leq n$, es exactamente igual a $1$.
+    \item Muestre que si la parte real de una función entera $f$ es acotada, entonces $f$ es constante.
+\end{enumerate}
+\end{ejer}
+\begin{sol}\hphantom{r}
+\begin{enumerate}[label=(\alph*),leftmargin=1.5em]
+%-------------------------------------------------
+\item % Inciso (a)
+Como $f$ es entera, hay un desarrollo en serie de potencias $f(z) = \sum a_nz^n$ con $a_n = \frac{1}{n!}f^{(n)}(0)$. Sin embargo, para todos $n>k$ y $R>0$, las desigualdades de Cauchy implican
+\[
+\abs\big{ f^{(n)}(0) } 
+\;\leq\; \frac{n!}{R^n}\sup_{\abs{z}=R} \abs{f(z)} 
+\;\leq\; \frac{n!}{R^n}\big(AR^k+B\big)
+\;=\; n!AR^{k-n} + n!BR^{-n}
+\;\xrightarrow{R\to\infty}\; 0
+\]
+Se sigue que $f^{(n)}(0) = 0$ (así, $a_n=0$) para todo $n>k$. Por lo tanto $f(z) = a_0 + \cdots + a_kz^k$.
+%-------------------------------------------------
+\item % Inciso (b)
+Primero notemos que la afirmación "$f \xrightarrow{\abs{z} \to 1} 0$ uniformemente en $S \coloneq \set[\big]{z\en\mathbb{D} \given \theta < \arg z < \varphi}$" se traduce en que
+\[
+\adjustlimits\lim_{r\to 1} \sup_{z\en S,\abs{z} = r} \abs{f(z)} = 0
+\]
+y tomemos una cota $M>0$ para $|f|$.\par
+Consideramos el entero $m \coloneq \ceil[\big]{\frac{2\pi}{\varphi-\theta}}+1$, y las raíces $m$-ésimas de la unidad $\omega^0,\dots,\omega^{m-1}$. Se sigue que los sectores $S_k\coloneq \set[\big]{z \en \mathbb{D} \given \theta < \arg(z\omega^{k}) < \varphi}$ con $k=0,\dots,m-1$ cubren a $\mathbb{D}$. En efecto, si $z_0\en\mathbb{D}$ entonces, ya que los sectores $\set{z\en\mathbb{D} \given \arg(\omega^{k-1}) \le \arg(z) < \arg(\omega^k) }$ cubren $\mathbb{D}$, se sigue que también lo hacen $\set[\big]{z\en\mathbb{D} \given \arg(z_0\omega^{k-1}) \le \arg(z) < \arg(z_0\omega^k) }$. Por lo tanto, gracias a que $\frac12e^{i\theta}\en\mathbb{D}$, existe $k\en\set{0,\dots,m-1}$ tal que
+\[
+\arg(z_0\omega^{k-1}) \le \arg(\tfrac12e^{i\theta}) = \theta < \arg(z_0\omega^k)
+\] 
+sin embargo, por construcción, $\varphi -\theta  > \frac{2\pi}{m} = \arg(z_0\omega^k) - \arg(z_0\omega^{k-1})$, así que forzosamente
+\[
+\theta < \arg(z_0\omega^k) < \varphi
+\quad\text{de donde se sigue}\quad
+z_0 \en S_k
+\]
+Ahora bien, definimos para $k\en\set{0,\dots,m-1}$, la función $f_k(z) = f(z\omega^{-k})$. Como cada $f_k$ se obtiene precomponiendo a $f$ con una multiplicación por escalar, bajo la cual el sector $S_k$ se mapea a $S$, entonces es inmediato que cada $f_k$ es holomorfa en $\mathbb{D}$, que es acotada (en módulo) por $M$, y que converge a $0$ cuando $\abs{z}\to1$ uniformemente en $S_k$. Luego, definimos $F(z) \coloneq \prod^{m-1}_{k=0} f_k(z)$. Tenemos que $F$ es holomorfa en $\mathbb{D}$ (prducto de holomorfas) y es acotada en módulo por $M^m$ (ya que cada $f_k$ lo es por $M$); además, para cualesquiera $k \en \set{0,\dots,m-1}$ y $0\le r<1$,
+\begin{equation}\label{eq:cotaunif}
+\sup_{z\en S_k,\abs{z} = r} \abs{F(z)}  
+\;\;\leq\;\; M^{\mathrlap{m-1}} \;\;\sup_{z\en S_k,\abs{z} = r} \abs{f_k(z)} 
+\;\;\xrightarrow{r \to 1}\;\; 0
+\end{equation}
+el lado derecho de (\ref{eq:cotaunif}) converge a cero ya que $f_k \xrightarrow{\abs{z} \to 1} 0$ uniformemente en $S_k$. En consecuencia, gracias a que $\mathbb{D} = \bigcup^{m-1}_{k=0}S_k$, la convergencia de (\ref{eq:cotaunif}) implica: 
+\[
+\sup_{\abs{z} = r} \abs{F(z)}  
+\;\;=\;\; \adjustlimits\max_{0\le k < m\,} \sup_{z\en S_k,\abs{z} = r} \abs{F(z)}
+\;\;\xrightarrow{r \to 1}\;\; 0
+\]
+Esto demuestra que $F \xrightarrow{\abs{z}\to1}0$ uniformemente en todo $\mathbb{D}$.\par
+Finalmente, al fijar un $0 < r_0 < 1$, el principio de módulo máximo garantiza para $r_0<r<1$:
+\[
+\sup_{\abs{z} < r_0} \abs{F(z)}
+\;\le\; \sup_{\abs{z} < r} \abs{F(z)}
+\;=\; \sup_{\abs{z} = r} \abs{F(z)}
+\]
+Al tomar límite cuando $r\to1$, obtenemos que $\sup_{\abs{z} < r_0} \abs{F(z)} = 0$, por lo que $F$ es nula en $D_{r_0}(0)$. El principio de identidad garantiza entonces que $F$ es idénticamente cero. La única forma de que un producto de funciones holomorfas sea nulo, es que alguna de ellas sea nula, i.e., existe $k\en\set{0,\dots,m-1}$ tal que $f_k=0$, pero esto implica que $f(z) = f_k(z\omega^k) = 0$. Hemos demostrado que $f$ es nula.
+%-------------------------------------------------
+\item % Inciso (c)
+Consideremos el polinomio $\p(z) = (z-w_1)\cdots(z-w_n)$. Por un lado, $\abs{\p(0)} = \abs{w_1}\cdots\abs{w_n} = 1$; por otro lado, el principio de módulo máximo implica que $|\p(z)|$ tiene que alcanzar su máximo en $\ubar{\mathbb{D}}$ (compacidad de $\ubar{\mathbb{D}}$) en algún punto de $\partial\mathbb{D}$. Entonces existe $z_0\en\partial\mathbb{D}$ (es decir, $\abs{z_0} = 1$) tal que $\abs{\p(z_0)}$ es máximo de $\abs{\p(z)}$ en $\ubar{\mathbb{D}}$; particularmente, $\abs{\p(z_0)} \ge \abs{\p(0)} = 1$. En otras palabras, acabamos de probar que $\abs{z_0-w_1} \cdots\abs{z_0-w_n} \ge 1$ con $\abs{z_0} = 1$.\par
+Para la segunda parte, notemos que la conexidad de $\partial\mathbb{D}$ y la continuidad de $\abs{\p}$ garantizan que $\abs{\p}(\partial\mathbb{D})$ es un subconjunto conexo de $\mathbb{R}$ (i.e., un intervalo). Sin embargo, ya tenemos que $0=\abs{\p(w_1)},\abs{\p(z_0)}\en\abs{\p}(\partial\mathbb{D})$, por lo que $\big[0,\abs{\p(z_0)}\big] \subseteq \abs{\p}(\partial\mathbb{D})$. Como $0<1\le \abs{\p(z_0)}$, se sigue que $1 \en \abs{\p}(\partial\mathbb{D})$, es decir, existe $w\en \partial\mathbb{D}$ tal que $\abs{\p(w)} = 1$. Hemos probado que $w\en\partial\mathbb{D}$ satisface $\abs{w-w_1} \cdots\abs{w-w_n} = 1$.
+%-------------------------------------------------
+\item % Inciso (b)
+Pongamos $f = u+iv$, y sea $M>0$ cota para $u$. Se sigue que $e^{f(z)} = e^{u(z)}e^{iv(z)}$ es una función entera con $\abs{e^{f(z)}} = e^{u(z)} \le e^M$ para todo $z\en\mathbb{C}$ (ya que la exp. real es creciente). Por desigualdades de Cauchy y regla de la cadena, para todos $z\en\mathbb{C}$ y $R > \abs{z}$:
+\[
+\abs\big{ f'(z)e^{f(z)} } 
+\;=\; \abs\big{ \big(e^f\big)'(z) } 
+\;\le\; \frac{e^M}{R}
+\;\xrightarrow{R\to\infty}\; 0
+\]
+Es decir, $f'(z)e^{f(z)} = 0$. Como la exponencial no se anula (pues su módulo es el real $e^{u} > 0$), esto implica que $f'(z) = 0$, para cualquier $z\en\mathbb{C}$. Se sigue que $f$ es constante ya que $\mathbb{C}$ es un dominio.\qedhere
+\end{enumerate}
+\end{sol}

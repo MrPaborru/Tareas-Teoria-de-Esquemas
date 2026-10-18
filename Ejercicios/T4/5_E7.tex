@@ -1,0 +1,121 @@
+%------------------------------ Ejercicio 7 -------------------------------
+\setcounter{eje}{6}
+\begin{ejer}
+Establezca las siguientes propiedades de los productos infinitos.
+\begin{enumerate}[label=(\alph*), leftmargin = 1.5em]
+    \item Muestre que si $\sum |a_n|^2$ converge, entonces el producto $\prod (1+a_n)$ converge a un límite distinto de cero si y solo si $\sum a_n$ converge.
+    \item Encuentre un ejemplo de una sucesión de números complejos $\{a_n\}_n$ tal que $\sum a_n$ converge pero $\prod (1+a_n)$ diverge.
+    \item También encuentre un ejemplo tal que $\prod (1+a_n)$ converge y $\sum a_n$ diverge.
+\end{enumerate}
+\end{ejer}
+\begin{sol}
+Antes de comenzar notemos que el inciso (a) podría fallar si algún $a_n = -1$. Por ejemplo, al tomar $a_1=-1$ y $a_n=0$ para todo $n>1$, tenemos $\sum |a_n|^2 = 1$ y $\sum a_n = -1$ convergen, pero el producto $\prod(1+a_n)$ converge a cero, es decir, no se cumple (a). En consecuencia, para asegurar la convergencia no trivial del producto, requerimos suponer que $a_n \neq -1$ para todo $n\en\mathbb N$. \par
+Antes de resolver los incisos, probemos el siguiente lema:
+\begin{lema}\label{lema:convprod}
+Si $\set{z_n}_n$ es una sucesión de números complejos con $\abs{z_n-1} < 1$, entonces el producto $\prod^\infty_{n=1} z_n$ converge a un valor no nulo si y solo si la serie $\sum^\infty_{n=1}\log(z_n)$ converge (rama principal). Asimismo, $\prod^\infty_{n=1}z_n$ converge a cero si y solo si $\sum^\infty_{n=1}\ln{|z_n|} = -\infty$ (diverge propiamente a $-\infty$).
+\begin{proof}
+Denotemos $P_N \coloneq \prod^N_{n=1}z_n$ y $S_N\coloneq\sum^N_{n=1}\log(z_n)$.
+Notemos que el hecho de que $\abs{z_n-1} < 1$ garantiza que $\log(z_n)$ esté bien definido (y que $z_n,P_N \neq 0$). Además, por definición:
+\[
+P_N = \exp(S_N),
+% \prod^N_{n=1} z_n = \prod^N_{n=1} \exp(\log(z_n)) = \exp( \sum^N_{n=1} \log(z_n) )\,,
+\qquad\forall N\en\mathbb N
+\]
+De esto se sigue, por continuidad de $\exp$, que si $S_N$ converge a $S$ entonces $P_N$ converge a $\exp(S) \neq 0$.\par
+Recíprocamente, supongamos que $P_N$ converge a $P\neq 0$. Como hay una cantidad contable de puntos de la sucesión $\set{P_N}_N$ y una cantidad incontable de rayos que van del origen al infinito, tiene que existir un rayo $R$ de este estilo que no contiene a $P$, a $1$, ni a ningún punto de la sucesión $\set{P_N}_N$. Luego, $\Omega \coloneq \mathbb{C} \setminus R$ es simplemente conexo, contiene a $1$, a $P$, a $\set{P_N}$ y además no contiene al origen. Se sigue (teo. 6.1 de \cite[\S 3.6]{stein}) que existe una rama del logaritmo $\log_\Omega \en \mathcal{H}(\Omega)$. Ahora bien, por definición, para cada $N\en\mathbb N$ tenemos $\exp(\log_\Omega(P_N)) = P_N = \exp(S_N)$, así que existe $k_N\en\mathbb Z$ con
+\begin{equation}\label{eq:logprod}
+\log_\Omega(P_N) = S_N + 2\pi ik_N
+\end{equation}
+La continuidad de $\log_\Omega$ garantiza que $\log_\Omega(P_N) \to \log_\Omega(P)$ y además $S_{N+1} - S_N = \log(z_{N+1})$ converge a cero gracias a que $z_{N+1} \to 1$ y $\log$ es continuo.%
+\footnote{
+    Como el producto converge y ningún $P_N$ es nulo, se sigue de inmediato que $z_{N+1} = \frac{P_{N+1}}{P_N} \xrightarrow{N\to \infty} \frac{P}{P} = 1$.
+}
+Por lo tanto (\ref{eq:logprod}) implica
+\[
+\big(\log_\Omega(P_{N+1}) - \log_\Omega(P_{N})\big) - \big(S_{N+1}-S_N\big) = 2\pi i(k_{N+1} - k_N)
+\]
+Por lo que acabamos de ver, el lado izquierdo converge a cero, así que también $k_{N+1}-k_N \to 0$. Sin embargo, $k_N\en\mathbb Z$, por lo que forzosamente $k_N$ es eventualmente constante (en particular convergente). Finalmente, como $\log_\Omega(P_N)$ y $2\pi i k_N$ convergen, (\ref{eq:logprod}) implica que también $S_N$ converge.\par
+Para probar lo segundo, notemos que
+\[\textstyle
+\ln(\prod^N_{n=1}\abs{z_n}) = \sum^N_{n=1}\ln{|z_n|}
+\quad\text{y}\quad
+\prod^N_{n=1}\abs{z_n} = \exp(\sum^N_{n=1}\ln{|z_n|})
+\]
+De estas dos igualdades se sigue que $\abs{\prod^N_{n=1}z_n}=\prod^N_{n=1}\abs{z_n} \to 0$ si y solo si $\sum^N_{n=1}\ln{|z_n|} \to -\infty$; además, ya sabemos que $\abs{\prod^N_{n=1}z_n} \to 0$ si y solo si $\prod^N_{n=1}z_n \to 0$. Esto concluye la prueba.
+\end{proof}
+\end{lema}
+\begin{enumerate}[label=(\alph*), leftmargin=1.5em]
+%--------------------------------------------------
+\item % Inciso (a)
+Como $|a_n|^2$ es sumable, converge a cero, así que eventualmente es menor que $\nicefrac{1}{4}$; por lo tanto, podemos suponer (obviando los primeros términos de la sucesión) que $|a_n|^2 \leq \nicefrac{1}{4}$ (i.e., $|a_n| \leq \nicefrac{1}{2}$) para todo $n\en\mathbb N$. Esto garantiza que $\log(1+a_n)$ (rama principal) está bien definido mediante su serie de potencias alrededor del origen. Sin embargo, para cualquier $z\en D_{1/2}(0)$:
+\[
+\log(1+z) 
+= \sum^\infty_{k=1}\frac{(-1)^{k+1}}{k}z^k
+\quad\implies\quad
+\log(1+z) - z 
+= \sum^\infty_{k=2}\frac{(-1)^{k+1}}{k}z^k
+= z^2\sum^\infty_{k=0}\frac{(-1)^{k+3}}{k+2}z^k
+\]
+así que usando desigualdad del triángulo, que $\frac{1}{k+2} \le \frac{1}{2}$ y que $\abs{z}\le \frac{1}{2}$:
+\[
+\abs{\log(1+z) - z}
+\;\leq\; |z|^2\sum^\infty_{k=0}\frac{1}{k+2}|z|^k
+\;\leq\; |z|^2\sum^\infty_{k=0}\frac{1}{2^{k+1}} 
+\;=\; \abs{z}^2
+\]
+En particular, $\abs{\log(1+a_n)-a_n} \le |a_n|^2$ para todo $n\en\mathbb N$. Luego:
+\[
+\sum^\infty_{n=1} \abs{\log(1+a_n) - a_n} 
+\;\leq\; \sum^\infty_{n=1}|a_n|^2 <\infty
+\]
+La convergencia de $\sum^\infty_{n=1} \abs{\log(1+a_n) - a_n}$ garantiza que $\sum^\infty_{n=1}a_n$ converge si y solo si lo hace $\sum^\infty_{n=1}\log(1+a_n)$;%
+\footnote{
+    En efecto, pues para cualesquiera dos sucesiones $\set{a_n}^\infty_{n=1}$ y $\set{b_n}^\infty_{n=1}$ de números complejos, basta con que $\sum^\infty_{n=1}(a_n-b_n)$ converja para garantizar (gracias a la linealidad) que, si $\sum^\infty_{n=1} a_n$ converge entonces también lo hace $\sum^\infty_{n=1}b_n =\sum^\infty_{n=1}a_n-\sum^\infty_{n=1}(a_n-b_n)$, y si $\sum^\infty_{n=1}b_n$ converge entonces también lo hace $\sum^\infty_{n=1}a_n = \sum^\infty_{n=1}(a_n-b_n) + \sum^\infty_{n=1}b_n$. 
+}
+sin embargo, gracias al \cref{lema:convprod}, sabemos que esta última serie converge si y solo si $\prod^\infty_{n=1}(1+a_n)$ converge a un valor no nulo. Más aún, como ninguno de los términos $|a_n| > \nicefrac{1}{2}$ obviados al inicio de la sucesión son iguales a $-1$ (y así $(1+a_n) \neq 0$), podemos asegurar que, al momento de considerarlos, el producto total seguirá siendo no nulo. Esto concluye la prueba
+%--------------------------------------------------
+\item % Inciso (b)
+Tomamos $a_n \coloneq \frac{i(-1)^n}{\sqrt{n}}$, definida para $n\ge 2$. Como $\abs{1+a_n} = \abs{1+i\frac{(-1)^n}{\sqrt{n}}} = \sqrt{1+\frac{1}{n}}$, se cumple:
+\[
+\ln{\abs{1+a_n}} 
+= \frac{1}{2} \ln(1+\frac{1}{n})
+= \frac{1}{2} \ln(\frac{n+1}{n}) = \frac{1}{2}\left(\ln(n+1) - \ln(n)\right),
+\quad\forall n \en \mathbb{N}_{\ge2}
+\]
+Por lo cual, obtenemos una serie telescópica
+\[
+\sum^N_{n=2}\ln\abs{1+a_n}
+= \frac{1}{2}\bigl( \ln(N+1) - \ln({2}) \bigr)
+\xrightarrow{N\to\infty} \infty
+\]
+Gracias a esto, la segunda parte del \cref{lema:convprod} garantiza que $\prod^\infty_{n=2}(1+a_n)$ no converge a cero (pues no se cumple $\sum^N_{n=2}\ln\abs{1+a_n} \to-\infty$). Más aún, $\prod^\infty_{n=2}(1+a_n)$ tampoco converge a un valor distinto de cero, ya que si lo hiciera, la continuidad del módulo implicaría que $\prod^\infty_{n=2}|1+a_n|$ converge a un valor no nulo, y así, la primera parte del \cref{lema:convprod} implicaría que $\sum^\infty_{n=1}\log|1+a_n|=\sum^\infty_{n=1}\ln|1+a_n|$ converge (ya que $\log|_{\mathbb{R}^+} = \ln$ por construcción), lo cual no ocurre.%
+\footnote{
+    Notemos que aquí aplicamos la primer parte del \cref{lema:convprod} a $z_n \coloneq |1+a_n|$ viéndola como sucesión de complejos.
+}
+Esto prueba que $\prod^\infty_{n=2}(1+a_n)$ no puede converger a ningún valor.
+\par
+% Como $\abs{a_n} < 1$, $a_n$ está en el disco de convergencia de la serie de Taylor del logaritmo $\log(1+z) = \sum^\infty_{k=1} \frac{(-1)^{k+1}}{k}z^k$. Por lo tanto:
+% \[
+% \log(1+a_n) 
+% = \sum^\infty_{k=1} \frac{(-1)^{k+1}}{k}\biggl(\frac{i(-1)^n}{\sqrt{n}}\biggr)^k 
+% = \sum^\infty_{k=1} \frac{i^k(-1)^{kn+k+1}}{kn^{k/2}}  
+% = \frac{i(-1)^n}{\sqrt{n}} + \frac{1}{2n} + \sum^\infty_{k=3} \frac{i^k(-1)^{kn+k+1}}{kn^{k/2}} 
+% \]
+% De lo cual se sigue:
+% \[
+% \abs{\log(1+a_n)-\Bigl(\tfrac{1}{2n} + i\tfrac{(-1)^n}{\sqrt{n}}\Bigr)}
+% \le \sum^\infty_{k=3}\frac{1}{kn^{k/2}},
+% \quad\forall n\en\mathbb{N}_{\ge2}
+% \]
+% Como $\sum^\infty_{k=3}\frac{1}{kn^{k/2}} = O\big(\frac{1}{n^{3/2}}\big)$, se sigue que es sumable respecto a $n$, por lo cual:
+% \[
+% \sum^\infty_{n=2}\abs{\log(1+a_n)-\Bigl(\tfrac{1}{2n} + i\tfrac{(-1)^n}{\sqrt{n}}\Bigr)}
+% \le \sum^\infty_{n=2}\sum^\infty_{k=3}\frac{1}{kn^{k/2}} < \infty
+% \]
+% De esto se sigue que la convergencia de $\sum^\infty_{n=2}\log(1+a_n)$ equivale a la de $\sum^\infty_{n=2}\Bigl(\tfrac{1}{2n} + i\tfrac{(-1)^n}{\sqrt{n}}\Bigr)$; no obstante, para que esta última serie converja, tanto su parte real como su parte imaginaria deben converger, mientras que $\sum^\infty_{n=2}\frac{1}{2n}$ diverge. De esto se sigue que $\sum^\infty_{n=2}\log(1+a_n)$ diverge, por consiguiente también $\prod^\infty_{n=2}(1+a_n)$ diverge (\cref{lema:convprod}).\par
+Por otro lado, como $\frac{1}{\sqrt{n}} \to0$ de forma monótona, el criterio de Leibniz garantiza que $\sum^\infty_{n=2}\frac{(-1)^n}{\sqrt{n}}$ converge, así que por linealidad también converge $\sum^\infty_{n=2}a_n = i\sum^\infty_{n=2}\frac{(-1)^n}{\sqrt{n}}$.
+\item 
+Tomando $a_n \coloneq \frac{1}{n} - 1$ para todo $n\en\mathbb{N}$, el producto $\prod^N_{n=1}(1+a_n) = \prod^N_{n=1}\frac{1}{n} = \frac{1}{N!}$ converge a cero, mientras que $\sum^\infty_{n=1}a_n$ diverge ya que $a_n \to -1\neq0$.
+\end{enumerate}
+\end{sol}
+

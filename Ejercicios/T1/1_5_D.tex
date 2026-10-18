@@ -1,0 +1,59 @@
+%------------------------------ Ejercicio 1.5.D -------------------------------
+\setcounter{neje}{3}
+\begin{nejer}
+Muestre que $(\cdot)\otimes_A N$ y $\Hom_A(N, \cdot)$ son funtores adjuntos.
+\end{nejer}
+\begin{sol}
+Primero fijemos módulos $L,R\en\cat{Mod}_A$. La propiedad universal de $\otimes_A$ dice que hay una biyección $\hom(L\otimes_AN,R) \cong \operatorname{Bilineal}(L,N,R)$ que a cada $\phi \en \hom(L\otimes_AN,R)$ asigna su precomposición con $\otimes_A \colon L\times N \to L\otimes_AN$, i.e., $\phi \mapsto \phi \circ \otimes_A$. Entonces nos es suficiente construir una biyección: $\operatorname{Bilineal}(L,N,R) \cong \hom(L,\Hom_A(N,R))$.\medskip\\
+\emph{Construyamos la biyección}:\\
+Si $\varphi \en \operatorname{Bilineal}(L,N,R)$ entonces como función $\varphi \colon L \times N \to R$ tiene una función transpuesta $\ubar{\varphi}\colon L \to R^N$ tal que $\ubar{\varphi}(l)(n) = \varphi(l,n)$. Afirmamos que $\ubar{\varphi} \en \hom(L,\Hom_A(N,R))$.\par
+En efecto, por un lado, para cada $l\en L$ la función $\ubar{\varphi}(l) \colon N \to R$ es $A$-lineal gracias a que coincide con $\varphi(l,\cdot)$. Esto prueba que $\im(\ubar{\varphi}) \subseteq \Hom_A(N,R)$ y podemos restringir el codominio para obtener una función $\ubar{\varphi} \colon L \to \Hom_A(N,R)$. Por otro lado, $\ubar{\varphi}$ es por sí misma $A$-lineal, ya que dados $l_1,l_2 \en L$ y $a\en A$, tenemos gracias a la bilinealidad de $\varphi$:
+\[
+\ubar\varphi(l_1+al_2)(r) 
+= \varphi(l_1+al_2,r)
+= \varphi(l_1,r) + a\varphi(l_2,r)
+= \bigl(\ubar\varphi(l_1) + a\ubar\varphi(l_2)\bigr)(r),
+\qquad\forall r\en R
+\]
+esto es, $\ubar\varphi(l_1+al_2) = \ubar\varphi(l_1) + a\ubar\varphi(l_2)$. Hemos probado que $\ubar{\varphi} \en \hom(L,\Hom_A(N,R))$.\medskip\\
+\emph{Probemos que $\varphi \mapsto\ubar{\varphi}$ es biyección}:\\
+Con este fin, exhibiremos su inversa. Si $\vartheta \en \hom(L,\Hom_A(N,R))$, definimos $\tilde{\vartheta}\colon L\times N \to R$ mediante $\tilde{\vartheta}(l,n) = \vartheta(l)(n)$. Veamos que $\tilde{\vartheta}\en\operatorname{Bilineal}(L,N,R)$.
+En efecto, para cada $l\en L$, $\vartheta(l)\en\Hom_A(N,R)$; luego, dados $n_1,n_2\en N$ y $a\en A$,
+\[
+\tilde{\vartheta}(l, n_1+an_2) = \vartheta(l)(n_1+an_2) = \vartheta(l)(n_1) + a\vartheta(l)(n_2) = \tilde{\vartheta}(l,n_1) + a\tilde{\vartheta}(l,n_2).
+\]
+Además, como $\vartheta$ es $A$-lineal, para $l_1,l_2\en L$ y $a\en A$,
+\[
+\tilde{\vartheta}(l_1+al_2, n) = \vartheta(l_1+al_2)(n) = (\vartheta(l_1) + a\vartheta(l_2))(n) = \vartheta(l_1)(n) + a\vartheta(l_2)(n) = \tilde{\vartheta}(l_1,n) + a\tilde{\vartheta}(l_2,n).
+\]
+Así, $\tilde{\vartheta}\en\operatorname{Bilineal}(L,N,R)$. Solo resta probar que las asignaciones son inversas:
+dada $\varphi\en\operatorname{Bilineal}(L,N,R)$, se tiene $\tilde{\ubar{\varphi}}(l,n) = \ubar{\varphi}(l)(n) = \varphi(l,n)$, de donde $\tilde{\ubar{\varphi}} = \varphi$. Recíprocamente, si $\vartheta\en\hom(L,\Hom_A(N,R))$, entonces $\ubar{\tilde{\vartheta}}(l)(n) = \tilde{\vartheta}(l,n) = \vartheta(l)(n)$, y por tanto $\ubar{\tilde{\vartheta}} = \vartheta$. Esto muestra que $\varphi\mapsto\ubar{\varphi}$ es una biyección con inversa $\vartheta\mapsto\tilde{\vartheta}$. En particular, gracias a esto y a la biyección dada al inicio por la prop. universal, tenemos una biyección $\Phi_{L,R}\colon\hom(L\otimes_AN,R) \cong \hom(L,\Hom_A(N,R))$ dada por $\Phi_{L,R}(\phi) = \ubar{\phi\circ\otimes_A}$.\medskip\\
+\emph{Probemos que la biyección $\Phi_{L,R}$ es natural}:\\
+De la definición se sigue que $\Phi_{L,R}(\phi)(l)(n) = \phi(l\otimes n)$ para todos $l\en L$, $n\en N$ y $\phi\en\hom(L\otimes_AN,R)$.
+\begin{itemize}
+    \item\emph{Naturalidad en $L$}: Tomemos $f\en\hom_A(L,L')$. Debemos verificar que $\Phi_{L,R} \circ(f\otimes_AN)^* = f^* \circ \Phi_{L',R}$. Es decir, $\Phi_{L,R}\bigl(\phi\circ(f\otimes_AN)\bigr) = \Phi_{L',R}(\phi)\circ f$ para toda $\phi\en\hom(L'\otimes_AN,R)$. En efecto, si $l\en L,n\en N$:
+    \[
+    \begin{aligned}
+    \Phi_{L,R}\bigl(\phi\circ(f\otimes_AN)\bigr)(l)(n)
+    &= \bigl(\phi\circ(f\otimes_AN)\bigr)(l\otimes n)\\
+    &= \phi\bigl(f(l)\otimes n\bigr)\\
+    &= \Phi_{L',R}(\phi)(f(l))(n)\\
+    &= (\Phi_{L',R}(\phi)\circ f)(l)(n)
+    \end{aligned}
+    \]
+    lo que muestra la naturalidad en el primer argumento.
+
+    \item\emph{Naturalidad en $R$}: Sea $g\en\hom_A(R',R)$. Debemos probar que $\Phi_{L,R}\circ g_* = \Hom_A(N,g)_* \circ \Phi_{L,R'}$.
+    Es decir, $\Phi_{L,R}(g\circ\phi) = \Hom_A(N,g)\circ \Phi_{L,R'}(\phi)$ para toda $\phi\en\hom(L\otimes_AN,R')$. En efecto, si $l\en L,n\en N$:
+    \[\begin{aligned}
+    \Phi_{L,R}(g\circ\phi)(l)(n)
+    &= (g\circ\phi)(l\otimes n)\\
+    &= g(\phi(l\otimes n))\\
+    &= g\bigl( \Phi_{L,R'}(\phi)(l)(n) \bigr)\\
+    &=\bigl( g\circ\Phi_{L,R'}(\phi)(l) \bigr)(n)\\
+    &= \bigl( \Hom_A(N,g)\bigl( \Phi_{L,R'}(\phi)(l) \bigr) \bigr)(n)\\
+    &= \bigl( \Hom_A(N,g)\circ \Phi_{L,R'}(\phi) \bigr)(l)(n)
+    \end{aligned}\]
+    lo que muestra la naturalidad en el segundo argumento.
+\end{itemize}
+\end{sol}

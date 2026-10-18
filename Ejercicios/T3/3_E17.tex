@@ -1,0 +1,35 @@
+\setcounter{eje}{16}
+\begin{ejer}
+Sea $f$ no constante y holomorfa en un abierto que contiene al disco unitario cerrado $\ubar{\mathbb{D}}$.
+\begin{enumerate}[label=(\alph*),leftmargin=1.5em]
+    \item Muestre que si $|f(z)|=1$ siempre que $|z|=1$, entonces la imagen de $f$ contiene al disco unitario.\par
+    
+    \item Si $|f(z)| \geq 1$ siempre que $|z|=1$ y existe un punto $z_0 \en \mathbb{D}$ tal que $|f(z_0)| < 1$, entonces la imagen de $f$ contiene al disco unitario.
+\end{enumerate}
+\end{ejer}
+\begin{sol}\hphantom{r}
+\begin{enumerate}[label=(\alph*),leftmargin=1.5em]
+\item 
+\emph{Primero veamos que $f(z)$ tiene una raíz en $\mathbb{D}$}:\\
+Procedamos por contradicción suponiendo que $f$ no se anula en $\ubar{\mathbb{D}}$. Entonces $1/f(z) \en \mathcal{H}(\ubar{\mathbb{D}})$, así que por la compacidad de $\ubar{\mathbb{D}}$ y gracias al principio de módulo máximo:
+\[
+\max_{z\en\ubar{\mathbb{D}}} \abs{f(z)} = \max_{z\en\partial\mathbb{D}} \abs{f(z)} = 1
+\quad\text{y}\quad
+\max_{z\en\ubar{\mathbb{D}}} \abs{1/f(z)} = \max_{z\en\partial\mathbb{D}} \abs{1/f(z)} = 1
+\]
+es decir, $|f(z)| \le 1$ y $|1/f(z)| \le 1$ para cada $z\en\mathbb{D}$, de donde $1 \le |f(z)| \le 1$ para cada $z\en\mathbb{D}$. Esto implica que $|f|$ es constante en $\mathbb{D}$, así que un ejercicio de la tarea 1 asegura que $f$ es constante en $\mathbb{D}$. Luego, el principio de identidad implica que $f$ es constante en $\mathbb{C}$, lo cual contradice la hipótesis. Se sigue que forzosamente $f$ se debe anular en algún punto de $\ubar{\mathbb{D}}$, como en la frontera el módulo es 1, dicho punto debe estar en $\mathbb{D}$.\par
+Ahora bien, si fijamos un $w\en\mathbb{D}$ arbitrario, entonces $\abs{w} < 1 = \abs{f(z)}$ en el círculo $z\en\partial\mathbb{D}$. Se sigue, del teorema de Rouché, que $f(z)$ y $f(z) - w$ tienen la misma cantidad de raíces en $\mathbb{D}$; en particular, $f(z) - w$ tendrá una raíz en $\mathbb{D}$, así que existe $z\en\mathbb{D}$ tal que $w = f(z) $, de donde $w\en\im(f)$. Hemos probado que $\mathbb{D} \subseteq \im(f)$.
+
+\item
+\emph{Primero veamos que $f(z)$ tiene una raíz en $\mathbb{D}$}:\\
+Procedamos por contradicción, suponiendo que $f$ no se anula en $\ubar{\mathbb{D}}$. Entonces $1/f(z) \en \mathcal{H}(\ubar{\mathbb{D}})$, pero recordemos que existe $z_0\en\mathbb{D}$ con $\abs{1/f(z_0)}>1$, así que por princ. de módulo máximo:
+\[
+1 
+\;<\; \abs{1/f(z_0)}
+\;\le\; \max_{z\en\ubar{\mathbb{D}}} \abs{1/f(z)}
+\;=\; \max_{z\en\partial\mathbb{D}} \abs{1/f(z)}
+\]
+Por lo tanto, existe $z_1\en\partial\mathbb{D}$ con $\abs{1/f(z_1)} = \max_{\partial\mathbb{D}} \abs{1/f(z)} > 1$, es decir, $\abs{f(z_1)} < 1$, lo cual contradice la hipótesis. Se sigue que forzosamente $f$ se debe anular en algún punto de $\ubar{\mathbb{D}}$, como en la frontera el módulo al menos 1, dicho punto debe estar en $\mathbb{D}$.\par
+Ahora bien, si fijamos un $w\en\mathbb{D}$ arbitrario, entonces $\abs{w} < 1 \le \abs{f(z)}$ en el círculo $z\en\partial\mathbb{D}$. Se sigue, del teorema de Rouché, que $f(z)$ y $f(z) - w$ tienen la misma cantidad de raíces en $\mathbb{D}$; en particular, $f(z) - w$ tendrá una raíz en $\mathbb{D}$, así que existe $z\en\mathbb{D}$ tal que $w = f(z) $, de donde $w\en\im(f)$. Hemos probado que $\mathbb{D} \subseteq \im(f)$.
+\end{enumerate}
+\end{sol}

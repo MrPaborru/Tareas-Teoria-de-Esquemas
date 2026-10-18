@@ -1,0 +1,85 @@
+%------------------------------ Ejercicio 1.2.C -------------------------------
+\begin{nejer}
+Sea $(\cdot)^{\vee\vee} \colon \cat{f.d.Vec}_k \to \cat{f.d.Vec}_k$ el funtor doble dual de la categoría de espacios vectoriales de dimensión finita sobre $k$ en sí misma. Muestre que $(\cdot)^{\vee\vee}$ es naturalmente isomorfo al funtor identidad en $\cat{f.d.Vec}_k$. (Sin la hipótesis de dimensión finita, solo obtenemos una transformación natural de funtores de $\id$ a $(\cdot)^{\vee\vee}$).
+\end{nejer}
+\begin{sol}
+Recordemos que el funtor dual $(\cdot)^\vee$ asocia a cada espacio vectorial $V$ su espacio dual $V^\vee \coloneq \operatorname{Hom}(V,k)$, y a cada morfismo $f \colon V \to W$ la transformación $f^\vee \colon W^\vee \to V^\vee$ dada por $f^\vee(\psi) = \psi \circ f$.
+Entonces, para cada $V\en\cat{f.d.Vec}_k$, definimos la aplicación $\ev_V \colon V \longrightarrow V^{\vee\vee}$ mediante
+\[
+\ev_V(v)(\varphi)=\varphi(v),
+\qquad
+\forall v\en V,\, \forall\varphi\en V^\vee.
+\]
+Es decir, $\ev_V(v)$ es el funcional evaluación en $v$.
+
+\begin{itemize}
+\item\emph{Probemos que que $\ev_V$ es lineal}:\\
+En efecto, si
+$v,w\en V$, $a,b\en k$ y $\varphi\en V^\vee$, entonces
+\[
+\begin{aligned}
+\ev_V(av+bw)(\varphi)
+&=\varphi(av+bw)\\
+&=a\varphi(v)+b\varphi(w)\\
+&=\bigl(a\ev_V(v)+b\ev_V(w)\bigr)(\varphi).
+\end{aligned}
+\]
+Por lo tanto, $\ev_V(av+bw)=a\ev_V(v)+b\ev_V(w)$.
+
+\item\emph{Probemos que $\ev_V$ es natural en $V$}:\\
+Para probar que estas aplicaciones conforman una transformación natural $\ev \colon \id_{\cat{f.d.Vec}} \Rightarrow (\cdot)^{\vee\vee}$ debemos verificar que, para cualquier morfismo $f\colon V \to W$, el siguiente diagrama conmuta:
+\[\begin{tikzcd}
+V \arrow[r,"\ev_V"] \arrow[d,"f"'] &
+V^{\vee\vee} \arrow[d,"f^{\vee\vee}"]\\
+W \arrow[r,"\ev_W"'] &
+W^{\vee\vee}
+\end{tikzcd}\]
+en otras palabras, $f^{\vee\vee}\circ{\ev_V}
+=
+{\ev_W}\circ f$. Esto es así, para todos $v\en V$ y $\psi \en W^\vee$ se tiene
+\[\begin{aligned}
+\bigl(f^{\vee\vee}(\ev_V(v))\bigr)(\psi)
+&=\ev_V(v)\bigl(f^\vee(\psi)\bigr)\\
+&=\ev_V(v)(\psi\circ f)\\
+&=(\psi\circ f)(v)\\
+&=\psi(f(v))\\
+&=\ev_W(f(v))(\psi)\\
+&=\bigl(\ev_W(f(v))\bigr)(\psi).
+\end{aligned}\]
+Esto prueba la naturalidad de $\ev$.
+
+\item\emph{Finalmente, probemos que $\ev_V$ es isomorfismo gracias a que $V$ tiene dimensión finita}:\\
+Supongamos que $\dim_k(V)=n$ y sea $(e_1,\ldots,e_n)$ una base de $V$. Luego, consideramos $(e^1,\ldots,e^n)$ la base dual de $(e_1,\ldots,e_n)$, es decir, $e^j\en V^\vee$ se define de modo que $e^j(e_i)=\delta_i^j$. Afirmamos que la base dual es una base para $V^\vee$. En efecto, por un lado si $\varphi\en V^\vee$ y $v=\sum_{i=1}^n a_i e_i\en V$, entonces
+\[
+\varphi(v)
+=\sum\nolimits_{i=1}^n a_i\varphi(e_i)
+\qquad\text{pero } e^i(v) = a_i, \text{ por lo cual}\qquad
+\varphi(v)
+=\sum\nolimits_{i=1}^n \varphi(e_i)e^i(v).
+\]
+Por lo tanto, $\varphi=\sum_{i=1}^n\varphi(e_i)e^i$, de modo que
+$(e^1,\ldots,e^n)$ genera a $V^\vee$.
+Por otro lado, si $\sum_{i=1}^n a_i e^i=0$, al evaluar en $e_j$ obtenemos
+$a_j=\sum_{i=1}^n a_i e^i(e_j)=0$ para cualquier $1\le j\leq n$, por lo tanto
+$(e^1,\ldots,e^n)$ es linealmente independiente. Esto prueba que
+$(e^1,\ldots,e^n)$ es una base de $V^\vee$.
+
+Consideremos las imágenes de los elementos de la base mediante
+$\ev_V$:
+\[
+\ev_V(e_i)(e^j)
+=
+e^j(e_i)
+=
+\delta_i^j,
+\qquad\forall i,j\en\{1,\ldots,n\}
+\]
+Por definición, esto significa que $\bigl(\ev_V(e_1),\ldots,\ev_V(e_n)\bigr)$ es la base dual de $(e^1,\ldots,e^n)$
+en $V^{\vee\vee}$; en particular, ya vimos que esto implica que $\bigl(\ev_V(e_1),\ldots,\ev_V(e_n)\bigr)$ es base de $V^{\vee\vee}$, lo cual garantiza que $\ev_V$ es isomorfismo.
+\end{itemize}
+
+\begin{nota}
+Respecto al paréntesis, si $V$ no es de dimensión finita, la misma
+construcción sigue definiendo una transformación natural $\ev\colon\id_{\cat{Vec}_k}\Longrightarrow(\cdot)^{\vee\vee}$ (la prueba de los primeros dos puntos no requirió la hipótesis de tener dimensión finita). No obstante, $\ev_V$ no tiene por qué ser sobreyectiva, aunque siempre es inyectiva: si $v\neq 0$, podemos extender $\set{v}$ a una base de Hamel $\mathscr{B}$ para $V$ (AC), de modo que podemos definir $\varphi\en V^\vee$ tal que $\varphi(v)\neq0$ y $\varphi(w)=0$ para todo $w\en\mathscr{B}-\set{v}$. Como existe $\varphi\en V^\vee$ con $\ev_V(v)(\varphi) = \varphi(v) \neq 0$, tenemos que $\ev_V(v) \neq0$. Se sigue que $\ev_V$ es inyectiva.   
+\end{nota}
+\end{sol}

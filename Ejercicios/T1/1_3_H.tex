@@ -1,0 +1,61 @@
+%------------------------------ Ejercicio 1.3.H -------------------------------
+\setcounter{neje}{7}
+\begin{nejer}[%
+\texorpdfstring{Exactitud por la derecha de $(\cdot)\otimes_A N$}{Exactitud por la derecha del producto tensorial}%
+]
+Demuestre que $(\cdot)\otimes_A N$ define un funtor covariante $\cat{Mod}_A \to \cat{Mod}_A$. Demuestre que $(\cdot) \otimes_A N$ es un \emph{funtor exacto por la derecha}, es decir, si
+$$M' \longrightarrow M \longrightarrow M'' \longrightarrow 0$$
+es una sucesión exacta de $A$-módulos%
+% (lo que significa que $f \colon M \to M''$ es sobreyectiva, y $M'$ sobreyecta sobre el núcleo de $f$; ver $\S 1.6$)
+, entonces la sucesión inducida
+$$M' \otimes_A N \longrightarrow M \otimes_A N \longrightarrow M'' \otimes_A N \longrightarrow 0$$
+también es exacta. Este ejercicio se repite en 1.6.F, pero puede ser provechoso hacerlo ahora. 
+%(Se le recordará la definición de exactitud por la derecha en la $\S 1.6.5$).
+\end{nejer}
+\begin{sol}
+\emph{Definamos el funtor}:\\
+Si $f \colon M' \to M$ es homomorfismo, la función $F \colon M'\times N \longrightarrow M \otimes_A N$ con $F(m,n) = f(m) \otimes_A n$ es bilineal, así que se factoriza de forma única a través de $M' \otimes_A N$:
+\[\begin{tikzcd}[ampersand replacement=\&,sep = small]
+	\& {M' \otimes_A N} \& \\
+	M' \times N \&\& M \otimes_A N
+	\arrow["{f \otimes_A N}", dashed, from=1-2, to=2-3]
+	\arrow["\otimes_A", from=2-1, to=1-2]
+	\arrow["F"{description}, from=2-1, to=2-3]
+\end{tikzcd}\]
+es decir, es el único morfismo que cumple $(f \otimes_A N)(m\otimes_An) = f(m) \otimes_A n$ para todos $m\en M',n\en N$. Afirmamos que esto define un funtor. En efecto, por un lado $(\id_M \otimes_A N)(m \otimes_A n) = m \otimes_A n$ así que $\id_M \otimes_A N=\id_{M \otimes_A N}$. Por otro lado, si $f \colon M' \to M$ y $g \colon M \to M''$, para todos $m\en M', n\en N$:
+\[
+(gf \otimes_A N)(m \otimes_A n)
+= g(f(m)) \otimes_A n
+= (g \otimes_A N)\bigl(f(m) \otimes_A n\bigr)
+= (g \otimes_A N)\bigl((f \otimes_A N)(m \otimes_A n)\bigr)
+\] 
+de donde $(gf \otimes_A N) = (g \otimes_A N) \circ (f \otimes_A N)$. Hemos probado que $(\cdot)\otimes_A N$ es funtor.\medskip\\
+\emph{Probemos exactitud derecha}:\\
+Sea $M' \xrightarrow{f} M \xrightarrow{g} M'' \to 0$ exacta. Probemos la exactitud de
+\[
+M' \otimes_A N \xrightarrow{f\otimes_AN} M \otimes_A N \xrightarrow{g\otimes_AN} M'' \otimes_A N \longrightarrow 0
+\]
+vértice a vértice:
+\begin{itemize}
+    \item\emph{Exactitud en $ M''\otimes_A N$}. Basta probar sobreyectividad de $g\otimes_AN$: si $m''\otimes_An$ es cualquier generador de $M'' \otimes_A N$ entonces como $g$ es sobre sabemos que existe $m\en M$ con $g(m) = m''$. Luego $(g\otimes_A N)(m\otimes_An) = g(m) \otimes_A n = m'' \otimes_An$. Como la imagen de $g\otimes_A N$ abarca a todos los generadores de $M'' \otimes_A N$, se sigue que $g\otimes_A N$ es sobreyectiva.
+
+    \item\emph{Exactitud en $M\otimes_A N$}. Puesto que $g\circ f = 0$, se tiene $(g\otimes_A N)\circ(f\otimes_A N) = (g\circ f)\otimes_A N = 0$; luego $\im(f\otimes_A N)\subseteq \ker(g\otimes_A N)$.\par
+    Para la otra contención, notemos que $\im(f\otimes_A N)\subseteq \ker(g\otimes_A N)$ garantiza que podemos levantar $g\otimes_A N$ a un morfismo
+    \[
+    G \colon \tfrac{M \otimes_A N}{\im(f\otimes_AN)} \to M''\otimes_AN,
+    \quad\text{tal que}\quad
+    G(m\otimes_An+\im(f\otimes_AN)) = g(m)\otimes_An 
+    \]
+    Afirmamos que podemos construir una sección para $G$. En efecto, dado $m''\en M''$ sabemos que existe $m\en M$ con $g(m)=m''$ ($g$ es sobre), así que definimos $\varphi \colon M''\times N \to \frac{M\otimes_AN}{\im(f\otimes_AN)}$ por $\varphi(m'',n) \coloneq m\otimes_An + \im(f\otimes_An)$. Es sencillo probar que $\varphi$ está bien definida y es $A$-bilineal,%
+    \footnote{
+        Si $m_1,m_2\in N$ son tales que $g(m_1)=m''=g(m_2)$ entonces $g(m_1-m_2) = 0$, por lo que $m_1-m_2 \in \ker(g) = \im(f)$. Se sigue que $(m_1-m_2)\otimes_A n \in \im(f\otimes_AN)$, y así, $m_1 \otimes_An +\im(f\otimes_AN) = m_2\otimes_An+\im(f\otimes_AN)$. La linealidad en la segunda entrada es trivial (pues es la identidad), así que probaré solo linealidad en la primera: si $m_1'',m_2''\in M''$ y $r\in A$ entonces tomamos preimágenes $m_1,m_2 \in M$ con $g(m_i) = m_i''$, de esto se sigue que $g(m_1 + rm_2) = g(m_1) + rg(m_2) = m_1''+rm_2''$ así que, por definición (y por independencia en la preimagen elegida, lo que ya fue probado), $\varphi(m_1''+rm_2'',n) = (m_1+rm_2)\otimes_An+\im(f\otimes_AN) = \bigl(m_1\otimes_An+\im(f\otimes_AN)\bigr)+r\bigl(m_2\otimes_An+\im(f\otimes_AN)\bigr) = \varphi(m_1'',n)+r\varphi(m_2'',n)$.
+    }
+    por lo tanto se factoriza mediante el producto tensorial a un morfismo $\hat{\varphi} \colon M''\otimes_AN \to \frac{M\otimes_AN}{\im(f\otimes_AN)}$. Notemos que $\hat{\varphi}$ es inverso izquierdo de $G$: dados $m\en M,n\en N$ sabemos que $m$ es una preimagen de $g(m)$, así por definición:
+    \[
+    \hat{\varphi}\bigl(G(m\otimes_An+\im(f\otimes_AN))\bigr)
+    = \hat{\varphi}\bigl(g(m)\otimes_An+\im(f\otimes_AN)\bigr)
+    = m\otimes_An+\im(f\otimes_AN)
+    \]
+    Como $G$ tiene inverso izquierdo, se sigue que es inyectivo, i.e., $\ker G = \set{\im(f\otimes_AN)}$. Como $G$ es inducida por $g\otimes_AN$ esto garantiza que $\ker(g\otimes_AN) = \im(f\otimes_AN)$. 
+\end{itemize}
+\end{sol}

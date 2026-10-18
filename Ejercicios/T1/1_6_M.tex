@@ -1,0 +1,121 @@
+%------------------------------ Ejercicio 1.6.M -------------------------------
+\setcounter{neje}{12}
+\begin{nejer}
+Suponga que
+\[\begin{tikzcd}[sep=1.8em]
+  & \vdots & \vdots & \vdots \\
+  0 & A_{n+1} & B_{n+1} & C_{n+1} & 0 \\
+  0 & A_n & B_n & C_n & 0 \\
+  & \vdots & \vdots & \vdots \\
+  0 & A_0 & B_0 & C_0 & 0 \\
+  & 0 & 0 & 0
+  %
+  % Sucesión exacta en n+1
+  \arrow[from=2-1, to=2-2]
+  \arrow["f_{n+1}", from=2-2, to=2-3]
+  \arrow["g_{n+1}", from=2-3, to=2-4]
+  \arrow[from=2-4, to=2-5]
+  %
+  % Sucesión exacta en n
+  \arrow[from=3-1, to=3-2]
+  \arrow["f_{n}", from=3-2, to=3-3]
+  \arrow["g_{n}", from=3-3, to=3-4]
+  \arrow[from=3-4, to=3-5]
+  %
+  % Sucesión exacta en 0
+  \arrow[from=5-1, to=5-2]
+  \arrow["f_{0}", from=5-2, to=5-3]
+  \arrow["g_{0}", from=5-3, to=5-4]
+  \arrow[from=5-4, to=5-5]
+  %
+  % Flechas verticales
+  \arrow[from=1-2, to=2-2]
+  \arrow[from=1-3, to=2-3]
+  \arrow[from=1-4, to=2-4]
+  \arrow["\alpha_{n+1}", from=2-2, to=3-2]
+  \arrow["\beta_{n+1}", from=2-3, to=3-3]
+  \arrow["\gamma_{n+1}", from=2-4, to=3-4]
+  \arrow["\alpha_{n}", from=3-2, to=4-2]
+  \arrow["\beta_{n}", from=3-3, to=4-3]
+  \arrow["\gamma_{n}", from=3-4, to=4-4]
+  \arrow["\alpha_{1}", from=4-2, to=5-2]
+  \arrow["\beta_{1}", from=4-3, to=5-3]
+  \arrow["\gamma_{1}", from=4-4, to=5-4]
+  \arrow[from=5-2, to=6-2]
+  \arrow[from=5-3, to=6-3]
+  \arrow[from=5-4, to=6-4]
+\end{tikzcd}\]
+
+es un sistema inverso de sucesiones exactas de módulos sobre un anillo, tal que las aplicaciones $\alpha_n$ son sobreyectivas. Muestre que el límite
+\[\begin{tikzcd}[sep=1.8em]
+0 & \varprojlim A_n & \varprojlim B_n & \varprojlim C_n & 0
+\arrow[from=1-1, to=1-2]
+\arrow[from=1-2, to=1-3]
+\arrow[from=1-3, to=1-4]
+\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+también es exacto. (Necesitará definir los morfismos en la ecuación anterior).
+\end{nejer}
+\begin{sol}
+Recordemos del \cref{nejer:1.4.B} que se puede expresar el límite como 
+\[
+\varprojlim A_n =\set[\big]{ \textstyle (a_i)^\infty_{i=0} \in \prod^\infty_{i=0} A_i \given \alpha_{n}(a_n) = a_{n-1},\, \forall n \en \mathbb{N} }
+\]
+de modo que cada morfismo canónico $\rho^A_i\colon\varprojlim A_n \to A_i$ es restricción de la $i$-ésima proyección. De modo similar se definen concretamente los límites $\varprojlim B_n$ y $\varprojlim C_n$ con morfismos canónicos $\rho^B_i$ y $\rho^C_i$, respectivamente.\medskip\\
+\emph{Definamos los morfismos en la sucesión límite}:\\
+Como los morfismos $f_i \circ \rho^A_i \colon \varprojlim A_n \to B_i$ cumplen $\beta_i \circ (f_i \circ \rho^A_i) = f_{i-1} \circ \alpha_i \circ \rho^A_i = f_{i-1} \circ \rho^A_{i-1}$,%
+\footnote{
+    La primera igualdad es gracias a que los $f_i$ son morfismos entre sucesiones cortas (así que conmutan con las flechas verticales) y la segunda es la condición de ser cono límite de $\rho^A_i$, i.e., $\alpha_i \circ \rho^A_i = \rho^A_{i-1}$.
+}
+la propiedad universal de $\varprojlim B_n$ nos dice que hay un único morfismo $f \colon \varprojlim A_n \to \varprojlim B_n$ tal que $\rho^B_i \circ f = f_i \circ \rho^A_i$. Esta última condición se traduce en que $f(a) = (f_i(a_i))^\infty_{i=0}$ para cualquier $a=(a_i)^\infty_{i=0} \in \varprojlim A_n$. De manera análoga, los morfismos $g_i \circ \rho^B_i \colon \varprojlim B_n \to C_i$ inducen un único $g \colon \varprojlim B_n \to \varprojlim C_n$ tal que $\rho^C_i \circ g=g_i \circ \rho^B_i$, i.e., $g(b) = (g_i(b_i))^\infty_{i=0}$ para todo $b=(b_i)^\infty_{i=0} \in \varprojlim B_n$.\pagebreak[3]
+Esto resulta en la sucesión corta $0 \to \varprojlim A_n \xrightarrow{f} \varprojlim B_n \xrightarrow{g} \varprojlim C_n \to 0$,
+probemos que es exacta:
+\begin{itemize}
+\item\emph{Exactitud en $\varprojlim A_n$}. 
+Si $a=(a_i)^\infty_{i=0}\in\ker f$, entonces $0=f(a) = (f_i(a_i))^\infty_{i=0}$ por lo que $f_i(a_i) = 0$ para todo $i\en\mathbb{N}_0$, como $f_i$ es inyectiva, se sigue que $a_i=0$ para todo $i\en\mathbb{N}_0$, es decir, $a=0$. Esto prueba que $f$ es inyectiva
+
+\item\emph{Exactitud en $\varprojlim B_n$}. 
+Por un lado, para todo $i\en\mathbb{N}_0$, $\rho^C_i \circ g \circ f = g_i\circ\rho^B_i \circ f = g_i \circ f_i \circ \rho^A_i$. Como $g_i\circ f_i = 0$ gracias a la exactitud de la $i$-ésima sucesión corta, se sigue $\rho^C_i \circ g \circ f = 0$, pero esto ocurre para todo $i\en\mathbb{N}_0$, así que forzosamente $g \circ f =0$. Esto prueba que $\im f \subseteq \ker g$.\par
+Para la otra contención tomemos $b=(b_i)^\infty_{i=0} \in \ker g$. Se sigue que $0= g(b) = (g_i(b_i))^\infty_{i=0}$, por lo cual $g_i(b_i) = 0$ para cada $i\en\mathbb{N}_0$. Se sigue $b_i \in \ker g_i = \im f_i$ (exactitud $i$-ésima sucesión corta), por lo cual existe $a_i \en A_i$ con $f_i(a_i) = b_i$. Ahora probemos que $a \coloneq (a_i)^\infty_{i=0}$ pertenece a $\varprojlim A_n$. En efecto, primero $f_{i-1}(\alpha_i(a_i)) = \beta_i(f_i(a_i))$ ya que los cuadros en el primer diagrama conmutan, además por definición de los $a_i$ y gracias a que $b\en\varprojlim B_n$:
+\[
+\beta_i(f_i(a_i))=\beta_i(b_i) = b_{i-1} = f_{i-1}(a_{i-1})
+\]
+es decir, $f_{i-1}(\alpha_i(a_i)) = f_{i-1}(a_{i-1})$, y como $f_i$ es inyectiva, $\alpha_i(a_i) = a_{i-1}$. Esto prueba que $a \en \varprojlim A_n$. Finalmente, por definición de los $a_i$ se sigue $f(a) = (f_i(a_i))^\infty_{i=0}=(b_i)^\infty_{i=0} = b$, de donde $b\en\im f$. Esto prueba la otra contención, $\ker g \subseteq \im f$.
+
+\item\emph{Exactitud en $\varprojlim C_n$}. Recién aquí requerimos la sobreyectividad de las $\alpha_i$.
+Dado $c=(c_i)^\infty_{i=0}\en\varprojlim C_n$ debemos hallar $b=(b_i)^\infty_{i=0}\en\varprojlim B_n$ tal que $g(b)=c$, es decir, $g_i(b_i)=c_i$ para todo $i\en\mathbb{N}_0$.\medskip\\
+\emph{Construyamos $b$ inductivamente}:\\ 
+Como cada $g_i$ es sobreyectiva, existe $b_0\en B_0$ con $g_0(b_0)=c_0$. Supongamos construido $b_{i-1}\en B_{i-1}$ con $g_{i-1}(b_{i-1})=c_{i-1}$ y elijamos $b'_i\en B_i$ con $g_i(b'_i)=c_i$. Entonces
+\[
+g_{i-1}(\beta_i(b'_i)-b_{i-1})
+= g_{i-1}(\beta_i(b'_i))-g_{i-1}(b_{i-1})
+= \gamma_i(g_i(b'_i))-c_{i-1}
+= \gamma_i(c_i)-c_{i-1}
+=0
+\]
+pues $c\en\varprojlim C_n$ y el cuadrado formado por $\beta_i,g_i,g_{i-1},\gamma_i$ conmuta. Por la exactitud de la $(i-1)$-ésima sucesión corta, $\ker g_{i-1}=\im f_{i-1}$, así que existe $a_{i-1}\en A_{i-1}$ tal que
+\[
+f_{i-1}(a_{i-1})=\beta_i(b'_i)-b_{i-1}
+\]
+Como $\alpha_i$ es sobreyectiva, existe $a_i\en A_i$ con $\alpha_i(a_i)=a_{i-1}$. Definimos $b_i \coloneq b'_i - f_i(a_i)$, así:
+\[
+g_i(b_i)
+= g_i(b'_i)-g_i(f_i(a_i))
+= c_i - 0 = c_i
+\]
+y, usando que $\beta_i\circ f_i=f_{i-1}\circ\alpha_i$,
+\[
+\beta_i(b_i)
+= \beta_i(b'_i)-\beta_i(f_i(a_i))
+= \beta_i(b'_i)-f_{i-1}(\alpha_i(a_i))
+= \beta_i(b'_i)-f_{i-1}(a_{i-1})
+= b_{i-1}
+\]
+Así, inductivamente construimos $b=(b_i)^\infty_{i=0}\en\varprojlim B_n$ con
+\[
+g(b)=(g_i(b_i))^\infty_{i=0}=(c_i)^\infty_{i=0}=c
+\]
+Por lo tanto $g$ es sobreyectiva, lo que prueba la exactitud en $\varprojlim C_n$.
+\end{itemize}
+Estos tres puntos prueban que la sucesión límite es exacta.
+\end{sol}

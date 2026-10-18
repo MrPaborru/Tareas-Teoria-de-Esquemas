@@ -1,0 +1,63 @@
+\setcounter{eje}{1}
+\begin{ejer}
+Evalúe la integral
+\[ \int_{-\infty}^{\infty} \frac{\dd{x}}{1+x^4} \]
+¿Dónde están los polos de $1/(1+z^4)$?
+\end{ejer}
+\begin{sol}
+Denotemos $f(z)\coloneq\dfrac{1}{1+z^4}$. Como $-1 = e^{(2k+1)\pi i}$, las cuatro raíces de $x^4+1$ son
+\[
+z_k = e^{\frac14(2k+1)\pi i},\quad k\en\set{0,1,2,3}
+\]  
+Esto implica que los polos de $f$ son exactamente $z_0,z_1,z_2,z_3$, los cuales tienen orden 1.\par
+Para cada $R>1$ definimos el contorno cerrado $C_R$ como la unión del segmento $[-R,R]$ sobre el eje real y la semicircunferencia superior $\gamma_R$ parametrizada por $z=Re^{i\theta}$, $\theta\en[0,\pi]$, orientada positivamente. Se sigue que los únicos polos en el interior de $C_R$ son $z_0$ y $z_1$, así que por teorema del residuo:
+\begin{equation}\label{eq:intsemi}
+\int_{-R}^{R} f(x)\dd{x} + \int_{\gamma_R} f(z)\dd{z} 
+=\int_{C_R} f(z)\dd{z}
+= 2\pi i\bigl(\operatorname{Res}(f,z_0)+\operatorname{Res}(f,z_1)\bigr) 
+\end{equation}\\
+\emph{Acotemos la integral $\int_{\gamma_R} f(z)\dd{z} $}:\\
+Para todo $z\en\gamma_R$ se tiene $|z|=R > 1$. Usando la desigualdad triangular inversa:
+\[
+|1+z^4| \ge |z^4|-1 = R^4-1 \ge 0%
+\quad\implies\quad%
+ |f(z)| \le \frac{1}{R^4-1}
+\]
+La longitud de $\gamma_R$ es $\pi R$, así que por estimación estándar:
+\[
+\left|\int_{\gamma_R} f(z)\dd{z}\right| \le \frac{\pi R}{R^4-1} \xrightarrow{\;R\to \infty\;} 0
+\]
+Gracias a esto último, al tomar límite $R\to\infty$ en (\ref{eq:intsemi}) obtenemos
+\begin{equation}\label{eq:inte}
+\int_{-\infty}^{\infty}\frac{dx}{1+x^4}=2\pi i\bigl(\operatorname{Res}(f,z_0)+\operatorname{Res}(f,z_1)\bigr)
+\end{equation}\\
+\emph{Ahora calculemos los residuos}:\\
+Notemos que si $\p(z) = (z-c_1)\cdots(z-c_n)$ entonces por regla de Leibniz
+\[
+\p'(z)=\sum^n_{k=1}\prod_{i\neq k}(z-c_i)
+\]
+Por lo tanto, al evaluar en un $c_j$, tenemos que se anulan los $\prod_{i\neq k}(c_j-c_i)$ con $j\neq k$, así que tiene 
+\begin{equation}\label{eq:proddif}
+\p'(c_j) = \prod_{i\neq j}(c_j-c_i)
+\end{equation}
+Ahora bien, tomaremos $\p(z) = z^4+1 = (z-z_0)(z-z_1)(z-z_2)(z-z_3)$. Luego:
+\[
+\res(f,z_0) = \lim_{z\to z_0}(z-z_0)f(z) = \lim_{z\to z_0}\frac{1}{(z-z_1)(z-z_2)(z-z_3)} = \frac{1}{(z_0-z_1)(z_0-z_2)(z_0-z_3)}
+\]
+Como ya vimos en (\ref{eq:proddif}), $(z_0-z_1)(z_0-z_2)(z_0-z_3) = \p'(z_0) = 4z_0^3$, así que $\res(f,z_0) = \frac{1}{4}z_0^{-3}$. De modo análogo, tenemos
+\[
+\res(f,z_1) = \lim_{z\to z_1}(z-z_1)f(z) = \lim_{z\to z_1}\frac{1}{(z-z_0)(z-z_2)(z-z_3)} = \frac{1}{(z_1-z_0)(z_1-z_2)(z_1-z_3)}
+\]
+de donde $\res(f,z_1) = \frac{1}{\p'(z_1)} = \frac{1}{4}z_1^{-3}$.\par\vspace{1em}
+Finalmente, al sustituir en (\ref{eq:inte}):
+\[
+\int_{-\infty}^{\infty}\frac{dx}{1+x^4}=2\pi i\left(\frac{1}{4}z_0^{-3} + \frac{1}{4}z_1^{-3}\right)
+=\frac{\pi i}{2}\left(z_0^{-3} + z_1^{-3}\right)
+\]
+Pero $z_0^{-3} = e^{-\frac34\pi i}$ y, como $z_1^4=-1$, también $z_1^{-3} = -(z_1^4)z_1^{-3} = -z_1 = -e^{\frac34\pi i}$. En conclusión,
+\[
+\int_{-\infty}^{\infty}\frac{dx}{1+x^4}
+= \frac{\pi i}{2}\left(e^{-\frac34\pi i} - e^{\frac34\pi i}\right)
+=\frac{\pi i}{2} 2i \sin(-\tfrac34\pi) = \frac{\pi}{\sqrt{2}}
+\]
+\end{sol}

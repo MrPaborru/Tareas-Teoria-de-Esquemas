@@ -1,0 +1,169 @@
+\setcounter{eje}{9}
+\begin{ejer}[Teorema 1.5.8 de \texorpdfstring{\cite{vakil2017}}{[vakil2017]}]
+Una sucesión exacta corta de complejos
+\[\begin{tikzcd}
+0^{\bullet} \arrow[d]
+    & {:} & \cdots \arrow[r]
+    & 0 \arrow[r] \arrow[d]
+    & 0 \arrow[r] \arrow[d]
+    & 0 \arrow[r] \arrow[d]
+    & \cdots \\
+A^{\bullet} \arrow[d]
+    & {:} & \cdots \arrow[r]
+    & A^{i-1} \arrow[r,"f^{i-1}"] \arrow[d]
+    & A^i \arrow[r,"f^i"] \arrow[d]
+    & A^{i+1} \arrow[r,"f^{i+1}"] \arrow[d]
+    & \cdots \\
+B^{\bullet} \arrow[d]
+    & {:} & \cdots \arrow[r]
+    & B^{i-1} \arrow[r,"g^{i-1}"] \arrow[d]
+    & B^i \arrow[r,"g^i"] \arrow[d]
+    & B^{i+1} \arrow[r,"g^{i+1}"] \arrow[d]
+    & \cdots \\
+C^{\bullet} \arrow[d]
+    & {:} & \cdots \arrow[r]
+    & C^{i-1} \arrow[r,"h^{i-1}"] \arrow[d]
+    & C^i \arrow[r,"h^i"] \arrow[d]
+    & C^{i+1} \arrow[r,"h^{i+1}"] \arrow[d]
+    & \cdots \\
+0^{\bullet}
+    & {:} & \cdots \arrow[r]
+    & 0 \arrow[r]
+    & 0 \arrow[r]
+    & 0 \arrow[r]
+    & \cdots
+\end{tikzcd}\]
+induce una sucesión exacta larga en cohomología
+\[
+\cdots \longrightarrow H^{i-1}(C^{\bullet})
+\xrightarrow{\partial^{i-1}} H^i(A^{\bullet})
+\xrightarrow{\ubar\alpha^i} H^i(B^{\bullet})
+\xrightarrow{\ubar\beta^i} H^i(C^{\bullet})
+\xrightarrow{\partial^i} H^{i+1}(A^{\bullet})
+\longrightarrow \cdots.
+\]
+(Se requiere definir el morfismo de conexión $\partial^i\colon H^{i}(C^\bullet) \to H^{i+1}({A^\bullet})$)
+\end{ejer}
+\begin{sol}
+Denotemos $\alpha^{\bullet}\colon A^{\bullet} \to B^{\bullet}$ y $\beta^{\bullet}\colon B^{\bullet} \to C^{\bullet}$ a los morfismos de cadenas de la sucesión corta. Por definición, $\alpha^{\bullet}$ conmuta con los $f^i,g^i$, mientras que $\beta^{\bullet}$ conmuta con los $g^i,h^i$.
+\vspace{1em}\\
+\emph{Fijemos $i\in\mathbb{N}$ y construyamos un mapa de conexión $\partial^i\colon H^i(C^{\bullet})\to H^{i+1}(A^{\bullet})$}:\\ 
+Sea $[c]\in H^i(C^{\bullet})$ para un $c\in\ker(h^i)\subseteq C^i$. Como $\beta^i$ es sobre, existe $b\in B^i$ con $\beta^i(b)=c$. Luego $h^i(\beta^i(b))=h^i(c)=0$, pero sabemos que $h^i\circ\beta^i=\beta^{i+1}\circ g^i$, así $\beta^{i+1}(g^i(b))=0$. De esto se sigue que $g^i(b)\in\ker(\beta^{i+1})=\im(\alpha^{i+1})$, por lo que existe $a\in A^{i+1}$ con $\alpha^{i+1}(a)=g^i(b)$. Veamos que
+\[
+\partial^i\colon H^i(C^{\bullet})\longrightarrow H^{i+1}(A^{\bullet}),
+\qquad [c]\longmapsto[a]
+\]
+es un morfismo bien definido.
+\begin{itemize}
+    \item En primer lugar, por conmutatividad,
+    \[
+    \alpha^{i+2}(f^{i+1}(a))=g^{i+1}(\alpha^{i+1}(a))
+    \]
+    pero por definición $\alpha^{i+1}(a)=g^i(b)$, así que al sustituir y aplicar condición de cocadena:
+    \[
+    \alpha^{i+2}(f^{i+1}(a))=g^{i+1}(g^i(b)) = 0
+    \]
+    Como $\alpha^{i+2}$ es inyectiva, $f^{i+1}(a)=0$, de donde $a\in\ker(f^{i+1})$ y así $[a]\in H^{i+1}(A^{\bullet})$.
+
+    \item Si suponemos $[c]=[c']\in H^i(C^{\bullet})$, existe $r\in C^{i-1}$ con $c-c'=h^{i-1}(r)$. 
+    Si tomamos $b,b'\in B^i$ con $\beta^i(b)=c$, $\beta^i(b')=c'$, y $a,a'\in A^{i+1}$ con $\alpha^{i+1}(a)=g^i(b)$ y $\alpha^{i+1}(a')=g^i(b')$, entonces
+    \[
+    \beta^i(b-b')=c-c'=h^{i-1}(r).
+    \]
+    Denotemos $\Delta b\coloneq b-b'$ y $\Delta c\coloneq c-c'$. Como $\beta^{i-1}\colon B^{i-1}\to C^{i-1}$ es sobre, existe $k\in B^{i-1}$ con $\beta^{i-1}(k)=r$, así, gracias a que $\beta^i\circ g^{i-1}=h^{i-1}\circ\beta^{i-1}$,
+    \begin{align*}
+    \beta^i(\Delta b-g^{i-1}(k))
+    =\beta^i(\Delta b)-\beta^i(g^{i-1}(k))
+    =h^{i-1}(r)-h^{i-1}(\beta^{i-1}(k))=0
+    \end{align*}
+    Pero $\ker\beta^i=\im\alpha^i$, así que existe $l\in A^i$ con $\Delta b-g^{i-1}(k) =\alpha^i(l)$.
+
+    Afirmamos que $a-a'=f^i(l)$. En efecto, como $\alpha^{i+1}\circ f^i=g^i\circ\alpha^i$ y $g^i\circ g^{i-1}=0$:
+    \[
+    \alpha^{i+1}(f^i(l))
+    =g^i(\alpha^i(l))
+    =g^i(\Delta b - g^{i-1}(k))
+    =g^i(\Delta b).
+    \]
+    Sin embargo,
+    \[
+    g^i(\Delta b)=g^i(b)-g^i(b')
+    =\alpha^{i+1}(a)-\alpha^{i+1}(a')
+    =\alpha^{i+1}(a-a'),
+    \]
+    así $\alpha^{i+1}(f^i(l))=\alpha^{i+1}(a-a')$; como $\alpha^{i+1}$ es inyectiva, $f^i(l)=a-a'$. Esto prueba $[a]=[a']$ en $H^{i+1}(A^{\bullet})$ y $\partial^i$ está bien definida como función.
+
+    \item Solo falta probar linealidad. Sean $c,c'\in C^i$, entonces existen representantes $a,a'\in A^{i+1}$ con $\partial^i([c])=[a]$ y $\partial^i([c'])=[a']$. De modo que existen $b,b'\in B^i$ con $\beta^i(b)=c$, $\beta^i(b')=c'$, $\alpha^{i+1}(a)=g^i(b)$ y $\alpha^{i+1}(a')=g^i(b')$. Por linealidad esto significa que $a+\lambda a'\in A^{i+1}$ cumple
+    \[
+    \alpha^{i+1}(a+\lambda a')=g^i(b+\lambda b')
+    \qquad\text{y}\qquad
+    \beta^i(b+\lambda b')=c+\lambda c'
+    \]
+    Entonces, gracias a que $\partial^i$ está bien definido,
+    \[
+    \partial^i([c+\lambda c'])=[a+\lambda a']
+    =[a]+\lambda[a']
+    =\partial^i([c])+\lambda\partial^i([c'])
+    \]
+    Esto prueba la linealidad de $\partial^i$.
+\end{itemize}
+%
+\emph{Probemos exactitud de
+\(
+\cdots\longrightarrow H^i(A^{\bullet})
+\xrightarrow{\ubar\alpha^i}H^i(B^{\bullet})
+\xrightarrow{\ubar\beta^i}H^i(C^{\bullet})
+\xrightarrow{\partial^i}H^{i+1}(A^{\bullet})
+\longrightarrow\cdots
+\)
+}
+\begin{enumerate}
+    \item \emph{Exactitud en $H^i(A^{\bullet})$}: Si $[c]\in H^{i-1}(C^{\bullet})$ y $\partial^{i-1}([c])=[a]$, existe $b\in B^{i-1}$ con $\beta^{i-1}(b)=c$ y $\alpha^i(a)=g^{i-1}(b)$. En particular, $\alpha^i(a)\in\im g^{i-1}$, así que
+    \[
+    \ubar\alpha^i([a])=[\alpha^i(a)]=0
+    \qquad\text{en }H^i(B^{\bullet})
+    \]
+    Esto prueba que $\ubar\alpha^i\circ\partial^{i-1}=0$ y $\im\partial^{i-1}\subseteq\ker\ubar\alpha^i$.
+
+    Para la otra contención sea $[a]\in\ker\ubar\alpha^i$, es decir, $[\alpha^i(a)]=0$ en $H^i(B^{\bullet})$, por lo que existe $b\in B^{i-1}$ con $\alpha^i(a)=g^{i-1}(b)$. Luego basta considerar $c\coloneq\beta^{i-1}(b)$, ya que por definición se tiene $[a]=\partial^{i-1}([c])$, y así $[a]\in\im\partial^{i-1}$.
+
+    \item \emph{Exactitud en $H^i(B^{\bullet})$}: Por funtorialidad,
+    \(
+    \ubar\beta^i\circ\ubar\alpha^i
+    =\ubar{\beta^i\circ\alpha^i}
+    =0,
+    \)
+    así que $\im\ubar\alpha^i\subseteq\ker\ubar\beta^i$. Para la otra contención sea $[b]\in\ker\ubar\beta^i$, es decir, $[\beta^i(b)]=\ubar\beta^i([b])=[0]$, por lo cual $\beta^i(b)\in\im h^{i-1}$, así que existe $r\in C^{i-1}$ con $\beta^i(b)=h^{i-1}(r)$. Luego la sobreyectividad de $\beta^{i-1}$ garantiza que existe $k\in B^{i-1}$ con $\beta^{i-1}(k)=r$. Entonces, gracias a $\beta^i\circ g^{i-1}=h^{i-1}\circ\beta^{i-1}$:
+    \begin{align*}
+    \beta^i(b-g^{i-1}(k))
+    =\beta^i(b)-\beta^i(g^{i-1}(k))
+    =h^{i-1}(r)-h^{i-1}(\beta^{i-1}(k))=0.
+    \end{align*}
+    Pero $\ker\beta^i=\im\alpha^i$, así que existe $a\in A^i$ con $\alpha^i(a)=b-g^{i-1}(k)$. Finalmente, de esto se sigue que $\alpha^i(a)-b\in\im g^{i-1}$, así que
+    \[
+    [b]=[\alpha^i(a)]=\ubar\alpha^i([a])
+    \quad\implies\quad 
+    [b]\in\im\ubar\alpha^i
+    \]
+
+    \item \emph{Exactitud en $H^i(C^{\bullet})$}: Si $[b]\in H^i(B^{\bullet})$, entonces $c\coloneq\beta^i(b)$ satisface también $h^i(c)=0=g^i(b)$, ya que $b\in\ker g^i$; así la buena definición de $\partial^i$ garantiza $\partial^i([c])=0$, es decir,
+    \[
+    (\partial^i\circ\ubar\beta^i)([b])
+    =\partial^i([\beta^i(b)])=0.
+    \]
+    Por lo tanto, $\im\ubar\beta^i\subseteq\ker\partial^i$.
+
+    Recíprocamente, tomemos $[c]\in\ker\partial^i$, i.e., $\partial^i([c])=[0]$ por lo que existe $b\in B^i$ con
+    \[
+    \beta^i(b)=c
+    \qquad\text{y}\qquad
+    \underbrace{\alpha^{i+1}(0)}_{=0}=g^i(b)
+    \]
+    Se sigue que $b\in\ker g^i$ y $[b]\in H^i(B^{\bullet})$ cumple
+    \(
+    \ubar\beta^i([b])=[\beta^i(b)]=[c].
+    \)
+    Por tanto $[c]\in\im\ubar\beta^i$.
+\end{enumerate}
+Hemos demostrado la exactitud de la sucesión larga.
+\end{sol}

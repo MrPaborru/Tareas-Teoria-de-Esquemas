@@ -1,0 +1,71 @@
+\begin{ejer}
+Demuestra que para cualquier ideal $J\subseteq S^{-1}A$ se tiene
+\(
+J=(\varphi^{-1}(J))^e.
+\)
+Deduce que la biyección $\operatorname{Spec}A_f\cong D(f)$ es un homeomorfismo.
+\end{ejer}
+\begin{sol}
+En primer lugar:
+\[
+\frac{a}{s}\in J
+\quad%
+\underset{%
+    \mathclap{\substack{%
+    \big\uparrow\\\text{ya que }\frac{s}{1}\text{ es invertible}%
+    }}
+}{\iff}%
+\quad%
+\varphi(a)=\frac{a}{1}=\frac{s}{1}\frac{a}{s}\in J
+\quad%
+\underset{%
+    \mathclap{\substack{%
+    \big\uparrow\\\text{definición}%
+    }}
+}{\iff}%
+\quad%
+a\in\varphi^{-1}(J)
+\quad%
+\underset{%
+    \mathclap{\substack{%
+    \big\uparrow\\\text{definición}%
+    }}
+}{\iff}%
+\quad%
+\frac{a}{s}\in(\varphi^{-1}(J))^e
+\]
+Esto prueba $J=(\varphi^{-1}(J))^e$. Para $A_f$ el conjunto multiplicativo
+es $S=\set*{f^n\given n\en\mathbb{N}_0}$. El teorema de correspondencia para
+localizaciones da una biyección
+\[
+\Phi\colon\operatorname{Spec}A_f%
+\;\xlongrightarrow{\cong}\;%
+\set*{\mathfrak{p}\en\operatorname{Spec}A\given \mathfrak{p}\cap S=\varnothing}%
+\;=\;%
+D(f)
+\]
+ya que $\mathfrak{p}\cap S=\varnothing$ si y solo si $f\notin\mathfrak{p}$.
+
+Por definición, $\Phi\colon\operatorname{Spec}A_f\to\operatorname{Spec}A$ es
+inducida por $\varphi\colon A\to A_f$, así que el Ejercicio 1.6 implica que
+es continua. Más aún, sea $J\subseteq A_f$ un ideal y pongamos
+$I=\varphi^{-1}(J)$. Por lo probado al inicio, $J=I^e$. Si
+$\mathfrak{p}\en D(f)$, el primo de $A_f$ que le corresponde mediante
+$\Phi^{-1}$ es $\mathfrak{p}^e$. Por tanto,
+\begin{align*}
+\mathfrak{p}\en\Phi\bigl(V_{A_f}(J)\bigr)
+&\quad\Longleftrightarrow\quad
+\mathfrak{p}\en D(f)\ \wedge\ \mathfrak{p}^e\en V_{A_f}(J)\\
+&\quad\Longleftrightarrow\quad
+\mathfrak{p}\en D(f)\ \wedge\ \mathfrak{p}^e\supseteq J=I^e\\
+&\quad\Longleftrightarrow\quad
+\mathfrak{p}\en D(f)\ \wedge\ \mathfrak{p}\supseteq I\\
+&\quad\Longleftrightarrow\quad
+\mathfrak{p}\en D(f)\cap V_A(I)
+\end{align*}
+Esto prueba que
+$\Phi\bigl(V_{A_f}(J)\bigr)=D(f)\cap V_A\bigl(\varphi^{-1}(J)\bigr)$,
+por lo que $\Phi$ manda cerrados de $\operatorname{Spec}A_f$ en cerrados de
+$D(f)$. Así, $\Phi$ es cerrada. Como $\Phi$ es continua, biyectiva y cerrada,
+es homeomorfismo.
+\end{sol}

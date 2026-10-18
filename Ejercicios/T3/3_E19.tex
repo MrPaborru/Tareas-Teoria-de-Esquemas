@@ -1,0 +1,47 @@
+\setcounter{eje}{18}
+\begin{ejer}
+Pruebe el principio del máximo para funciones armónicas, esto es:
+\begin{enumerate}[label=(\alph*),leftmargin=1.5em]
+    \item Si $u$ es una función armónica con valores reales y no constante en una región $\Omega$, entonces $u$ no puede alcanzar un máximo (o un mínimo) en $\Omega$.
+    \item Suponga que $\Omega$ es una región con clausura compacta $\ubar{\Omega}$. Si $u$ es armónica en $\Omega$ y continua en $\ubar{\Omega}$, entonces
+    \[ 
+    \sup_{z\en\Omega} |u(z)| \;\;\leq\;\; \sup_{\mathclap{z\en\ubar{\Omega}-\Omega}} |u(z)| 
+    \]
+\end{enumerate}
+\end{ejer}
+\begin{sol}\hphantom{r}
+\begin{enumerate}[label=(\alph*),leftmargin=1.5em]
+%-------------------------------------------------
+\item % Inciso (a)
+Sea $f\en\mathcal{H}(\Omega)$ tal que $u = \Re(f)$ y denotemos $v\coloneq\Im(f)$. Procedamos por contradicción, suponiendo que $u$ alcanza su máximo en un punto $z_0\en\Omega$. La función $e^{f(z)}$ es holomorfa en $\Omega$ y cumple, gracias a que la exponencial real es creciente y $u(z_0)$ es máximo de $u$, que
+\[
+\abs\big{e^{f(z)}} = e^{u(z)} \leq e^{u(z_0)} = \abs\big{e^{f(z_0)}},
+\quad\forall z\en\Omega
+\]
+Esto implica que $\abs\big{e^{f(z)}}$ alcanza su máximo en $\Omega$, así que el principio de módulo máximo implica que $e^{f(z)}$ es constante. Se sigue que $e^{u(z)} = \abs{e^{f(z)}}$ es constante, por lo que también $u(z) = \ln\bigl(e^{u(z)}\bigr)$ es constante.%
+\footnote{
+    Aquí exponencial y logaritmo son reales.
+}
+Esto contradice la hipótesis de que $u$ no es constante: el error estuvo en suponer que $u$ alcanza un máximo en $\Omega$.\par
+Para probar que no alcanza mínimo basta con tomar $-u$: si $u$ es armónica real y no constante, entonces $-u$ también; luego, lo recién probado implica que $-u$ no puede alcanzar su máximo, lo cual equivale a que $u$ no puede alcanzar su mínimo.
+%-------------------------------------------------
+\item % Inciso (b)
+La continuidad de $|u(z)|$ y la compacidad de $\ubar{\Omega}$ garantizan que existe $z_0\en\ubar{\Omega}$ de tal modo que $\abs{u(z_0)} = \max_{\ubar{\Omega}} \abs{u(z)}$. Se sigue que:
+\begin{equation}\label{eq:minmax}
+-\abs{u(z_0)} \leq u(z) \leq \abs{u(z_0)},%
+\quad\forall z\en\ubar{\Omega}
+\end{equation}
+Si $u(z_0) \ge 0$, de la desigualdad derecha en (\ref{eq:minmax}) se sigue que $u(z_0) = \max_{\ubar{\Omega}} u(z)$; mientras que si $u(z_0) \leq 0$, de la desigualdad izquierda en (\ref{eq:minmax}) se sigue que $u(z_0) = \min_{\ubar{\Omega}} u(z)$. En cualquier caso, lo probado en (a) fuerza a que $z_0\noten \Omega$ (en caso contrario, $u$ alcanzaría un máximo o un mínimo en $\Omega$). En particular, tenemos que $z_0\en\ubar{\Omega}-\Omega$ satisface $\abs{u(z_0)} \ge \abs{u(z)}$ para cualquier $z\en\ubar{\Omega}-\Omega$, por lo que 
+\[
+\sup_{z\en\Omega} \abs{u(z)}
+\;\underset{\mathclap{\substack{\big\uparrow\\\text{En realidad es}\\\text{una igualdad por}\\\text{continuidad de }\abs{u}}}}{\leq}\; 
+\max_{z\en\ubar{\Omega}} \abs{u(z)}
+\;=\;
+\abs{u(z_0)}
+\;=\;
+\max_{z\en\ubar{\Omega}-\Omega} \abs{u(z)}
+\;=\;
+\sup_{z\en\ubar{\Omega}-\Omega} \abs{u(z)}
+\]
+\end{enumerate}
+\end{sol}

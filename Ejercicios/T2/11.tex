@@ -1,0 +1,162 @@
+\begin{ejer}[Reality check]
+$\mathbb{Z}_{(2)}$ y $\mathbb{Z}_2$ (los enteros $2$-ádicos) son ambos anillos de valuación discreta con cuerpo residual $\mathbb{F}_2$, y sus espectros tienen la misma forma. ¿Son el mismo anillo? Da un elemento de $\mathbb{Z}_2$ que no esté en $\mathbb{Z}_{(2)}$, y explica por qué $\mathbb{Z}_{(2)}\subset\mathbb{Z}_2$ pero $\mathbb{Z}_{(2)}\neq\mathbb{Z}_2$.
+\end{ejer}
+\begin{sol}
+$\mathbb{Z}_2$ se define como límite inverso de
+\[
+\begin{tikzcd}[column sep=large]
+\cdots \arrow[r,"\rho_{4,3}"]
+    & \mathbb{Z}/2^3\mathbb{Z} \arrow[r,"\rho_{3,2}"]
+    & \mathbb{Z}/2^2\mathbb{Z} \arrow[r,"\rho_{2,1}"]
+    & \mathbb{Z}/2\mathbb{Z}.
+\end{tikzcd}
+\]
+Esto significa que
+\[
+\mathbb{Z}_2=\set*{(z_n)_{n\en\mathbb{N}}\given
+z_n\en\mathbb{Z}/2^n\mathbb{Z}\;\text{ y }\;\rho_{n+1,n}(z_{n+1})=z_n}
+\]
+Para cada $n\en\mathbb{N}$, el mapa cociente $q_n\colon\mathbb{Z}\to\mathbb{Z}/2^n\mathbb{Z}$ conmuta con los $\rho_{m,n}$, ya que estos se derivan así a partir del cociente. Se sigue de la propiedad universal del límite que los $q_n$ inducen un único morfismo $q\colon\mathbb{Z}\to\mathbb{Z}_2$ con $\pi_n\circ q=q_n$. De forma concreta,
+\[
+q(z)=(q_n(z))_{n\en\mathbb{N}}
+\qquad\text{para todo }z\en\mathbb{Z}.
+\]
+Notemos que $q$ es mono, pues si $q(z)=0$ se sigue que $q_n(z)=0$ para todo $n\en\mathbb{N}$, así que $z\equiv0\pmod{2^n}$ para todo $n\en\mathbb{N}$. La única forma de que esto ocurra es que $z=0$.
+\vspace{1em}\\
+\emph{Veamos que $q\colon\mathbb{Z}\to\mathbb{Z}_2$ induce un
+$\widetilde q\colon\mathbb{Z}_{(2)}\to\mathbb{Z}_2$}:\\ 
+Basta verificar que
+$q(z)$ es invertible para $z\noten(2)$, i.e., para $z$ impar. En efecto,
+como $\gcd(z,2^n)=1$, $q_n(z)\en\mathbb{Z}/2^n\mathbb{Z}$ es invertible y
+\[
+\rho_{n+1,n}\bigl(q_{n+1}(z)\bigr)=q_n(z).
+\]
+Como los $\rho_{n+1,n}$ son homomorfismos de anillos, se sigue que
+\[
+\rho_{n+1,n}\bigl(q_{n+1}(z)^{-1}\bigr)=q_n(z)^{-1}
+\]
+para todo $n\en\mathbb{N}$. Esto prueba que
+$(q_n(z)^{-1})_{n\en\mathbb{N}}\en\mathbb{Z}_2$, siendo este el inverso de
+$q(z)$.
+
+Finalmente, gracias a que $q(z)$ es invertible para $z\noten(2)$, $q$ induce un $\widetilde q\colon\mathbb{Z}_{(2)}\to\mathbb{Z}_2$; más aún, como $q$ es mono, también lo es $\widetilde q$.
+\vspace{1em}\\
+\emph{Construyamos la expansión binaria de $\mathbb{Z}_2$}:\\ 
+Para todo $(c_n)_n\en\mathbb{Z}_2$, sea $\widehat c_n\en\set{0,1,\ldots,2^n-1}$ el
+representante canónico de $c_n\en\mathbb{Z}/2^n\mathbb{Z}$, y convengamos $\widehat c_0=0$. La condición
+$\rho_{n+1,n}(c_{n+1})=c_n$ implica
+\[
+c_{n+1} \in \rho^{-1}_{n+1,n}(\set{c_n}) = \set[\big]{[\widehat c_n]_{2^{n+1}},[\widehat c_n + 2^n]_{2^{n+1}}},
+\quad\text{es decir,}\quad
+\widehat c_{n+1}\en\set{\widehat c_n,\widehat c_n+2^n}
+\]
+Esto muestra que un elemento de $\mathbb{Z}_2$ tiene solo dos elecciones
+posibles para cada entrada al haber escogido las anteriores. Así, hay una
+biyección
+\[
+\xi\colon\mathbb{Z}_2\longrightarrow\set{0,1}^{\mathbb{N}},
+\qquad
+\xi((c_n)_n)=\left(2^{-n}(\widehat c_{n+1}-\widehat c_n)\right)_{n=0}^{\infty}.
+\]
+(Si $(x_n)_n=\xi(c)$, esta sucesión se denota como la cadena infinita de dígitos binarios $\cdots x_nx_{n-1}\cdots x_0$).
+
+Notemos que la inversa está dada por
+\[
+(x_n)_n\longmapsto
+\left(\left[\sum_{i=0}^{n-1}x_i2^i\right]_{2^n}\right)_n
+\]
+En efecto,
+\[
+\rho_{n+1,n}\left(\left[ \sum_{i=0}^{n}x_i2^i \right]_{2^{n}}\right)
+=\left[ x_n2^n+\sum_{i=0}^{n-1}x_i2^i \right]_{2^{n+1}}
+=\left[ \sum_{i=0}^{n-1}x_i2^i \right]_{2^{n+1}}
+\]
+de modo que $\left(\left[\sum_{i=0}^{n-1}x_i2^i\right]_{2^n}\right)_{n\en\mathbb{N}}\in\mathbb{Z}_2$; mientras que sus composiciones son en cada entrada:
+\[
+\left[ \sum_{i=0}^{n-1}\left(2^{-i}(\widehat c_{i+1}-\widehat c_i)\right)2^i \right]_{2^n}
+= \left[ \sum_{i=0}^{n-1}(\widehat c_{i+1}-\widehat c_i) \right]_{2^{n}} 
+= \left[ \widehat c_n \right]_{2^{n}} = c_n
+\]
+y
+\[
+2^{-n}\left( \hat{\left[\sum_{i=0}^{n}x_i2^i\right]}_{2^{n}} - \hat{\left[\sum_{i=0}^{n-1}x_i2^i\right]}_{2^{n}}\right)
+= 2^{-n}\left( \sum_{i=0}^{n}x_i2^i - \sum_{i=0}^{n-1}x_i2^i\right)
+=2^{-n}(x_n2^n)=x_n
+\]
+Esto prueba que son inversos entre sí. (Por esta inversa es que al número con dígitos $\cdots x_nx_{n-1}\cdots x_0$ se le denota $\sum_{i=0}^{\infty}x_i2^i$; la convergencia de esta serie formal se justifica mediante la norma $2$-ádica).
+\vspace{1em}\\ 
+\emph{Todo elemento de $\widetilde q(\mathbb{Z}_{(2)})$ tiene expresión binaria eventualmente periódica}:
+\begin{itemize}
+    \item Si $a\en\mathbb{N}_0$ tiene expresión binaria finita $a=\sum_{i=0}^{N}a_i2^i$, $a_i\en\set{0,1}$, al poner $a_i=0$ para $i>N$:
+    \[
+    q_n(a)=\left[\sum_{i=0}^{n-1}a_i2^i\right]_{2^{n}}
+    \quad\Longrightarrow\quad
+    \xi(q(a))=\cdots 0a_Na_{N-1}\cdots a_0,
+    \]
+    periódica a partir de $i>N$ con $a_i=0$.
+
+    \item Sean $a,b\en\mathbb{N}_0$ con $b$ impar y $\gcd(a,b)=1$. Como $\gcd(2,b)=1$, el teorema de Euler--Fermat implica que existe $k\en\mathbb{N}$ con $2^k\equiv1\pmod b$; esto es, $b\mid(2^k-1)$. Luego existe $m\en\mathbb{N}$ con $2^k-1=bm$. Ahora bien,
+    \[
+    \left(\sum_{i=0}^{n-1}2^{ik}\right)(1-2^k)
+    =\sum_{i=0}^{n-1}2^{ik}-2^{(i+1)k}
+    =1-2^{nk}
+    =1\pmod{2^{nk}}.
+    \]
+    Denotando $\widetilde q_j\coloneq\pi_j\circ\widetilde q$ (es decir, $\tilde q=(\tilde q_j)_j$), esto prueba que para todo $n\en\mathbb{N}$:
+    \[
+    \widetilde q_{nk}\left(\frac{1}{1-2^k}\right)=\left[\sum_{i=0}^{n-1}2^{ik}\right]_{2^{nk}}
+    \]
+    Más aún, como para $0<t\leq k$,
+    \begin{align*}
+    \widetilde q_{nk-t}\left(\frac{1}{1-2^k}\right)
+    =\rho_{nk,nk-t}\left(\widetilde q_{nk}\left(\frac{1}{1-2^k}\right)\right)
+    =\rho_{nk,nk-t}\left(\left[\sum_{i=0}^{n-1}2^{ik}\right]_{2^{nk}}\right)
+    =\left[\sum_{i=0}^{n-1}2^{ik}\right]_{2^{nk-t}}
+    \end{align*}
+    tenemos que
+    \[
+    \widetilde q_\ell\left(\frac{1}{1-2^k}\right)
+    =\left[\sum_{i=0}^{n-1}2^{ik}\right]_{2^{\ell}}
+    \qquad\text{para }(n-1)k\leq \ell<nk.
+    \]
+    por lo cual $\xi\left(\widetilde q\left(\frac{1}{1-2^k}\right)\right) = \cdots10\cdots01\underbrace{0\cdots0}_{\mathclap{k-1\;\text{ceros}}}1 = \ubar{0\cdots01}$ es eventualmente periódica.
+
+    Por último, se puede probar, analizando acarreos al sumar bloques periódicos, que la suma de $2$-ádicos eventualmente periódicos es eventualmente periódica, así que
+    \[
+    \xi\left(\widetilde q\left(-\frac{a}{b}\right)\right)
+    =\xi\left(\widetilde q\left(\frac{am}{1-2^k}\right)\right)
+    =\xi\left(\sum_{s=1}^{am}\widetilde q\left(\frac{1}{1-2^k}\right)\right)
+    \]
+    es eventualmente periódica. Esto prueba que, para todo $z\en\mathbb{Z}_{(2)}$ no positivo, $\xi(\widetilde q(z))$ es eventualmente periódico.
+
+    \item Sea $z\en\mathbb{Z}_{(2)}$ positivo. Como $-z-1<0$, $\xi(\widetilde q(-z-1))=(a_i)_{i=0}^{\infty}$ es eventualmente periódico, así que al definir $(a_i')_{i=0}^{\infty}\en\set{0,1}^{\mathbb{N}}$ mediante $a_i'+a_i=1$ para todo $i\en\mathbb{N}$:
+    \[
+    q_n(-z-1)+ \left[\sum_{i=0}^{n-1}a_i'2^i\right]_{2^{n}}
+    = \left[\sum_{i=0}^{n-1}(a_i+a_i')2^i\right]_{2^{n}}
+    = \left[\sum_{i=0}^{n-1}2^i\right]_{2^{n}}
+    \]
+    implica
+    \[
+    \bigl( \underbrace{q_n(-z-1)+1}_{= -q_n(z) } \bigr)  +  \left[ \sum_{i=0}^{n-1}a_i'2^i \right]_{2^{n}}
+    = \left[\sum_{i=0}^{n-1}2^i+1\right]_{2^{n}}
+    =\left[2^n\right]_{2^{n}}
+    =\left[0\right]_{2^{n}}
+    \]
+    por unicidad de inversos aditivos, esto prueba que $q_n(z)=\sum_{i=0}^{n-1}a_i'2^i$ para todo $n\en\mathbb{N}$, por lo que $\xi(\widetilde q(z))=(a_i')_{i=0}^{\infty}$ es eventualmente periódico.
+\end{itemize}
+
+En conclusión, como todo elemento de $\tilde q(\mathbb{Z}_{(2)})$ tiene expansión binaria
+eventualmente periódica, basta con definir uno de $\mathbb{Z}_2$ que no la tenga. Por ejemplo, si definimos $(x_i)^\infty_{i=1} \en \set{0,1}^{\mathbb{N}_0}$ por
+\[
+x_i \coloneq 
+\begin{cases}
+    1, &\text{si existe $k\en\mathbb{N}_0$ con $i^2=k$}\\
+    0, &\text{en otro caso.}
+\end{cases}
+\]
+Esto es, $(x_i)_i$ tiene un $1$ exactamente en las posiciones que son
+cuadrados perfectos. Como las distancias entre cuadrados consecutivos crecen
+sin cota, esta expansión no es eventualmente periódica. Por tanto,
+$\xi((x_i)_i)\in \mathbb{Z}_2\setminus\widetilde q(\mathbb{Z}_{(2)})$, lo cual garantiza que
+$\mathbb{Z}_{(2)}\hookrightarrow\mathbb{Z}_2$ no es sobre.
+\end{sol}

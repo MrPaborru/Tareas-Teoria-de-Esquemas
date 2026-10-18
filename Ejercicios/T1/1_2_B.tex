@@ -1,0 +1,56 @@
+%------------------------------ Ejercicio 1.2.B -------------------------------
+\setcounter{neje}{1}
+\begin{nejer}
+Si $A$ es un objeto en una categoría $\mathscr{C}$, muestre que los elementos invertibles de $\hom(A,A)$ forman un grupo (llamado el \emph{grupo de automorfismos de} $A$, denotado por $\aut(A)$). ¿Cuáles son los grupos de automorfismos de los objetos en los Ejemplos 1.2.2 y 1.2.3 (\cite{vakil2017})? Muestre que dos objetos isomorfos tienen grupos de automorfismos isomorfos. 
+% (Para lectores con formación en topología: si $X$ es un espacio topológico, entonces el grupoide fundamental es la categoría donde los objetos son puntos de $X$, y los morfismos $x \to y$ son caminos de $x$ a $y$, salvo homotopía. Entonces el grupo de automorfismos de $x_0$ es el grupo fundamental (con punto base) $\pi_1(X, x_0)$. En el caso donde $X$ es conexo, y $\pi_1(X)$ no es abeliano, esto ilustra el hecho de que para un grupoide conexo —cuya definición puede adivinar— los grupos de automorfismos de los objetos son todos isomorfos, pero no canónicamente isomorfos).
+\end{nejer}
+\begin{sol}
+\emph{Probemos que $(\aut(A), \circ)$ es un grupo}:\par
+Por definición de categoría, sabemos que $\circ$ es asociativa; además el morfismo $\id_A\en\aut(A)$ (el cual es invertible ya que $\id_A \circ \id_A = \id_A$) es, por definición, elemento neutro. Entonces para verificar las propiedades de grupo solo resta demostrar la clausura de $\aut(A)$ bajo composición y la existencia de inversos.
+\begin{itemize}
+    \item \emph{Clausura:}
+    Sean $f, g \en \aut(A)$. Por definición, existen $f^{-1}, g^{-1} \en \hom(A,A)$ con:
+    \[
+    f \circ f^{-1} = \id_A = f^{-1} \circ f \qquad \text{y} \qquad g \circ g^{-1} = \id_A = g^{-1} \circ g
+    \]
+    La composición $g \circ f$ es un elemento de $\hom(A,A)$. Para demostrar que $g \circ f \en \aut(A)$, verificamos que $f^{-1} \circ g^{-1}$ es su inverso:
+    \[
+    (g \circ f) \circ (f^{-1} \circ g^{-1}) = g \circ (f \circ f^{-1}) \circ g^{-1} = g \circ {\id_A} \circ g^{-1} = g \circ g^{-1} = \id_A
+    \]
+    \[
+    (f^{-1} \circ g^{-1}) \circ (g \circ f) = f^{-1} \circ (g^{-1} \circ g) \circ f = f^{-1} \circ {\id_A} \circ f = f^{-1} \circ f = \id_A
+    \]
+    Por lo tanto, $g \circ f$ es invertible y $g \circ f \en \aut(A)$.
+
+    \item \emph{Elemento Inverso:}
+    Sea $f \en \aut(A)$. Existe $f^{-1} \en \hom(A,A)$ tal que:
+    \(
+    f \circ f^{-1} = \id_A = f^{-1} \circ f.
+    \)
+    Esta identidad muestra explícitamente que $f$ es el inverso de $f^{-1}$, lo cual implica que $f^{-1}$ también es un isomorfismo y, por lo tanto, $f^{-1} \en \aut(A)$.
+\end{itemize}
+Hemos probado que $(\aut(A), \circ)$ es un grupo. Ahora analicemos los ejemplos solicitados:
+\begin{enumerate}[leftmargin=2.6em]
+    \item[1.2.2.] En la categoría $\cat{Sets}$ los morfismos invertibles son aquellas funciones que admiten una función inversa, es decir, las biyecciones. Se sigue que $\aut(A)$ es el grupo de permutaciones de $A$.
+    \item[1.2.3.] En $\cat{Vec}_k$ los morfismos invertibles son aquellas transformaciones lineales que tienen inversa, es decir, los isomorfismos lineales. Sea sigue que $\aut(A)$ es el grupo de operadores lineales invertibles de $A$, también conocido como \emph{grupo general lineal} $GL(A)$.
+\end{enumerate}
+\emph{Finalmente, probemos que si dos objetos $A$ y $B$ son isomorfos, entonces $\aut(A) \cong \aut(B)$}:\\
+Sea $h\colon A \to B$ un isomorfismo. Afirmamos que la aplicación $H\colon \aut(A) \to \aut(B)$ que asigna $g \mapsto h\circ g \circ h^{-1}$ es isomorfismo de grupos. En efecto, por un lado para todos $f,g \en \aut(A)$:
+\[
+H(f\circ g) 
+= h\circ f \circ g \circ h^{-1} 
+= h\circ f \circ {\id_A} \circ  g \circ h^{-1}
+= h\circ f \circ h^{-1} \circ h\circ g \circ h^{-1}
+= H(f) \circ H(g)
+\]
+de donde obtenemos que $H$ es homomorfismo de grupos. Por otro lado, de forma análoga se prueba que la aplicación $G\colon \aut(B) \to \aut(A)$ que asigna $f \mapsto h^{-1}\circ f \circ h$ es homomorfismo de grupos, el cual es inverso de $H$:
+\[
+H(G(f))= h\circ h^{-1}\circ f \circ h\circ h^{-1} = {\id_B} \circ f \circ {\id_B} = f,
+\qquad \forall f\en\aut(B)
+\]
+\[
+G(H(g))= h^{-1}\circ h\circ g \circ h^{-1}\circ h = {\id_A} \circ g \circ {\id_A} = g,
+\qquad \forall g\en\aut(A)
+\]
+Hemos probado que $H\colon \aut(A) \to \aut(B)$ es isomorfismo de grupos.
+\end{sol}

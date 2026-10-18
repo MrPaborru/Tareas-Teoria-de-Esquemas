@@ -1,0 +1,40 @@
+\begin{ejer}
+Describe un isomorfismo $A_f\cong A[t]/(tf-1)$.
+\end{ejer}
+\begin{sol}
+Denotemos $C\coloneq A[t]/(tf-1)$. Como $\ubar t\ubar f=1$ en $C$, el elemento $\ubar f$ tiene inverso $\ubar t$. Entonces el morfismo $A\hookrightarrow A[t]\to C$ dado por la composición de la inclusión y la proyección canónica manda $f$ al elemento $\ubar f$ invertible, por lo que induce un morfismo
+\[
+\Phi\colon A_f\longrightarrow C,
+\qquad
+\Phi\left(\frac{a}{f^n}\right)=\ubar a(\ubar f)^{-n}=\ubar a\,\ubar t^n,
+\qquad \forall a\en A,\ \forall n\en\mathbb{N}.
+\]
+Por otro lado, el morfismo canónico $A\to A_f$ induce un morfismo (prop. universal):
+\[
+\theta\colon A[t]\longrightarrow A_f,
+\qquad
+t\longmapsto\frac{1}{f},
+\qquad
+a\longmapsto\frac{a}{1}
+\]
+Como $\theta(tf-1)=\frac{1}{f}\frac{f}{1}-1=0$, se tiene $(tf-1)\subseteq\ker\theta$, así $\theta$ induce un morfismo desde el cociente:
+\[
+\Psi\colon C\longrightarrow A_f,
+\qquad
+\ubar t\longmapsto\frac{1}{f}
+\quad\text{y}\quad
+\ubar a\longmapsto\frac{a}{1}
+\]
+Finalmente,
+\[
+(\Psi\circ\Phi)\left(\frac{a}{f^n}\right)
+=\Psi(\ubar a\ubar t^n)
+=\frac{a}{1}\frac{1}{f^n}
+=\frac{a}{f^n}
+\qquad\text{y}\qquad
+(\Phi\circ\Psi)(\ubar a\ubar t^n)
+=\Phi\left(\frac{a}{f^n}\right)
+=\ubar a\ubar t^n
+\]
+Esto prueba que $\Phi$ es isomorfismo.
+\end{sol}

@@ -1,0 +1,15 @@
+\begin{ejer}
+Sea $X$ un espacio topológico, $\p\in X$, y $\mathcal{O}$ el anillo de gérmenes de funciones continuas (o suaves) en $\p$, con ideal maximal
+\[
+\mathfrak{m}_{\p}=\set{\text{gérmenes que se anulan en }\p}.
+\]
+Demuestra que $\mathfrak{m}_{\p}$ es el único ideal maximal de $\mathcal{O}$.\\
+\emph{Sugerencia}: muestra que todo elemento fuera de $\mathfrak{m}_{\p}$ es invertible.
+\end{ejer}
+\begin{sol}
+Sea $S_{\p}\in\mathcal{O}\setminus\mathfrak{m}_{\p}$ para una función suave $S\colon U\to\mathbb{R}$. Por definición tenemos $S(\p)\neq0$, así que, por continuidad, existe $V\subseteq U$ tal que $S(x)\neq0$ para todo $x\in V$. Gracias a esto, $\nicefrac{1}{s}\colon V\to\mathbb{R}$, $x\mapsto\nicefrac{1}{s(x)}$, está bien definida y es continua, de donde
+\[
+S_{\p}\cdot(\nicefrac{1}{s})_{\p}=(S|_V)_{\p}\cdot(\nicefrac{1}{s})_{\p}=(S|_V\cdot\nicefrac{1}{s})_{\p}=1_{\p}.
+\]
+Hemos probado que todo $S_{\p}\in\mathcal{O}\setminus\mathfrak{m}_{\p}$ es unidad. Se sigue que cualquier ideal $I\nsubseteq\mathfrak{m}_{\p}$ contiene una unidad, de donde $I=\mathcal{O}$. Esto garantiza que $\mathfrak{m}_{\p}$ es el único ideal maximal.
+\end{sol}
