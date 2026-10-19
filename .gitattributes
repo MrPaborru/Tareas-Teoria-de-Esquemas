@@ -1,0 +1,2 @@
+# Los PDF son binarios: conservar sus bytes y evitar diferencias de texto.
+*.pdf binary

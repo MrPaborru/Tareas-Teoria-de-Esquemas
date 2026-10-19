@@ -1,0 +1,34 @@
+name: Problema de compilación
+description: Informa de un problema al generar el PDF desde las fuentes.
+title: "[Compilación] "
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Versión del repositorio
+      description: Commit o rama que intentaste compilar.
+    validations:
+      required: true
+  - type: input
+    id: entorno
+    attributes:
+      label: Entorno de compilación
+      description: Sistema operativo, distribución TeX y versiones disponibles de latexmk y del motor.
+    validations:
+      required: true
+  - type: textarea
+    id: pasos
+    attributes:
+      label: Comando y pasos para reproducir el problema
+      description: Indica desde qué carpeta ejecutaste el comando.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: registro
+    attributes:
+      label: Mensaje de error
+      description: Pega las líneas relevantes del registro, sin datos personales ni rutas privadas innecesarias.
+      render: text
+    validations:
+      required: true

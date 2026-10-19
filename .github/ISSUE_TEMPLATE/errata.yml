@@ -1,0 +1,30 @@
+name: Errata matemática o de edición
+description: Señala un error en un enunciado, argumento, referencia o presentación.
+title: "[Errata] "
+body:
+  - type: input
+    id: ubicacion
+    attributes:
+      label: Tarea, ejercicio y página
+      description: Indica también el archivo LaTeX o la etiqueta, si los conoces.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versión consultada
+      description: Commit, enlace permanente o fecha de la versión del PDF.
+    validations:
+      required: true
+  - type: textarea
+    id: problema
+    attributes:
+      label: Fragmento y explicación del error
+      description: Copia el paso afectado y explica qué falla.
+    validations:
+      required: true
+  - type: textarea
+    id: propuesta
+    attributes:
+      label: Corrección propuesta o referencia
+      description: Si tienes una solución, contraejemplo o referencia, inclúyelos aquí.

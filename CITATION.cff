@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "Si utilizas este material, cita la versión consultada con los datos siguientes."
+title: "Tareas de Teoría de Esquemas"
+authors:
+  - family-names: "Aranda Pérez"
+    given-names: "Pablo Jair"
+repository-code: "https://github.com/MrPaborru/Tareas-Teoria-de-Esquemas"
+url: "https://github.com/MrPaborru/Tareas-Teoria-de-Esquemas"
+abstract: "Enunciados y soluciones personales en español de las tareas del curso de Teoría de Esquemas del CIMAT."
+keywords:
+  - "Teoría de esquemas"
+  - "Geometría algebraica"
+  - "Material de estudio"
+preferred-citation:
+  type: generic
+  title: "Tareas de Teoría de Esquemas"
+  authors:
+    - family-names: "Aranda Pérez"
+      given-names: "Pablo Jair"
+  year: 2026
+  url: "https://github.com/MrPaborru/Tareas-Teoria-de-Esquemas"
