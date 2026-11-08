@@ -1,46 +1,106 @@
 \documentclass[12pt]{article}
-\usepackage[a4paper,landscape,margin=10mm]{geometry}
+\usepackage[a4paper,landscape,margin=9mm]{geometry}
 \usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage[spanish]{babel}
-\usepackage{amsmath,amssymb,mathtools,tikz,lmodern}
-\usetikzlibrary{arrows.meta}
+\usepackage{amsmath,amssymb,tikz,lmodern}\usetikzlibrary{arrows.meta,backgrounds}
 \pagestyle{empty}\setlength{\parindent}{0pt}
-\newcommand{\Spec}{\operatorname{Spec}}\newcommand{\Hom}{\operatorname{Hom}}
-\newcommand{\Z}{\mathbb Z}\newcommand{\Q}{\mathbb Q}\newcommand{\F}{\mathbb F}\newcommand{\A}{\mathbb A}\newcommand{\PP}{\mathbb P}
-\newcommand{\set}[1]{\{#1\}}
-\definecolor{ink}{HTML}{21374D}\definecolor{blue}{HTML}{286E9C}\definecolor{green}{HTML}{28785D}\definecolor{orange}{HTML}{AF5A24}
-\newcommand{\startmap}[2]{\begin{center}{\Large\bfseries\color{ink}#1}\par\smallskip{\small #2}\end{center}\vspace{2mm}\begin{tikzpicture}[x=1cm,y=1cm,box/.style={draw=blue,rounded corners=3mm,line width=.8pt,align=left,text width=10.4cm,inner sep=4mm,font=\fontsize{12}{15}\selectfont},arr/.style={-{Stealth},line width=1pt,draw=ink},lab/.style={fill=white,font=\small,inner sep=2pt}]\path[use as bounding box] (0,0) rectangle (27.4,16.1);}
-\newcommand{\finishmap}[1]{\end{tikzpicture}\par\vfill{\fontsize{8}{10}\selectfont #1}\newpage}
-\newcommand{\links}[1]{\node[draw=ink,rounded corners,fill=ink!5,align=center,text width=4.3cm,inner sep=3mm,font=\large\bfseries] (c) at (13.7,8) {#1};\draw[arr] (c)--(a.south east) node[midway,lab]{se define};\draw[arr] (c)--(b.south west) node[midway,lab]{se construye};\draw[arr] (c)--(d.north east) node[midway,lab]{se calcula};\draw[arr] (c)--(e.north west) node[midway,lab]{se conecta};}
+\newcommand{\Spec}{\operatorname{Spec}}\newcommand{\Hom}{\operatorname{Hom}}\newcommand{\Z}{\mathbb Z}\newcommand{\Q}{\mathbb Q}\newcommand{\F}{\mathbb F}\newcommand{\A}{\mathbb A}\newcommand{\PP}{\mathbb P}
+\definecolor{blue}{HTML}{286E9C}\definecolor{green}{HTML}{28785D}\definecolor{orange}{HTML}{AF5A24}\definecolor{purple}{HTML}{79538E}
+\newcommand{\startmap}[2]{\begin{center}\Large\bfseries #1\end{center}\begin{tikzpicture}[x=1cm,y=1cm,every node/.style={align=center,font=\fontsize{11.5}{14}\selectfont},leaf/.style={text width=5.5cm,inner sep=2mm,fill=white},branch/.style={leaf,font=\bfseries\large,text width=3.6cm},root/.style={branch,draw,rounded corners=5mm,fill=blue!6,inner sep=3mm},edge/.style={-{Stealth},line width=.9pt},cross/.style={edge,dashed,draw=purple},tag/.style={fill=white,font=\footnotesize,inner sep=1mm}]\path[use as bounding box] (0,0) rectangle (27.7,17.2);\node[anchor=south,font=\fontsize{8}{10}\selectfont,text width=27cm] at (13.85,0) {#2};}
+\newcommand{\N}[5]{\node[leaf,text=#5] (#1) at (#2,#3) {#4};}
+\newcommand{\B}[5]{\node[branch,text=#5] (#1) at (#2,#3) {#4};}
+\newcommand{\E}[3]{\begin{scope}[on background layer]\draw[edge,draw=#3] (#1) to[out=0,in=180] (#2);\end{scope}}
+\newcommand{\LeftBranch}[3]{\begin{scope}[on background layer]\draw[edge,draw=#3] (#1) to[out=180,in=0] (#2);\end{scope}}
+\newcommand{\D}[3]{\begin{scope}[on background layer]\draw[edge,draw=#3] (#1)--(#2);\end{scope}}
+\newcommand{\finish}{\end{tikzpicture}\newpage}
 \begin{document}
-\startmap{1. Vakil · Del modelo local al esquema}{Lectura del 29 de agosto de 2022 · $k$ cuerpo, $A$ anillo conmutativo con unidad}
-\node[box,anchor=north west] (a) at (0,16) {\textbf{Cartas y datos locales}\\Esquema $(X,\mathcal O_X)$: cubierto por abiertos $\Spec A_i$.\\$D(f)\simeq\Spec A_f$: base de abiertos afines.\\En $x=\mathfrak p$: $\mathcal O_{X,x}=A_{\mathfrak p}$,\\$\kappa(x)=\operatorname{Frac}(A/\mathfrak p)$.\\Ej.: en $\Spec\Z$, $x=(p)$ da $\kappa(x)=\F_p$.};
-\node[box,anchor=north east,draw=green] (b) at (27.4,16) {\textbf{Pegar cartas}\\Isomorfismos de abiertos + compatibilidad triple\\$\Longrightarrow$ esquema pegado.\\Dos $\A_k^1$ sobre $D(t)\simeq D(u)$:\\$u=t\ \Rightarrow$ recta con origen doble;\\$u=t^{-1}\ \Rightarrow\PP_k^1$.\\$n+1$ cartas $\A_A^n$, $x_{r/j}=x_{r/i}/x_{j/i}$\\$\Longrightarrow\PP_A^n$.};
-\node[box,anchor=south west,draw=orange] (d) at (0,0) {\textbf{Secciones y no afinidad · Sesión 8}\\$U=\A_k^2\setminus\set{(0,0)}=D(x)\cup D(y)$;\\$\Gamma(U)=k[x,y]$, pero $U$ no es afín.\\$\Gamma(\PP_k^1)=k[t]\cap k[t^{-1}]=k$;\\$\PP_k^1$ no es afín.\\Para cualquier esquema $X$:\\$\Hom(X,\Spec A)\simeq\Hom_{\rm anillos}(A,\Gamma(X))$.\\Ej.: la identidad induce $X\to\Spec\Gamma(X)$.};
-\node[box,anchor=south east,draw=green] (e) at (27.4,0) {\textbf{Familias y ejemplos · Sesión 8}\\$\A_\Z^n\longrightarrow\Spec\Z$\\sobre $(0)$: $\A_\Q^n$; sobre $(p)$: $\A_{\F_p}^n$.\\Ej.: $n=1$ da las fibras del mapa de Mumford.\\Abierto $U\subseteq X\Rightarrow(U,\mathcal O_X|_U)$ esquema.\\Cerrado $V(I)\Leftarrow\Spec(A/I)$:\\$(t)$ y $(t^2)$ dan el mismo soporte,\\con distinta estructura.};
-\links{ESQUEMA\\localmente afín}
-\finishmap{Fuente: Vakil, §§4.3.1--4.3.8, 4.4.1--4.4.10, §7.3.4 y ej. 7.3.G; ej. 3.2.Q y fig. 3.7. Conexiones: Sesión 8, plano perforado, pegados y fibras.}
-\startmap{2. Liu · Construir y reconocer esquemas}{Capítulo 2, §§2.3.1--2.3.2 · $A$ anillo, $p$ primo}
-\node[box,anchor=north west] (a) at (0,16) {\textbf{Esquema y abiertos}\\Esquema: espacio anillado localmente $\Spec A$.\\$D(f)\simeq\Spec A_f$, $\mathcal O_{\Spec A,\mathfrak p}=A_{\mathfrak p}$.\\Todo abierto hereda estructura de esquema.\\Ej.: $\Spec\Z$, $\Gamma(D(6))=\Z[1/6]$.\\Cerrado afín: $\Spec(A/I)\hookrightarrow\Spec A$.\\Ej.: $\Spec\F_p\hookrightarrow\Spec\Z$.};
-\node[box,anchor=north east,draw=green] (b) at (27.4,16) {\textbf{Pegado · Lema 3.33}\\$X_i$ sobre $S$, abiertos $X_{ij}\subseteq X_i$,\\isomorfismos $f_{ij}\colon X_{ij}\to X_{ji}$ sobre $S$.\\$X_{ii}=X_i$, $f_{ii}=\mathrm{id}$; en triples:\\$f_{ij}(X_{ij}\cap X_{ik})=X_{ji}\cap X_{jk}$,\\$f_{ik}=f_{jk}\circ f_{ij}$.\\$\Longrightarrow X$ sobre $S$, único salvo isomorfismo\\compatible con las cartas.};
-\node[box,anchor=south west,draw=orange] (d) at (0,0) {\textbf{Morfismos hacia afines · Prop. 3.25}\\$X$ esquema, $Y=\Spec A$ afín:\\$\Hom(X,Y)\simeq\Hom_{\rm anillos}(A,\Gamma(X))$.\\Ej.: $\Z\to\Gamma(X)$ induce $X\to\Spec\Z$.\\Un $S$-esquema es $X$ con $X\to S$.\\Ej. 3.6: $U=\Spec\Z[T]\setminus\set{(p,T)}$;\\$U=D(p)\cup D(T)$, $\Gamma(U)=\Z[T]$.\\El mapa canónico es la inclusión: $U$ no afín.};
-\node[box,anchor=south east,draw=green] (e) at (27.4,0) {\textbf{Ejemplo del pegado · $\PP_A^n$}\\Cartas $X_i=\Spec A[T_j/T_i]_{j\ne i}$, $0\le i\le n$.\\Solapes $X_{ij}=D(T_j/T_i)$.\\Cambio: $T_k/T_j=(T_k/T_i)/(T_j/T_i)$.\\Para $n=1$: dos rectas, $u=t^{-1}$.\\\textbf{Sesión 8}: mismas cartas de $\PP_A^1$ y $\PP_A^n$;\\el abierto aritmético perforado reproduce\\el argumento de $\A_k^2\setminus\set{0}$.};
-\links{ESQUEMAS\\cartas y morfismos}
-\finishmap{Fuente: Liu, Algebraic Geometry and Arithmetic Curves, cap. 2, §§2.3.1--2.3.2, pp. 42--50; ejs. 3.5, 3.6 y 3.34, prop. 3.25, lema 3.33.}
-\newcommand{\primos}{\textbf{Primos por altura}\\$0$: $(0)$, genérico; $\kappa=\Q(t)$.\\$1$: $(g)$, curva horizontal; $\kappa=\Q[t]/(g)$;\\$g$ primitivo, no constante, irreducible en $\Q[t]$.\\$1$: $(p)$, vertical; $\kappa=\F_p(t)$.\\$2$: $(p,h)$, cerrado; $\bar h$ mónico irreducible,\\$\kappa=\F_p[t]/(\bar h)=\F_{p^{\deg\bar h}}$.}
-\newcommand{\cortes}{\textbf{Cortes de $C=V(t^2+1)$}\\\begin{tabular}{@{}ccl@{}}$p$ & $t^2+1\pmod p$ & puntos / cuerpos\\2 & $(t+1)^2$ & $(2,t+1)$ / $\F_2$\\3 & irreducible & $(3,t^2+1)$ / $\F_9$\\5 & $(t-2)(t+2)$ & $(5,t\pm2)$ / $\F_5$\\7 & irreducible & $(7,t^2+1)$ / $\F_{49}$\end{tabular}\\Sobre 2: un punto doble. Sobre 5: dos puntos.\\Sobre 3 y 7: un punto de grado dos.}
-\newcommand{\fibra}{\textbf{Fibras sobre $\Spec\Z$}\\$\pi(\mathfrak q)=\mathfrak q\cap\Z$.\\$\pi^{-1}((p))=V(p)\simeq\A_{\F_p}^1$.\\$\pi^{-1}((0))\simeq\A_\Q^1$ (fibra genérica).\\Ej.: $(t^2+1)$ vive sobre $(0)$;\\$(5,t-2)$ vive sobre $(5)$.}
-\startmap{3. Le Bruyn · Leer el mapa de Mumford}{La superficie aritmética $X=\Spec\Z[t]$}
-\node[box,anchor=north west] (a) at (0,16) {\primos};
-\node[box,anchor=north east,draw=green] (b) at (27.4,16) {\textbf{Qué significan los signos}\\$\overline{\set{\mathfrak q}}=V(\mathfrak q)$;\\$\mathfrak q\subseteq\mathfrak r\Rightarrow V(\mathfrak r)\subseteq V(\mathfrak q)$.\\El genérico $(0)$ tiene cierre $X$.\\Trazo vertical: $V(p)$; horizontal: $V(g)$.\\Ej.: $V(t)\simeq\Spec\Z$; $C\simeq\Spec\Z[i]$.\\Punto pequeño: grado 1; círculo mayor: grado 2.\\Ej.: $(3,t)$ da $\F_3$, $(3,t^2+1)$ da $\F_9$.};
-\node[box,anchor=south west,draw=orange] (d) at (0,0) {\cortes};
-\node[box,anchor=south east,draw=green] (e) at (27.4,0) {\fibra\\\textbf{Sesión 8}: clasificación de primos,\\cuerpos residuales y puntos de $\PP_\Z^1$.};
-\links{MAPA DE\\MUMFORD}
-\finishmap{Fuente: Le Bruyn, «Mumford's treasure map», 13-XII-2008, neverendingbooks. Cortes exigidos por la Tarea 4, cotejados con Sesión 8.}
-\startmap{4. Serratos · Reducir la curva en cada fibra}{Lectura obligatoria, pp. 1--2 · $X=\Spec\Z[t]$, $C=V(t^2+1)$}
-\node[box,anchor=north west] (a) at (0,16) {\primos};
-\node[box,anchor=north east,draw=green] (b) at (27.4,16) {\textbf{Reducir $\Longrightarrow$ factorizar $\Longrightarrow$ leer puntos}\\$C\cap V(p)=\Spec\bigl(\F_p[t]/(t^2+1)\bigr)$.\\Cada factor irreducible $\bar h$ da $(p,h)$;\\su grado da $[\kappa(p,h):\F_p]$.\\Ej.: módulo 5 hay dos factores lineales\\$\Rightarrow$ dos puntos con cuerpo $\F_5$.\\Módulo 2: $\F_2[\varepsilon]/(\varepsilon^2)$, $\varepsilon=t+1$\\$\Rightarrow$ un punto con multiplicidad dos.};
-\node[box,anchor=south west,draw=orange] (d) at (0,0) {\cortes};
-\node[box,anchor=south east,draw=green] (e) at (27.4,0) {\fibra\\\textbf{Sesión 8}: $\Z[t]/(t^2+1)\simeq\Z[i]$;\\2 ramifica, 5 se descompone, 3 y 7 son inertes.};
-\links{CURVA\\$V(t^2+1)$}
-\finishmap{Fuente: Serratos, «On the prime spectrum of the p-adic integer polynomial ring with a depiction», arXiv:2304.03523v2, pp. 1--2. Conexiones y cortes: Sesión 8.}
+\startmap{1. Vakil · Del modelo local a las familias}{Vakil, borrador 29-VIII-2022, §§4.3.1--4.3.8, 4.4.1--4.4.10, 7.3.4 y ej. 7.3.G; ej. 3.2.Q. Flechas discontinuas: conexiones entre ramas.}
+\node[root] (r) at (13.6,9) {ESQUEMA\\$(X,\mathcal O_X)$};
+\B{a}{8}{14}{Localmente afín}{blue}
+\N{a1}{2.9}{16}{Cartas $U_i\simeq\Spec A_i$\\Ej.: $\A_k^1=\Spec k[t]$}{blue}
+\N{a2}{2.9}{13.8}{$D(f)\simeq\Spec A_f$\\base de abiertos afines}{blue}
+\N{a3}{2.9}{11.7}{Abierto $U\subseteq X$\\hereda $\mathcal O_X|_U$\\Ej.: $D(t)\subseteq\A_k^1$}{blue}
+\B{b}{8}{8.5}{Mirar un punto}{purple}
+\N{b1}{2.9}{9.3}{Tallo en $\mathfrak p$: $A_{\mathfrak p}$\\$\kappa(\mathfrak p)=\operatorname{Frac}(A/\mathfrak p)$}{purple}
+\N{b2}{2.9}{7.2}{En $\Spec\Z$\\$(p)\mapsto\F_p$, $(0)\mapsto\Q$}{purple}
+\B{c}{8}{4}{Hacia un afín}{orange}
+\N{c1}{3.3}{4.7}{$\Hom(X,\Spec A)$\\$\simeq\Hom_{\rm anillos}(A,\Gamma(X))$\\$X$ esquema, $A$ anillo}{orange}
+\N{c2}{3.3}{2.1}{La identidad de $\Gamma(X)$ induce\\$X\to\Spec\Gamma(X)$\\isomorfismo $\Leftrightarrow X$ afín}{orange}
+\B{d}{18.4}{14}{Pegar abiertos}{green}
+\N{d1}{24.5}{16}{Isomorfismos compatibles\\en intersecciones triples}{green}
+\N{d2}{24.5}{13.9}{Dos rectas, fuera del origen\\$u=t\Rightarrow$ origen doble\\$u=t^{-1}\Rightarrow\PP_k^1$}{green}
+\N{d3}{24.5}{11.5}{$n+1$ cartas $\A_A^n\Rightarrow\PP_A^n$\\$x_{r/j}=x_{r/i}/x_{j/i}$}{green}
+\B{e}{18.4}{8}{No afinidad\\Sesión 8}{orange}
+\N{e1}{24.5}{8.8}{$U=\A_k^2\setminus\{0\}$\\$\Gamma(U)=k[x,y]$; $U$ no afín}{orange}
+\N{e2}{24.5}{6.8}{$\Gamma(\PP_k^1)=k$\\$\PP_k^1$ no es afín}{orange}
+\B{f}{18.4}{3.5}{Familias}{blue}
+\N{f1}{24.5}{4.4}{$\A_\Z^n\to\Spec\Z$\\fibra genérica $\A_\Q^n$\\fibra en $(p)$: $\A_{\F_p}^n$}{blue}
+\N{f2}{24.5}{1.9}{$n=1$: mapa de Mumford\\Sesión 8}{blue}
+\foreach \x/\col in {a/blue,b/purple,c/orange}{\LeftBranch{r}{\x}{\col}}
+\foreach \x/\col in {d/green,e/orange,f/blue}{\E{r}{\x}{\col}}
+\foreach \x in {a1,a2,a3}{\LeftBranch{a}{\x}{blue}}\LeftBranch{b}{b1}{purple}\D{b1}{b2}{purple}\LeftBranch{c}{c1}{orange}\D{c1}{c2}{orange}
+\E{d}{d1}{green}\D{d1}{d2}{green}\D{d2}{d3}{green}\E{e}{e1}{orange}\E{e}{e2}{orange}\E{f}{f1}{blue}\D{f1}{f2}{blue}
+\draw[cross] (d2.west) to[out=180,in=90] node[tag,pos=.55]{secciones} (e.north);\draw[cross] (c2.east) to[out=0,in=-90] node[tag,pos=.55]{permite detectar} (e.south);
+\finish
+\startmap{2. Liu · De los anillos al pegado}{Liu, cap. 2, §§2.3.1--2.3.2, pp. 42--50. Proposición 3.25, lema 3.33 y ejemplos 3.5, 3.6, 3.34.}
+\node[root] (r) at (13.7,10) {ESQUEMAS\\localmente afines};
+\B{a}{8}{14.8}{Modelo afín}{blue}
+\N{a1}{3}{16}{$\Spec A$, $\mathcal O(D(f))=A_f$\\tallo $A_{\mathfrak p}$}{blue}
+\N{a2}{3}{13.8}{Ej.: $\Spec\Z$\\$\Gamma(D(6))=\Z[1/6]$}{blue}
+\B{b}{8}{10.7}{Subesquemas}{purple}
+\N{b1}{3}{11.2}{Abierto: $\mathcal O_X|_U$\\Ej.: $D(f)\simeq\Spec A_f$}{purple}
+\N{b2}{3}{8.7}{Cerrado afín: $\Spec(A/I)$\\Ej.: $\Spec\F_p\subseteq\Spec\Z$}{purple}
+\B{c}{8}{5.7}{Destino afín}{orange}
+\N{c1}{3.1}{6.2}{$X$ esquema, $Y=\Spec A$\\$\Hom(X,Y)\simeq$\\$\Hom_{\rm anillos}(A,\Gamma(X))$}{orange}
+\N{c2}{3.1}{3.7}{Ej.: $\Z\to\Gamma(X)$\\da $X\to\Spec\Z$}{orange}
+\B{d}{18.6}{15}{Sobre una base}{blue}
+\N{d1}{24.5}{15.4}{$S$-esquema: $X\to S$\\Ej.: $\A_A^n\to\Spec A$}{blue}
+\B{e}{18.6}{11}{Pegado}{green}
+\N{e1}{24.5}{12.9}{$X_i$ sobre $S$, $X_{ij}\subseteq X_i$ abiertos\\$f_{ij}\colon X_{ij}\simeq X_{ji}$ sobre $S$\\$X_{ii}=X_i$, $f_{ii}=\mathrm{id}$}{green}
+\N{e2}{24.5}{10}{Compatibilidad triple\\$f_{ij}(X_{ij}\cap X_{ik})=X_{ji}\cap X_{jk}$\\$f_{ik}=f_{jk}\circ f_{ij}$}{green}
+\N{e3}{24.5}{7.6}{$\Rightarrow X$ pegado sobre $S$\\único salvo isomorfismo\\compatible con las cartas}{green}
+\N{e4}{24.5}{4.8}{Ej.: $\PP_A^n$ con cartas $\A_A^n$\\solapes $D(T_j/T_i)$\\$T_k/T_j=(T_k/T_i)/(T_j/T_i)$}{green}
+\node[leaf,text width=8cm,text=orange] (z) at (12.8,2.5) {\textbf{Sesión 8 · abierto perforado}\\$U=\Spec\Z[T]\setminus\{(p,T)\}=D(p)\cup D(T)$\\$\Gamma(U)=\Z[T]$; mapa canónico = inclusión\\$\Rightarrow U$ no afín, como $\A_k^2\setminus\{0\}$};
+\N{s}{24.5}{1.8}{\textbf{Sesión 8}\\$n=1$: dos rectas con $u=t^{-1}$}{green}
+\LeftBranch{r}{a}{blue}\LeftBranch{a}{a1}{blue}\D{a1}{a2}{blue}\LeftBranch{r}{b}{purple}\LeftBranch{b}{b1}{purple}\LeftBranch{b}{b2}{purple}\LeftBranch{r}{c}{orange}\LeftBranch{c}{c1}{orange}\D{c1}{c2}{orange}\E{r}{d}{blue}\E{d}{d1}{blue}\E{r}{e}{green}\E{e}{e1}{green}\D{e1}{e2}{green}\D{e2}{e3}{green}\D{e3}{e4}{green}\D{e4}{s}{green}\D{c}{z}{orange}
+\draw[cross] (d.south)--(e.north) node[midway,tag]{fija la base};
+\finish
+\newcommand{\arith}[1]{
+\node[root] (r) at (13.7,10.3) {#1};
+\B{h}{8.2}{15.1}{Alturas\\{\small $p$ primo}}{blue}
+\N{h0}{3}{16.2}{$0$: $(0)$, genérico de $X$\\$\kappa=\Q(t)$, cierre $X$}{blue}
+\N{h1}{3}{13.8}{$1$: $(g)$, curva horizontal\\$g$ primitivo, no constante\\irreducible en $\Q[t]$\\$\kappa=\Q[t]/(g)$}{blue}
+\N{h2}{3}{11.3}{$1$: $(p)$, vertical\\$\kappa=\F_p(t)$}{blue}
+\N{h3}{3}{8.7}{$2$: $(p,h)$, cerrado\\$\bar h$ mónico irreducible\\$\kappa=\F_p[t]/(\bar h)=\F_{p^d}$, $d=\deg\bar h$}{blue}
+\B{f}{8.2}{6}{Fibras de $\pi$}{purple}
+\N{f0}{3}{5.8}{Sobre $(0)$: $\A_\Q^1$\\Ej.: $(t^2+1)$}{purple}
+\N{fp}{3}{3.5}{Sobre $(p)$: $V(p)\simeq\A_{\F_p}^1$\\Ej.: $(5,t-2)$}{purple}
+\N{pi}{8.6}{2}{\textbf{Sesión 8}\\$\pi(\mathfrak q)=\mathfrak q\cap\Z$\\primos, fibras, cuerpos residuales}{purple}
+\B{c}{18.9}{6}{Cortes de\\$V(t^2+1)$}{orange}
+\N{p2}{24.5}{7.2}{$p=2$: $(t+1)^2$\\$(2,t+1)$, cuerpo $\F_2$\\un punto doble}{orange}
+\N{p3}{24.5}{5.2}{$p=3$: irreducible\\$(3,t^2+1)$, cuerpo $\F_9$}{orange}
+\N{p5}{24.5}{3.3}{$p=5$: $(t-2)(t+2)$\\dos puntos $(5,t\pm2)$, cuerpos $\F_5$}{orange}
+\N{p7}{24.5}{1.5}{$p=7$: irreducible\\$(7,t^2+1)$, cuerpo $\F_{49}$}{orange}
+\LeftBranch{r}{h}{blue}\foreach \x in {h0,h1,h2,h3}{\LeftBranch{h}{\x}{blue}}\LeftBranch{r}{f}{purple}\LeftBranch{f}{f0}{purple}\LeftBranch{f}{fp}{purple}\D{f}{pi}{purple}\D{r}{c}{orange}\foreach \x in {p2,p3,p5,p7}{\E{c}{\x}{orange}}
+}
+\startmap{3. Le Bruyn · Descifrar el dibujo}{Le Bruyn, «Mumford's treasure map», 13-XII-2008. Cortes de la curva exigidos por Tarea 4 y cotejados con Sesión 8.}
+\arith{MAPA DE MUMFORD\\$X=\Spec\Z[t]$}
+\B{v}{18.8}{15}{Signos y cierres}{green}
+\N{v1}{24.4}{16}{$\overline{\{\mathfrak q\}}=V(\mathfrak q)$\\$\mathfrak q\subseteq\mathfrak r\Rightarrow V(\mathfrak r)\subseteq V(\mathfrak q)$}{green}
+\N{v2}{24.4}{13.8}{Vertical $V(p)$; horizontal $V(g)$\\Ej.: $V(t)\simeq\Spec\Z$\\$V(t^2+1)\simeq\Spec\Z[i]$}{green}
+\N{v3}{24.4}{11.4}{Marca pequeña: grado 1\\marca mayor: grado 2\\Ej.: $(3,t)$ da $\F_3$; $(3,t^2+1)$ da $\F_9$}{green}
+\E{r}{v}{green}\E{v}{v1}{green}\D{v1}{v2}{green}\D{v2}{v3}{green}
+\draw[cross] (v3.south) to[out=-110,in=50] node[tag,pos=.5]{leer los grados} (c.north);
+\finish
+\startmap{4. Serratos · De la factorización a los puntos}{Serratos, arXiv:2304.03523v2, pp. 1--2. Cortes y lectura aritmética cotejados con Sesión 8.}
+\arith{CURVA EN\\$\Spec\Z[t]$}
+\B{v}{18.8}{15.2}{Reducir módulo $p$}{green}
+\N{v1}{24.4}{16}{$C=V(t^2+1)\simeq\Spec\Z[i]$\\$C\cap V(p)=\Spec\bigl(\F_p[t]/(t^2+1)\bigr)$}{green}
+\N{v2}{24.4}{13.7}{Factor irreducible $\bar h\Rightarrow(p,h)$\\grado del factor = grado residual\\factor repetido $\Rightarrow$ multiplicidad}{green}
+\N{v3}{24.4}{10.9}{Ej.: módulo 2, $\varepsilon=t+1$\\$\F_2[\varepsilon]/(\varepsilon^2)$\\un punto, con nilpotentes}{green}
+\N{s}{14.3}{2.2}{\textbf{Sesión 8 · $\Z[i]$}\\2 ramifica; 5 se descompone\\3 y 7 son inertes}{green}
+\E{r}{v}{green}\E{v}{v1}{green}\D{v1}{v2}{green}\D{v2}{v3}{green}\D{c}{s}{green}
+\draw[cross] (v2.west) to[out=180,in=90] node[tag,pos=.6]{determina los cortes} (c.north);
+\finish
 \end{document}
+
+
