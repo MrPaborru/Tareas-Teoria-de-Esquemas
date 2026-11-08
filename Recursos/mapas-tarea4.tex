@@ -5,7 +5,7 @@
 \pagestyle{empty}\setlength{\parindent}{0pt}
 \newcommand{\Spec}{\operatorname{Spec}}\newcommand{\Hom}{\operatorname{Hom}}\newcommand{\Z}{\mathbb Z}\newcommand{\Q}{\mathbb Q}\newcommand{\F}{\mathbb F}\newcommand{\A}{\mathbb A}\newcommand{\PP}{\mathbb P}
 \definecolor{blue}{HTML}{286E9C}\definecolor{green}{HTML}{28785D}\definecolor{orange}{HTML}{AF5A24}\definecolor{purple}{HTML}{79538E}
-\newcommand{\startmap}[2]{\begin{center}\Large\bfseries #1\end{center}\begin{tikzpicture}[x=1cm,y=1cm,every node/.style={align=center,font=\fontsize{11.5}{14}\selectfont},leaf/.style={text width=5.5cm,inner sep=2mm,fill=white},branch/.style={leaf,font=\bfseries\large,text width=3.6cm},root/.style={branch,draw,rounded corners=5mm,fill=blue!6,inner sep=3mm},edge/.style={-{Stealth},line width=.9pt},cross/.style={edge,dashed,draw=purple},tag/.style={fill=white,font=\footnotesize,inner sep=1mm}]\path[use as bounding box] (0,0) rectangle (27.7,17.2);\node[anchor=south,font=\fontsize{8}{10}\selectfont,text width=27cm] at (13.85,0) {#2};}
+\newcommand{\startmap}[2]{\begin{center}\Large\bfseries #1\end{center}\begin{tikzpicture}[x=1cm,y=1cm,every node/.style={align=center,font=\fontsize{10.5}{12.5}\selectfont},leaf/.style={text width=5.5cm,inner sep=2mm,fill=white},branch/.style={leaf,font=\bfseries\large,text width=3.6cm},root/.style={branch,draw,rounded corners=5mm,fill=blue!6,inner sep=3mm},edge/.style={-{Stealth},line width=.9pt},cross/.style={edge,dashed,draw=purple},tag/.style={fill=white,font=\footnotesize,inner sep=1mm}]\path[use as bounding box] (0,0) rectangle (27.7,17.2);\node[anchor=south,font=\fontsize{8}{10}\selectfont,text width=27cm] at (13.85,0) {#2};}
 \newcommand{\N}[5]{\node[leaf,text=#5] (#1) at (#2,#3) {#4};}
 \newcommand{\B}[5]{\node[branch,text=#5] (#1) at (#2,#3) {#4};}
 \newcommand{\E}[3]{\begin{scope}[on background layer]\draw[edge,draw=#3] (#1) to[out=0,in=180] (#2);\end{scope}}
@@ -17,21 +17,21 @@
 \node[root] (r) at (13.6,9) {ESQUEMA\\$(X,\mathcal O_X)$};
 \B{a}{8}{14}{Localmente afín}{blue}
 \N{a1}{2.9}{16}{Cartas $U_i\simeq\Spec A_i$\\Ej.: $\A_k^1=\Spec k[t]$}{blue}
-\N{a2}{2.9}{13.8}{$D(f)\simeq\Spec A_f$\\base de abiertos afines}{blue}
+\N{a2}{2.9}{13.8}{$D(f)\simeq\Spec A_f$\\base de abiertos afines\\Dos abiertos afines pueden tener\\intersección no afín}{blue}
 \N{a3}{2.9}{11.7}{Abierto $U\subseteq X$\\hereda $\mathcal O_X|_U$\\Ej.: $D(t)\subseteq\A_k^1$}{blue}
 \B{b}{8}{8.5}{Mirar un punto}{purple}
-\N{b1}{2.9}{9.3}{Tallo en $\mathfrak p$: $A_{\mathfrak p}$\\$\kappa(\mathfrak p)=\operatorname{Frac}(A/\mathfrak p)$}{purple}
-\N{b2}{2.9}{7.2}{En $\Spec\Z$\\$(p)\mapsto\F_p$, $(0)\mapsto\Q$}{purple}
+\N{b1}{2.9}{9.3}{Tallo $\mathcal O_{X,x}=A_{\mathfrak p}$, anillo local\\$\kappa(x)=A_{\mathfrak p}/\mathfrak pA_{\mathfrak p}$\\$\simeq\operatorname{Frac}(A/\mathfrak p)$}{purple}
+\N{b2}{2.9}{7.2}{En $\Spec\Z$: $\kappa(p)=\F_p$, $\kappa(0)=\Q$\\Evaluar: $s\mapsto s_x\bmod\mathfrak m_x$\\Ej.: $27/4$ vale $3$ en $(5)$}{purple}
 \B{c}{8}{4}{Hacia un afín}{orange}
 \N{c1}{3.3}{4.7}{$\Hom(X,\Spec A)$\\$\simeq\Hom_{\rm anillos}(A,\Gamma(X))$\\$X$ esquema, $A$ anillo}{orange}
 \N{c2}{3.3}{2.1}{La identidad de $\Gamma(X)$ induce\\$X\to\Spec\Gamma(X)$\\isomorfismo $\Leftrightarrow X$ afín}{orange}
 \B{d}{18.4}{14}{Pegar abiertos}{green}
-\N{d1}{24.5}{16}{Isomorfismos compatibles\\en intersecciones triples}{green}
+\N{d1}{24.5}{16}{Isomorfismos de abiertos\\compatibles en intersecciones triples\\$\Rightarrow$ esquema pegado único}{green}
 \N{d2}{24.5}{13.9}{Dos rectas, fuera del origen\\$u=t\Rightarrow$ origen doble\\$u=t^{-1}\Rightarrow\PP_k^1$}{green}
-\N{d3}{24.5}{11.5}{$n+1$ cartas $\A_A^n\Rightarrow\PP_A^n$\\$x_{r/j}=x_{r/i}/x_{j/i}$}{green}
+\N{d3}{24.5}{11.5}{$n+1$ cartas $\A_A^n\Rightarrow\PP_A^n$\\solapes $D(x_{j/i})$\\$x_{r/j}=x_{r/i}/x_{j/i}$}{green}
 \B{e}{18.4}{8}{No afinidad\\Sesión 8}{orange}
-\N{e1}{24.5}{8.8}{$U=\A_k^2\setminus\{0\}$\\$\Gamma(U)=k[x,y]$; $U$ no afín}{orange}
-\N{e2}{24.5}{6.8}{$\Gamma(\PP_k^1)=k$\\$\PP_k^1$ no es afín}{orange}
+\N{e1}{24.5}{8.8}{$k$ cuerpo; $U=\A_k^2\setminus\{0\}$\\$U=D(x)\cup D(y)$\\$\Gamma(U)=k[x,y]$; $U$ no afín}{orange}
+\N{e2}{24.5}{6.8}{$\Gamma(\PP_k^1)=k[t]\cap k[t^{-1}]=k$\\$\PP_k^1$ no es afín\\Origen doble: $\Gamma=k[t]$, tampoco afín}{orange}
 \B{f}{18.4}{3.5}{Familias}{blue}
 \N{f1}{24.5}{4.4}{$\A_\Z^n\to\Spec\Z$\\fibra genérica $\A_\Q^n$\\fibra en $(p)$: $\A_{\F_p}^n$}{blue}
 \N{f2}{24.5}{1.9}{$n=1$: mapa de Mumford\\Sesión 8}{blue}
@@ -40,15 +40,20 @@
 \foreach \x in {a1,a2,a3}{\LeftBranch{a}{\x}{blue}}\LeftBranch{b}{b1}{purple}\D{b1}{b2}{purple}\LeftBranch{c}{c1}{orange}\D{c1}{c2}{orange}
 \E{d}{d1}{green}\D{d1}{d2}{green}\D{d2}{d3}{green}\E{e}{e1}{orange}\E{e}{e2}{orange}\E{f}{f1}{blue}\D{f1}{f2}{blue}
 \draw[cross] (d2.west) to[out=180,in=90] node[tag,pos=.55]{secciones} (e.north);\draw[cross] (c2.east) to[out=0,in=-90] node[tag,pos=.55]{permite detectar} (e.south);
+\N{mod}{13}{15.5}{\textbf{Fibra de un $\mathcal O_X$-módulo}\\$\mathcal F|_x=\mathcal F_x\otimes_{\mathcal O_{X,x}}\kappa(x)$\\rango $=\dim_{\kappa(x)}\mathcal F|_x$\\Ej.: $\mathcal O_X|_x=\kappa(x)$, rango 1}{purple}
+\draw[edge,draw=purple] (b.north east) to[out=70,in=-90] (mod.south);
+\N{closed}{13}{5.4}{\textbf{Estructura sobre un cerrado}\\$\Spec(A/I)$ tiene soporte $V(I)$\\Ej.: $(t)$ y $(t^2)$, mismo soporte\\con distinta estructura}{blue}
+\D{r}{closed}{blue}
+
 \finish
 \startmap{2. Liu · De los anillos al pegado}{Liu, cap. 2, §§2.3.1--2.3.2, pp. 42--50. Proposición 3.25, lema 3.33 y ejemplos 3.5, 3.6, 3.34.}
 \node[root] (r) at (13.7,10) {ESQUEMAS\\localmente afines};
 \B{a}{8}{14.8}{Modelo afín}{blue}
-\N{a1}{3}{16}{$\Spec A$, $\mathcal O(D(f))=A_f$\\tallo $A_{\mathfrak p}$}{blue}
-\N{a2}{3}{13.8}{Ej.: $\Spec\Z$\\$\Gamma(D(6))=\Z[1/6]$}{blue}
+\N{a1}{3}{16}{$\Spec A$, $\mathcal O(D(f))=A_f$\\tallo $A_{\mathfrak p}$; $\kappa=\operatorname{Frac}(A/\mathfrak p)$}{blue}
+\N{a2}{3}{13.8}{Ej.: $\Spec\Z$, $\Gamma(D(6))=\Z[1/6]$\\Si $A$ dominio: $\mathcal O(U)\subseteq\operatorname{Frac}(A)$\\para $U\ne\varnothing$}{blue}
 \B{b}{8}{10.7}{Subesquemas}{purple}
 \N{b1}{3}{11.2}{Abierto: $\mathcal O_X|_U$\\Ej.: $D(f)\simeq\Spec A_f$}{purple}
-\N{b2}{3}{8.7}{Cerrado afín: $\Spec(A/I)$\\Ej.: $\Spec\F_p\subseteq\Spec\Z$}{purple}
+\N{b2}{3}{8.7}{Subesquemas cerrados de $\Spec A$\\$\leftrightarrow$ ideales $I$, vía $\Spec(A/I)$\\Ej.: $\Spec\F_p\hookrightarrow\Spec\Z$}{purple}
 \B{c}{8}{5.7}{Destino afín}{orange}
 \N{c1}{3.1}{6.2}{$X$ esquema, $Y=\Spec A$\\$\Hom(X,Y)\simeq$\\$\Hom_{\rm anillos}(A,\Gamma(X))$}{orange}
 \N{c2}{3.1}{3.7}{Ej.: $\Z\to\Gamma(X)$\\da $X\to\Spec\Z$}{orange}
@@ -63,6 +68,13 @@
 \N{s}{24.5}{1.8}{\textbf{Sesión 8}\\$n=1$: dos rectas con $u=t^{-1}$}{green}
 \LeftBranch{r}{a}{blue}\LeftBranch{a}{a1}{blue}\D{a1}{a2}{blue}\LeftBranch{r}{b}{purple}\LeftBranch{b}{b1}{purple}\LeftBranch{b}{b2}{purple}\LeftBranch{r}{c}{orange}\LeftBranch{c}{c1}{orange}\D{c1}{c2}{orange}\E{r}{d}{blue}\E{d}{d1}{blue}\E{r}{e}{green}\E{e}{e1}{green}\D{e1}{e2}{green}\D{e2}{e3}{green}\D{e3}{e4}{green}\D{e4}{s}{green}\D{c}{z}{orange}
 \draw[cross] (d.south)--(e.north) node[midway,tag]{fija la base};
+\N{mor}{12.8}{15.4}{\textbf{Morfismo de esquemas}\\ $f$ continuo, $f^\#\colon\mathcal O_Y\to f_*\mathcal O_X$\\mapas locales en tallos\\$A\to B\Rightarrow\Spec B\to\Spec A$\\Ej.: $A\to A_f$ da $D(f)\hookrightarrow\Spec A$}{orange}
+\D{r}{mor}{orange}
+\node[leaf,text=blue,font=\fontsize{9}{10.5}\selectfont,text width=6cm] (loc) at (3.3,1.7) {\textbf{Localizar secciones}\;$X_f=\{x:f(x)\ne0\}$\\Si $X$ tiene cubierta afín finita y solapes\\con cubierta afín finita: $\Gamma(X_f)=\Gamma(X)_f$.\\Ej.: $X=\Spec\Z$, $f=6$ da $\Z[1/6]$.};
+\draw[cross] (a2.west)--(.1,13.8)--(.1,1.7)--(loc.west);
+\N{sec}{13.1}{6.4}{\textbf{Secciones y puntos racionales}\\$\sigma\colon S\to X$, $\pi\sigma=\mathrm{id}_S$\\Ej.: $t=0$ en $\A_S^1$\\Sobre un cuerpo $k$: $x\in X(k)\Leftrightarrow\kappa(x)=k$\\Ej.: $\A_k^1(k)=k$; $(t-a)$, $a\in k$}{blue}
+\D{r}{sec}{blue}
+
 \finish
 \newcommand{\arith}[1]{
 \node[root] (r) at (13.7,10.3) {#1};
@@ -74,7 +86,19 @@
 \B{f}{8.2}{6}{Fibras de $\pi$}{purple}
 \N{f0}{3}{5.8}{Sobre $(0)$: $\A_\Q^1$\\Ej.: $(t^2+1)$}{purple}
 \N{fp}{3}{3.5}{Sobre $(p)$: $V(p)\simeq\A_{\F_p}^1$\\Ej.: $(5,t-2)$}{purple}
-\N{pi}{8.6}{2}{\textbf{Sesión 8}\\$\pi(\mathfrak q)=\mathfrak q\cap\Z$\\primos, fibras, cuerpos residuales}{purple}
+\N{pi}{8.6}{2}{\textbf{Sesión 8}\\$\pi(\mathfrak q)=\mathfrak q\cap\Z$\\$(g)$ cerrado en la fibra genérica,\\no en $X$; su cierre es $V(g)$}{purple}
+
+\begin{scope}[shift={(10.6,4.4)},x=.9cm,y=.8cm]
+\node[font=\scriptsize,align=center] at (2.5,3.5) {$C=V(t^2+1)$: cortes esquemáticos};
+\draw[-{Stealth},gray] (-.4,0)--(5.8,0) node[right,font=\scriptsize] {$\Spec\Z$};
+\foreach \x/\p in {0/2,1.6/3,3.2/5,4.8/7}{\draw[blue] (\x,.4)--(\x,2.9);\node[font=\scriptsize,below] at (\x,0) {$(\p)$};}
+\draw[orange] (0,1.6)--(1.6,1.6)--(3.2,2.4)--(4.8,1.6);
+\draw[orange] (1.6,1.6)--(3.2,.8)--(4.8,1.6);
+\draw[orange,thick] (-.08,1.52) rectangle (.08,1.68);
+\foreach \x in {1.6,4.8}{\draw[orange,thick,fill=white] (\x,1.6) circle (.11);}
+\foreach \y in {.8,2.4}{\fill[orange] (3.2,\y) circle (.06);}
+\node[font=\scriptsize] at (2.4,-.7) {cuadrado: doble; círculo: grado 2};
+\end{scope}
 \B{c}{18.9}{6}{Cortes de\\$V(t^2+1)$}{orange}
 \N{p2}{24.5}{7.2}{$p=2$: $(t+1)^2$\\$(2,t+1)$, cuerpo $\F_2$\\un punto doble}{orange}
 \N{p3}{24.5}{5.2}{$p=3$: irreducible\\$(3,t^2+1)$, cuerpo $\F_9$}{orange}
@@ -87,7 +111,7 @@
 \B{v}{18.8}{15}{Signos y cierres}{green}
 \N{v1}{24.4}{16}{$\overline{\{\mathfrak q\}}=V(\mathfrak q)$\\$\mathfrak q\subseteq\mathfrak r\Rightarrow V(\mathfrak r)\subseteq V(\mathfrak q)$}{green}
 \N{v2}{24.4}{13.8}{Vertical $V(p)$; horizontal $V(g)$\\Ej.: $V(t)\simeq\Spec\Z$\\$V(t^2+1)\simeq\Spec\Z[i]$}{green}
-\N{v3}{24.4}{11.4}{Marca pequeña: grado 1\\marca mayor: grado 2\\Ej.: $(3,t)$ da $\F_3$; $(3,t^2+1)$ da $\F_9$}{green}
+\N{v3}{24.4}{11.4}{Genéricos: trazos hacia su cierre\\Marca pequeña: grado 1; mayor: grado 2\\Ej.: $(3,t)$ da $\F_3$; $(3,t^2+1)$ da $\F_9$}{green}
 \E{r}{v}{green}\E{v}{v1}{green}\D{v1}{v2}{green}\D{v2}{v3}{green}
 \draw[cross] (v3.south) to[out=-110,in=50] node[tag,pos=.5]{leer los grados} (c.north);
 \finish
@@ -102,5 +126,8 @@
 \draw[cross] (v2.west) to[out=180,in=90] node[tag,pos=.6]{determina los cortes} (c.north);
 \finish
 \end{document}
+
+
+
 
 
