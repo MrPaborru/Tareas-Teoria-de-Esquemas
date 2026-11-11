@@ -24,10 +24,12 @@
 \newcommand{\finish}{\end{tikzpicture}\newpage}
 \begin{document}
 \startmap{1. Vakil · Del modelo local a las familias}{Vakil, borrador 29-VIII-2022, §§4.3.1--4.3.8, 4.4.1--4.4.10, 7.3.4 y ej. 7.3.G; ej. 3.2.Q y fig. 3.7.}
-\node[root] (r) at (13.6,9) {ESQUEMA\\$(X,\mathcal O_X)$};
+\node[root,text width=4.15cm] (r) at (13.65,9)
+  {ESQUEMA\\$(X,\mathcal O_X)$\\
+   {\normalfont\small \mbox{Localmente anillado}\\\mbox{con cubierta afín}}};
 \B{a}{8.3}{14}{Localmente afín}{blue}
 \N{a1}{2.9}{16}{Cartas $U_i\simeq\Spec A_i$\\Ej.: $\A_k^1=\Spec k[t]$}{blue}
-\N{a2}{2.9}{13.8}{$D(f)\simeq\Spec A_f$\\base de abiertos afines\\Dos abiertos afines pueden tener\\intersección no afín}{blue}
+\N{a2}{2.9}{13.8}{En $\Spec A$, $D(f)\simeq\Spec A_f$\\Los básicos forman una base\\Dos abiertos afines pueden tener\\intersección no afín}{blue}
 \N{a3}{2.9}{11.7}{Abierto $U\subseteq X$\\hereda $\mathcal O_X|_U$\\Ej.: $D(t)\subseteq\A_k^1$}{blue}
 \B{b}{8}{8.5}{Mirar un punto}{purple}
 \N{b1}{2.9}{9.3}{Tallo $\mathcal O_{X,x}=A_{\mathfrak p}$, anillo local\\$\kappa(x)=A_{\mathfrak p}/\mathfrak pA_{\mathfrak p}$\\$\simeq\operatorname{Frac}(A/\mathfrak p)$}{purple}
@@ -48,7 +50,7 @@
 \N{e2}{24.5}{7.4}{$\Gamma(\PP_k^1)=k[t]\cap k[t^{-1}]=k$\\$\eta_{\PP_k^1}$ lleva todo a un punto}{orange}
 \N{e3}{24.5}{5.85}{Origen doble con $\Gamma=k[t]$\\$\eta$ identifica los dos orígenes}{orange}
 \B{f}{18.4}{3.5}{Familias}{blue}
-\N{f1}{24.5}{4.25}{$\A_\Z^n\to\Spec\Z$\\Para $n=1$, mapa de Mumford (Sesión 8)}{blue}
+\N{f1}{24.5}{4.12}{$\A_\Z^n\to\Spec\Z$\\Fibras (fig. 3.7)\\$n=1$: mapa de Mumford (Sesión 8)}{blue}
 \begin{scope}[shift={(22.0,1.05)}]
   \draw[edge,gray] (0,0)--(4.85,0);
   \node[anchor=west,font=\scriptsize] at (4.85,0) {$\Spec\Z$};
@@ -71,6 +73,8 @@
 \D{b1}{b2}{purple}
 \LeftBranch{c}{c1}{orange}
 \D{c1}{c2}{orange}
+\N{exafin}{8.85}{1.85}{Ej.: $\Z\to\F_5$ induce\\$\Spec\F_5\to\Spec\Z$}{orange}
+\D{c}{exafin}{orange}
 \E{d}{d1}{green}
 \D{d1}{d2}{green}
 \draw[edge,green] ($(d2.south)!.48!(d2.south west)$)--(doble.north);
@@ -91,22 +95,22 @@
 \startmap{2. Liu · De los anillos al pegado}{Liu, cap. 2, §§2.3.1--2.3.2, pp. 42--50. Proposición 3.25, lema 3.33 y ejemplos 3.5, 3.6, 3.34.}
 \node[root] (r) at (13.7,10) {ESQUEMAS\\localmente afines};
 \B{a}{8}{14.8}{Modelo afín}{blue}
-\N{a1}{3}{16}{$\Spec A$, $\mathcal O(D(f))=A_f$\\tallo $A_{\mathfrak p}$; $\kappa=\operatorname{Frac}(A/\mathfrak p)$}{blue}
-\N{a2}{3}{14.1}{Ej.: $\Spec\Z$, $\Gamma(D(6))=\Z[1/6]$\\Si $A$ dominio: $\mathcal O(U)\subseteq\operatorname{Frac}(A)$\\para $U\ne\varnothing$}{blue}
+\N{a1}{3}{16}{$\Spec A$, $\mathcal O_{\Spec A}(D(f))=A_f$\\tallo $A_{\mathfrak p}$; $\kappa=\operatorname{Frac}(A/\mathfrak p)$}{blue}
+\N{a2}{3}{14.1}{Ej. 3.5: $\Spec\Z$, $\Gamma(D(6))=\Z[1/6]$\\Si $A$ dominio: $\mathcal O(U)\subseteq\operatorname{Frac}(A)$\\para $U\ne\varnothing$}{blue}
 \node[branch,text width=3.4cm,text=purple] (b) at (8,9.4) {Subesquemas};
 \N{b1}{3}{10.05}{Abierto: $\mathcal O_X|_U$\\Ej.: $D(f)\simeq\Spec A_f$}{purple}
 \N{b2}{3}{8.05}{Subesquemas cerrados de $\Spec A$\\$\leftrightarrow$ ideales $I$, vía $\Spec(A/I)$\\Ej.: $\Spec\F_p\hookrightarrow\Spec\Z$}{purple}
-\B{c}{8}{5.7}{Destino afín}{orange}
+\B{c}{8}{5.7}{Destino afín\\{\small Prop. 3.25}}{orange}
 \N{c1}{3.1}{6.2}{$X$ esquema, $Y=\Spec A$\\$\Hom(X,Y)\simeq$\\$\Hom_{\rm anillos}(A,\Gamma(X))$}{orange}
 \N{c2}{3.1}{3.7}{Ej.: $\Z\to\Gamma(X)$\\da $X\to\Spec\Z$}{orange}
 \B{d}{18.6}{15}{Sobre una base}{blue}
 \N{d1}{24.5}{15.4}{$S$-esquema: $X\to S$\\Ej.: $\A_A^n\to\Spec A$}{blue}
-\B{e}{18.6}{11}{Pegado}{green}
+\B{e}{18.6}{11}{Pegado\\{\small Lema 3.33}}{green}
 \N{e1}{24.5}{12.9}{$X_i$ sobre $S$, $X_{ij}\subseteq X_i$ abiertos\\$f_{ij}\colon X_{ij}\simeq X_{ji}$ sobre $S$\\$X_{ii}=X_i$, $f_{ii}=\mathrm{id}$}{green}
 \N{e2}{24.5}{10}{Compatibilidad triple\\$f_{ij}(X_{ij}\cap X_{ik})=X_{ji}\cap X_{jk}$\\$f_{ik}=f_{jk}\circ f_{ij}$}{green}
 \N{e3}{24.5}{7.5}{$X$ sobre $S$, único salvo iso. compatible\\Inmersiones abiertas $j_i\colon X_i\hookrightarrow X$\\$X=\bigcup_i j_i(X_i)$\\$j_i=j_j\circ f_{ij}$ en $X_{ij}$}{green}
 \N{e4}{24.5}{4.8}{Ej.: $\PP_A^n$ con cartas $\A_A^n$\\solapes $D(T_j/T_i)$\\$T_k/T_j=(T_k/T_i)/(T_j/T_i)$}{green}
-\node[leaf,text width=8cm,text=orange] (z) at (12.8,2.5) {\textbf{Sesión 8 · abierto perforado}\\$p$ primo, $U=\Spec\Z[T]\setminus\{(p,T)\}$\\$U=D(p)\cup D(T)$, $\Gamma(U)=\Z[T]$\\$\eta_U$ es la inclusión, omite $(p,T)$\\$\Rightarrow U$ no afín, como $\A_k^2\setminus\{0\}$};
+\node[leaf,text width=8cm,text=orange] (z) at (12.8,2.5) {\textbf{Ej. 3.6 de Liu · abierto perforado}\\$p$ primo, $U=\Spec\Z[T]\setminus\{(p,T)\}$\\$U=D(p)\cup D(T)$, $\Gamma(U)=\Z[T]$\\$\eta_U$ es la inclusión, omite $(p,T)$\\$\Rightarrow U$ no afín\\Análogo en la Sesión 8: $\A_k^2\setminus\{0\}$};
 \N{s}{24.5}{1.8}{\textbf{Sesión 8}\\$n=1$: dos rectas con $u=t^{-1}$}{green}
 \draw[edge,draw=blue] (r.north west) -- (10.45,14.8) -- (a.east);
 \LeftBranch{a}{a1}{blue}
@@ -114,14 +118,16 @@
 \LeftBranch{r}{b}{purple}
 \leftedge{b}{b1}{purple}{.65}
 \leftedge{b}{b2}{purple}{-.65}
-\draw[edge,draw=orange] (r.south west) -- (10.45,8.1) -- (10.45,5.7) -- (c.east);
-\LeftBranch{c}{c1}{orange}\D{c1}{c2}{orange}\draw[edge,draw=blue] (r.north east) -- (16.7,13.4) -- (d.south west);\E{d}{d1}{blue}\rightedge{r}{e}{green}{-.5}\E{e}{e1}{green}\D{e1}{e2}{green}\D{e2}{e3}{green}\D{e3}{e4}{green}\D{e4}{s}{green}\D{c}{z}{orange}
+
+\LeftBranch{c}{c1}{orange}\D{c1}{c2}{orange}\draw[edge,draw=blue] (r.north east) -- (16.95,13.35) -- (d.south);\E{d}{d1}{blue}\E{e}{e1}{green}\D{e1}{e2}{green}\D{e2}{e3}{green}\D{e3}{e4}{green}\D{e4}{s}{green}\D{c}{z}{orange}
 \draw[cross] (d.south)--(e.north) node[midway,tag]{fija la base};
-\node[leaf,text width=4.7cm,text=orange] (mor) at (13.8,15.4) {\textbf{Morfismo de esquemas}\\ $f$ continuo, $f^\#\colon\mathcal O_Y\to f_*\mathcal O_X$\\mapas locales en tallos\\$A\to B\Rightarrow\Spec B\to\Spec A$\\Ej.: $A\to A_f$ da $D(f)\hookrightarrow\Spec A$};
-\D{r}{mor}{orange}
+\node[leaf,text width=4.95cm,text=orange] (mor) at (18.85,7.55) {\textbf{Morfismo de esquemas}\\ $f$ continuo, $f^\#\colon\mathcal O_Y\to f_*\mathcal O_X$\\mapas locales en tallos\\$A\to B\Rightarrow\Spec B\to\Spec A$\\Ej.: $A\to A_f$ da $D(f)\hookrightarrow\Spec A$};
+\draw[edge,orange] (r.south east)--(mor.north west);
+\draw[edge,orange] (mor.south west) -- (15.8,5.7) -- (c.east);
+\draw[edge,green] (mor.north)--(e.south);
 \node[leaf,text=blue,text width=6cm] (loc) at (3.3,12.0) {$X_f=\{x:f(x)\ne0\}$, $f\in\Gamma(X)$\\Con cubierta afín finita y solapes\\cuasicompactos, $\Gamma(X_f)\simeq\Gamma(X)_f$};
-\draw[edge,blue] (a2.south)--(loc.north);
-\N{sec}{14.1}{6.4}{\textbf{Secciones y puntos racionales}\\$\sigma\colon S\to X$, $\pi\sigma=\mathrm{id}_S$\\Ej.: $t=0$ en $\A_S^1$\\Sobre un cuerpo $k$: $x\in X(k)\Leftrightarrow\kappa(x)=k$\\Ej.: $\A_k^1(k)=k$; $(t-a)$, $a\in k$}{blue}
+\draw[edge,blue] (a.south west)--(loc.east);
+\N{sec}{13.85}{15.45}{\textbf{Secciones y puntos racionales}\\$\sigma\colon S\to X$, $\pi\sigma=\mathrm{id}_S$\\Ej.: $t=0$ en $\A_S^1$\\Sobre un cuerpo $k$: $x\in X(k)\Leftrightarrow\kappa(x)=k$\\Ej.: $\A_k^1(k)=k$; $(t-a)$, $a\in k$}{blue}
 \D{r}{sec}{blue}
 
 \finish
@@ -133,12 +139,12 @@
 \N{h2}{3}{11.3}{$1$: $(p)$, vertical\\$\kappa=\F_p(t)$}{blue}
 \N{h3}{3}{8.7}{$2$: $(p,h)$, cerrado\\$\bar h$ mónico irreducible\\$\kappa=\F_p[t]/(\bar h)=\F_{p^d}$, $d=\deg\bar h$}{blue}
 \B{f}{8.1}{5.3}{Fibras de $\pi$}{purple}
-\N{f0}{3}{5.8}{Sobre $(0)$: $\A_\Q^1$\\Ej.: $(t^2+1)$}{purple}
-\N{fp}{3}{3.5}{Sobre $(p)$: $V(p)\simeq\A_{\F_p}^1$\\Ej.: $(5,t-2)$}{purple}
+\N{f0}{3}{5.8}{Genérica sobre $(0)$: $\A_\Q^1$\\Primos $(0)$ y $(g)$\\Ej.: $(t^2+1)$}{purple}
+\N{fp}{3}{3.5}{Vertical sobre $(p)$: $V(p)\simeq\A_{\F_p}^1$\\Primos $(p)$ y $(p,h)$\\Ej.: $(5,t-2)$}{purple}
 \N{pi}{8.6}{2}{\textbf{Sesión 8}\\$\pi(\mathfrak q)=\mathfrak q\cap\Z$\\$(g)$ cerrado en la fibra genérica,\\no en $X$; su cierre es $V(g)$}{purple}
 
 \begin{scope}[shift={(11.0,4.8)},x=.9cm,y=.8cm]
-\node[font=\scriptsize,align=center] at (2.5,3.5) {$C=V(t^2+1)$: cortes esquemáticos};
+\node[font=\scriptsize,align=center] at (2.5,3.5) {Cortes en las fibras de $\pi$};
 \draw[-{Stealth},gray] (-.4,0)--(5.8,0); \node[font=\scriptsize,anchor=east] at (5.8,0.35) {$\Spec\Z$};
 \foreach \x/\p in {0/2,1.6/3,3.2/5,4.8/7}{\draw[blue] (\x,.4)--(\x,2.9);\node[font=\scriptsize,below] at (\x,0) {$(\p)$};}
 \draw[orange] (0,1.6)--(1.6,1.6)--(3.2,2.4)--(4.8,1.6);
@@ -146,7 +152,9 @@
 \draw[orange,thick] (-.08,1.52) rectangle (.08,1.68);
 \foreach \x in {1.6,4.8}{\draw[orange,thick,fill=white] (\x,1.6) circle (.11);}
 \foreach \y in {.8,2.4}{\fill[orange] (3.2,\y) circle (.06);}
-\node[font=\scriptsize] at (2.4,-.7) {cuadrado: doble; círculo: grado 2};
+\node[font=\footnotesize] at (2.65,-1.2)
+  {$\bullet$ grado 1 \quad $\circ$ grado 2\\
+   $\square$ grado 1, multiplicidad 2};
 \end{scope}
 \B{c}{18.2}{4.9}{Cortes de\\$V(t^2+1)$}{orange}
 \N{p2}{24.5}{7.2}{$p=2$: $(t+1)^2$\\$(2,t+1)$, cuerpo $\F_2$\\un punto doble}{orange}
@@ -169,19 +177,19 @@
 \N{v1}{24.4}{16}{$\overline{\{\mathfrak q\}}=V(\mathfrak q)$\\$\mathfrak q\subseteq\mathfrak r\Rightarrow V(\mathfrak r)\subseteq V(\mathfrak q)$}{green}
 \node[leaf,text=green] (v2) at (24.4,13.55)
   {\begin{tikzpicture}[x=1.22cm,y=.65cm,baseline=(current bounding box.center),
-                        every node/.style={font=\scriptsize,inner sep=0pt}]
-    \foreach \x/\name in {0/{(0)},1/{(g)},2/{(p)},3/{(p,h)}}
-      {\node at (\x,-.62) {$\name$};}
+                        every node/.style={font=\footnotesize,inner sep=0pt}]
+    \foreach \x/\name/\signtext in {0/{(0)}/{Todo $X$},1/{(g)}/Curva,2/{(p)}/Recta,3/{(p,h)}/Punto}
+      {\node at (\x,-.62) {$\name$}; \node at (\x,-1.2) {\signtext};}
     \foreach \a in {0,45,...,315} {\draw (0,0)--++(\a:2.4mm);}
     \draw (.79,0)--(1.21,0);
     \draw (2,-.33)--(2,.33);
     \fill (3,0) circle (1.25pt);
-  \end{tikzpicture}\\Cierres: todo $X$, $V(g)$, $V(p)$, el punto\\Ej.: $V(t)\simeq\Spec\Z$};
+  \end{tikzpicture}\\Curva $V(g)$ y recta $V(p)$\\Ej.: $V(t)\simeq\Spec\Z$};
 \N{inc}{14.55}{2.35}{\textbf{Curva y fibra se encuentran}\\$(t^2+1)\subset(5,t-2)\supset(5)$\\Por ejemplo, $V(t^2+1)\simeq\Spec\Z[i]$}{green}
-\N{v3}{24.4}{10.95}{Marca pequeña: grado 1.\\Marca mayor: grado 2.\\Ej.: $(3,t)$ da $\F_3$ y $(3,t^2+1)$ da $\F_9$}{green}
+\N{v3}{24.4}{10.95}{Tamaño y grado residual\\$(3,t)$ da $\F_3$\\$(3,t^2+1)$ da $\F_9$}{green}
 \rightedge{r}{v}{green}{.45}\E{v}{v1}{green}\D{v1}{v2}{green}\D{v2}{v3}{green}
-\draw[cross] (v3.south west) -- node[tag,midway]{leer los grados} (c.north);
-\draw[edge,green] (c.south west)--(inc.north);
+
+\draw[edge,green] (c.south) |- (inc.east);
 \finish
 \startmap{4. Serratos · De la factorización a los puntos}{Serratos, arXiv:2304.03523v2, pp. 1--2. Cortes y lectura aritmética cotejados con Sesión 8.}
 \arith{CURVA EN\\$\Spec\Z[t]$}
@@ -194,5 +202,3 @@
 \draw[cross] (v2.south west) -- node[tag,midway]{determina los cortes} (c.north);
 \finish
 \end{document}
-
-
